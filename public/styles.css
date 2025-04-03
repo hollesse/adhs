@@ -4,14 +4,15 @@
     --innoq-red: #e20613;
     --innoq-dark-blue: #23234c;
     --innoq-blue: #009fe3;
-    --innoq-apricot: #ffc29e;
+    --innoq-petrol: #004153;
+    --innoq-apricot: #ff9a66;
     --innoq-grey: #58595b;
     --innoq-light-grey: #f1f2f2;
     
     /* Color assignments */
-    --primary-color: var(--innoq-red);
-    --secondary-color: var(--innoq-blue);
-    --accent-color: var(--innoq-apricot);
+    --primary-color: var(--innoq-petrol);
+    --secondary-color: var(--innoq-apricot);
+    --accent-color: var(--innoq-blue);
     --text-color: var(--innoq-dark-blue);
     --light-bg: #ffffff;
     --card-bg: #ffffff;
@@ -137,7 +138,7 @@ button {
 }
 
 button:hover {
-    background-color: #c30610;
+    background-color: #002e3a;
 }
 
 button:disabled {
@@ -167,8 +168,8 @@ input[type="radio"] {
 }
 
 .result.auffaellig {
-    background-color: #fff0f0;
-    border: 1px solid #ffdddd;
+    background-color: #fff0e8;
+    border: 1px solid #ffe4d3;
     color: var(--primary-color);
     padding: calc(var(--spacing-unit) * 3);
 }
