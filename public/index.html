@@ -160,83 +160,85 @@
     <div class="content">
         <h1>ASRS v1.1 Fragebogen</h1>
         <form id="asrs-form">
-        <div class="question active" id="question-1">
-            <a href="#" class="back-link hidden" onclick="prevQuestion(1)">Zurück</a>
-            <label for="q1">1. Wie oft hatten Sie in den letzten 6 Monaten Schwierigkeiten, Details aufmerksam durchzulesen oder sie zu erledigen?</label>
-            <div class="options">
-                <label><input type="radio" name="q1" value="0" required onclick="enableNext(1)"> Nie</label>
-                <label><input type="radio" name="q1" value="1" onclick="enableNext(1)"> Selten</label>
-                <label><input type="radio" name="q1" value="2" onclick="enableNext(1)"> Manchmal</label>
-                <label><input type="radio" name="q1" value="3" onclick="enableNext(1)"> Oft</label>
-                <label><input type="radio" name="q1" value="4" onclick="enableNext(1)"> Sehr oft</label>
-            </div>
-            <button type="button" id="next-1" onclick="nextQuestion(1)" disabled>Weiter</button>
-        </div>
+        <asrs-questionnaire>
+            <asrs-question question-number="1" class="question active" id="question-1">
+                <a href="#" class="back-link hidden">Zurück</a>
+                <label for="q1">1. Wie oft hatten Sie in den letzten 6 Monaten Schwierigkeiten, Details aufmerksam durchzulesen oder sie zu erledigen?</label>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="0" required> Nie</label>
+                    <label><input type="radio" name="q1" value="1"> Selten</label>
+                    <label><input type="radio" name="q1" value="2"> Manchmal</label>
+                    <label><input type="radio" name="q1" value="3"> Oft</label>
+                    <label><input type="radio" name="q1" value="4"> Sehr oft</label>
+                </div>
+                <button type="button" id="next-1" disabled>Weiter</button>
+            </asrs-question>
 
-        <div class="question" id="question-2">
-            <a href="#" class="back-link" onclick="prevQuestion(2)">Zurück</a>
-            <label for="q2">2. Wie oft hatten Sie in den letzten 6 Monaten Schwierigkeiten, Ihre Aufmerksamkeit bei der Arbeit zu halten?</label>
-            <div class="options">
-                <label><input type="radio" name="q2" value="0" required onclick="enableNext(2)"> Nie</label>
-                <label><input type="radio" name="q2" value="1" onclick="enableNext(2)"> Selten</label>
-                <label><input type="radio" name="q2" value="2" onclick="enableNext(2)"> Manchmal</label>
-                <label><input type="radio" name="q2" value="3" onclick="enableNext(2)"> Oft</label>
-                <label><input type="radio" name="q2" value="4" onclick="enableNext(2)"> Sehr oft</label>
-            </div>
-            <button type="button" id="next-2" onclick="nextQuestion(2)" disabled>Weiter</button>
-        </div>
+            <asrs-question question-number="2" class="question" id="question-2">
+                <a href="#" class="back-link">Zurück</a>
+                <label for="q2">2. Wie oft hatten Sie in den letzten 6 Monaten Schwierigkeiten, Ihre Aufmerksamkeit bei der Arbeit zu halten?</label>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="0" required> Nie</label>
+                    <label><input type="radio" name="q2" value="1"> Selten</label>
+                    <label><input type="radio" name="q2" value="2"> Manchmal</label>
+                    <label><input type="radio" name="q2" value="3"> Oft</label>
+                    <label><input type="radio" name="q2" value="4"> Sehr oft</label>
+                </div>
+                <button type="button" id="next-2" disabled>Weiter</button>
+            </asrs-question>
 
-        <div class="question" id="question-3">
-            <a href="#" class="back-link" onclick="prevQuestion(3)">Zurück</a>
-            <label for="q3">3. Wie oft sind Sie in den letzten 6 Monaten mitten in der Aufgabe gedanklich abgeschweift?</label>
-            <div class="options">
-                <label><input type="radio" name="q3" value="0" required onclick="enableNext(3)"> Nie</label>
-                <label><input type="radio" name="q3" value="1" onclick="enableNext(3)"> Selten</label>
-                <label><input type="radio" name="q3" value="2" onclick="enableNext(3)"> Manchmal</label>
-                <label><input type="radio" name="q3" value="3" onclick="enableNext(3)"> Oft</label>
-                <label><input type="radio" name="q3" value="4" onclick="enableNext(3)"> Sehr oft</label>
-            </div>
-            <button type="button" id="next-3" onclick="nextQuestion(3)" disabled>Weiter</button>
-        </div>
+            <asrs-question question-number="3" class="question" id="question-3">
+                <a href="#" class="back-link">Zurück</a>
+                <label for="q3">3. Wie oft sind Sie in den letzten 6 Monaten mitten in der Aufgabe gedanklich abgeschweift?</label>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="0" required> Nie</label>
+                    <label><input type="radio" name="q3" value="1"> Selten</label>
+                    <label><input type="radio" name="q3" value="2"> Manchmal</label>
+                    <label><input type="radio" name="q3" value="3"> Oft</label>
+                    <label><input type="radio" name="q3" value="4"> Sehr oft</label>
+                </div>
+                <button type="button" id="next-3" disabled>Weiter</button>
+            </asrs-question>
 
-        <div class="question" id="question-4">
-            <a href="#" class="back-link" onclick="prevQuestion(4)">Zurück</a>
-            <label for="q4">4. Wie oft haben Sie Aufgaben, die längeres Nachdenken erforderten, vermieden?</label>
-            <div class="options">
-                <label><input type="radio" name="q4" value="0" required onclick="enableNext(4)"> Nie</label>
-                <label><input type="radio" name="q4" value="1" onclick="enableNext(4)"> Selten</label>
-                <label><input type="radio" name="q4" value="2" onclick="enableNext(4)"> Manchmal</label>
-                <label><input type="radio" name="q4" value="3" onclick="enableNext(4)"> Oft</label>
-                <label><input type="radio" name="q4" value="4" onclick="enableNext(4)"> Sehr oft</label>
-            </div>
-            <button type="button" id="next-4" onclick="nextQuestion(4)" disabled>Weiter</button>
-        </div>
+            <asrs-question question-number="4" class="question" id="question-4">
+                <a href="#" class="back-link">Zurück</a>
+                <label for="q4">4. Wie oft haben Sie Aufgaben, die längeres Nachdenken erforderten, vermieden?</label>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="0" required> Nie</label>
+                    <label><input type="radio" name="q4" value="1"> Selten</label>
+                    <label><input type="radio" name="q4" value="2"> Manchmal</label>
+                    <label><input type="radio" name="q4" value="3"> Oft</label>
+                    <label><input type="radio" name="q4" value="4"> Sehr oft</label>
+                </div>
+                <button type="button" id="next-4" disabled>Weiter</button>
+            </asrs-question>
 
-        <div class="question" id="question-5">
-            <a href="#" class="back-link" onclick="prevQuestion(5)">Zurück</a>
-            <label for="q5">5. Wie oft haben Sie in den letzten 6 Monaten Dinge verlegt?</label>
-            <div class="options">
-                <label><input type="radio" name="q5" value="0" required onclick="enableNext(5)"> Nie</label>
-                <label><input type="radio" name="q5" value="1" onclick="enableNext(5)"> Selten</label>
-                <label><input type="radio" name="q5" value="2" onclick="enableNext(5)"> Manchmal</label>
-                <label><input type="radio" name="q5" value="3" onclick="enableNext(5)"> Oft</label>
-                <label><input type="radio" name="q5" value="4" onclick="enableNext(5)"> Sehr oft</label>
-            </div>
-            <button type="button" id="next-5" onclick="nextQuestion(5)" disabled>Weiter</button>
-        </div>
+            <asrs-question question-number="5" class="question" id="question-5">
+                <a href="#" class="back-link">Zurück</a>
+                <label for="q5">5. Wie oft haben Sie in den letzten 6 Monaten Dinge verlegt?</label>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="0" required> Nie</label>
+                    <label><input type="radio" name="q5" value="1"> Selten</label>
+                    <label><input type="radio" name="q5" value="2"> Manchmal</label>
+                    <label><input type="radio" name="q5" value="3"> Oft</label>
+                    <label><input type="radio" name="q5" value="4"> Sehr oft</label>
+                </div>
+                <button type="button" id="next-5" disabled>Weiter</button>
+            </asrs-question>
 
-        <div class="question" id="question-6">
-            <a href="#" class="back-link" onclick="prevQuestion(6)">Zurück</a>
-            <label for="q6">6. Wie oft wurden Sie durch äußere Reize abgelenkt?</label>
-            <div class="options">
-                <label><input type="radio" name="q6" value="0" required onclick="enableNext(6)"> Nie</label>
-                <label><input type="radio" name="q6" value="1" onclick="enableNext(6)"> Selten</label>
-                <label><input type="radio" name="q6" value="2" onclick="enableNext(6)"> Manchmal</label>
-                <label><input type="radio" name="q6" value="3" onclick="enableNext(6)"> Oft</label>
-                <label><input type="radio" name="q6" value="4" onclick="enableNext(6)"> Sehr oft</label>
-            </div>
-            <button type="button" id="next-6" onclick="evaluateASRS()" disabled>Auswertung anzeigen</button>
-        </div>
+            <asrs-question question-number="6" class="question" id="question-6">
+                <a href="#" class="back-link">Zurück</a>
+                <label for="q6">6. Wie oft wurden Sie durch äußere Reize abgelenkt?</label>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="0" required> Nie</label>
+                    <label><input type="radio" name="q6" value="1"> Selten</label>
+                    <label><input type="radio" name="q6" value="2"> Manchmal</label>
+                    <label><input type="radio" name="q6" value="3"> Oft</label>
+                    <label><input type="radio" name="q6" value="4"> Sehr oft</label>
+                </div>
+                <button type="button" id="next-6" disabled>Auswertung anzeigen</button>
+            </asrs-question>
+        </asrs-questionnaire>
         </form>
 
         <div class="result" id="result"></div>
@@ -246,63 +248,7 @@
         </footer>
     </div><!-- Ende .content -->
 
-    <script>
-        function nextQuestion(current) {
-            const currentQuestion = document.getElementById(`question-${current}`);
-            const nextQuestion = document.getElementById(`question-${current + 1}`);
-            currentQuestion.classList.remove('active');
-            nextQuestion.classList.add('active');
-        }
-
-        function prevQuestion(current) {
-            if (current > 1) {
-                const currentQuestion = document.getElementById(`question-${current}`);
-                const prevQuestion = document.getElementById(`question-${current - 1}`);
-                currentQuestion.classList.remove('active');
-                prevQuestion.classList.add('active');
-            }
-        }
-
-        function enableNext(questionNumber) {
-            document.getElementById(`next-${questionNumber}`).disabled = false;
-        }
-
-        function evaluateASRS() {
-            let totalScore = 0;
-
-            // Fragen 1 bis 3: Punkt, wenn Manchmal (2), Oft (3) oder Sehr oft (4) ausgewählt ist
-            for (let i = 1; i <= 3; i++) {
-                const selectedValue = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-                if (selectedValue >= 2) {
-                    totalScore++;
-                }
-            }
-
-            // Fragen 4 bis 6: Punkt, wenn Oft (3) oder Sehr oft (4) ausgewählt ist
-            for (let i = 4; i <= 6; i++) {
-                const selectedValue = parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
-                if (selectedValue >= 3) {
-                    totalScore++;
-                }
-            }
-
-            let resultMessage;
-            let resultClass;
-
-            if (totalScore >= 4) {
-                resultMessage = "Das Screening ist auffällig. Bei Leidensdruck wird empfohlen, einen Facharzt oder Therapeuten zu konsultieren. Einen tiefergehenden Test finden Sie <a href='https://www.adxs.org/de/test/symptom-v5' target='_blank'>hier</a> zur Erhöhung der Aussagekraft.";
-                resultClass = "auffaellig";
-            } else {
-                resultMessage = "Das Screening ist unauffällig. Wenn dennoch Unsicherheiten bestehen, kann ein Fachgespräch hilfreich sein.";
-                resultClass = "unauffaellig";
-            }
-
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = resultMessage;
-            resultDiv.className = `result ${resultClass}`;
-            resultDiv.style.display = 'block';
-        }
-    </script>
+    <script src="scripts/asrs-questionnaire.js"></script>
 
 </body>
 </html>
