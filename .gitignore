@@ -1,0 +1,25 @@
+# macOS-spezifische Dateien
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Dateien, die auf externen Datenträgern erscheinen können
+.Spotlight-V100
+.Trashes
+.fseventsd
+
+# IDE-Dateien
+.idea/
+.vscode/
+*.sublime-*
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Build-Verzeichnisse
+dist/
+build/
