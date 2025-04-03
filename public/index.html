@@ -225,49 +225,118 @@
             content: "✓";
         }
 
-        /* Ergebnisanzeige im modernen INNOQ-Stil */
-        .result {
+        /* Moderne Ergebnisanzeige im INNOQ-Stil */
+        .result-container {
             margin-top: calc(var(--spacing-unit) * 5);
-            padding: calc(var(--spacing-unit) * 5);
             display: none;
             line-height: 1.6;
             animation: fadeInUp 0.6s ease;
             font-size: 1.15rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .result-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 6);
+            border-radius: 12px 12px 0 0;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
-
-        .result:before {
+        
+        .result-header h2 {
+            margin-top: 0;
+            font-size: 2rem;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            color: white;
+        }
+        
+        .result-header:after {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 6px;
-            height: 100%;
+            bottom: -60px;
+            left: -10%;
+            width: 120%;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
         }
-
+        
+        .result-summary {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .score-badge {
+            background-color: white;
+            color: var(--primary-color);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .result-status {
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+        
+        .result-details {
+            background-color: white;
+            padding: calc(var(--spacing-unit) * 5);
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .result-section {
+            margin-bottom: calc(var(--spacing-unit) * 5);
+        }
+        
+        .result-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .result-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            color: var(--primary-color);
+            padding-bottom: calc(var(--spacing-unit));
+            border-bottom: 2px solid var(--innoq-light-grey);
+        }
+        
+        .result {
+            padding: calc(var(--spacing-unit) * 3);
+            line-height: 1.6;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid;
+        }
+        
         .result.unauffaellig {
             background-color: #f5f5f5;
-            border: 1px solid var(--innoq-light-grey);
+            border-color: var(--innoq-blue);
             color: var(--text-color);
         }
-
-        .result.unauffaellig:before {
-            background-color: var(--innoq-blue);
-        }
-
+        
         .result.auffaellig {
             background-color: #fff8f3;
-            border: 1px solid #ffe8d8;
+            border-color: var(--secondary-color);
             color: var(--primary-color);
         }
-
-        .result.auffaellig:before {
-            background-color: var(--secondary-color);
-        }
-
+        
         .result a {
             font-weight: 600;
             color: var(--primary-color);
@@ -278,6 +347,74 @@
         .result a:hover {
             color: var(--secondary-color);
             background-color: rgba(229,123,66,0.1);
+        }
+        
+        .next-steps {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 3);
+        }
+        
+        .next-step {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 3);
+            padding: calc(var(--spacing-unit) * 3);
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .next-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+        
+        .step-icon {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            margin-top: 0;
+            margin-bottom: calc(var(--spacing-unit));
+            color: var(--primary-color);
+        }
+        
+        .step-content p {
+            margin: 0;
+        }
+        
+        .result-actions {
+            margin-top: calc(var(--spacing-unit) * 5);
+            text-align: center;
+        }
+        
+        .secondary-button {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(0,58,73,0.05);
+            transform: translateY(-2px);
+        }
+        
+        .secondary-button:after {
+            content: "↺";
         }
 
         /* Footer im INNOQ-Stil */
@@ -318,6 +455,34 @@
             
             .question label {
                 font-size: 1.2rem;
+            }
+            
+            .result-header {
+                padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 5);
+            }
+            
+            .result-details {
+                padding: calc(var(--spacing-unit) * 3);
+            }
+            
+            .next-step {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: calc(var(--spacing-unit) * 2);
+            }
+            
+            .result-summary {
+                flex-direction: column;
+                gap: calc(var(--spacing-unit) * 2);
+            }
+            
+            .result-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .result-status {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -456,7 +621,53 @@
         </asrs-questionnaire>
         </form>
 
-        <div class="result" id="result"></div>
+        <div class="result-container" id="result-container">
+            <div class="result-header">
+                <h2>Ihr Ergebnis</h2>
+                <div class="result-summary">
+                    <div class="score-badge" id="score-badge">0/6</div>
+                    <div class="result-status" id="result-status"></div>
+                </div>
+            </div>
+            
+            <div class="result-details">
+                <div class="result-section">
+                    <h3>Was bedeutet dieses Ergebnis?</h3>
+                    <div class="result" id="result"></div>
+                </div>
+                
+                <div class="result-section">
+                    <h3>Wie geht es weiter?</h3>
+                    <div class="next-steps" id="next-steps">
+                        <div class="next-step">
+                            <div class="step-icon">📚</div>
+                            <div class="step-content">
+                                <h4>Mehr Informationen</h4>
+                                <p>Der ASRS v1.1 Fragebogen ist ein wissenschaftlich validiertes Screening-Instrument, das auf den diagnostischen Kriterien des DSM-IV basiert.</p>
+                            </div>
+                        </div>
+                        <div class="next-step">
+                            <div class="step-icon">🔍</div>
+                            <div class="step-content">
+                                <h4>Tiefergehender Test</h4>
+                                <p>Einen ausführlicheren Test finden Sie <a href='https://www.adxs.org/de/test/symptom-v5' target='_blank'>hier bei ADXS.org</a>.</p>
+                            </div>
+                        </div>
+                        <div class="next-step">
+                            <div class="step-icon">👩‍⚕️</div>
+                            <div class="step-content">
+                                <h4>Fachliche Beratung</h4>
+                                <p>Bei Fragen wenden Sie sich an einen Facharzt für Psychiatrie mit ADHS-Expertise oder einen spezialisierten Psychotherapeuten.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-actions">
+                    <button type="button" id="restart-btn" class="secondary-button">Test neu starten</button>
+                </div>
+            </div>
+        </div>
 
         <footer>
             <p>Weitere Informationen zum ASRS v1.1 finden Sie <a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/6Q_German_final.pdf" target="_blank">hier</a>.</p>

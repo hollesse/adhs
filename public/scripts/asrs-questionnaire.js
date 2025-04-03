@@ -195,10 +195,10 @@ class AsrsQuestionnaire extends HTMLElement {
     
     // Bei der letzten Frage: Ergebnis ausblenden, wenn es angezeigt wird
     if (questionNumber === this._questions.length) {
-      const resultDiv = document.getElementById('result');
-      if (resultDiv && resultDiv.style.display === 'block') {
+      const resultContainer = document.getElementById('result-container');
+      if (resultContainer && resultContainer.style.display === 'block') {
         console.log('Ergebnis wird ausgeblendet');
-        resultDiv.style.display = 'none';
+        resultContainer.style.display = 'none';
       }
     }
     
@@ -306,37 +306,78 @@ class AsrsQuestionnaire extends HTMLElement {
   displayResult(totalScore) {
     console.log('Ergebnis wird angezeigt, Gesamtpunktzahl:', totalScore);
     
-    const resultDiv = document.getElementById('result');
-    if (!resultDiv) {
-      console.error('Ergebnis-Element nicht gefunden');
-      // Fallback: Ergebnis als Alert anzeigen, damit der Benutzer zumindest etwas sieht
+    // Letzte Frage ausblenden
+    const lastQuestion = this._questions[this._questions.length - 1];
+    if (lastQuestion) {
+      lastQuestion.classList.remove('active');
+    }
+    
+    // Basis-Ergebnistext und Klasse
+    let resultMessage;
+    let resultClass;
+    let resultStatus;
+    
+    if (totalScore >= 4) {
+      resultMessage = "Das Screening ist auffällig. Bei Leidensdruck wird empfohlen, einen Facharzt oder Therapeuten zu konsultieren.";
+      resultClass = "auffaellig";
+      resultStatus = "Auffällig";
+    } else {
+      resultMessage = "Das Screening ist unauffällig. Wenn dennoch Unsicherheiten bestehen, kann ein Fachgespräch hilfreich sein.";
+      resultClass = "unauffaellig";
+      resultStatus = "Unauffällig";
+    }
+    
+    // Ergebnis-Container finden
+    const resultContainer = document.getElementById('result-container');
+    if (!resultContainer) {
+      console.error('Ergebnis-Container nicht gefunden');
+      // Fallback: Einfache Ergebnisanzeige
       alert(`Ergebnis: ${totalScore >= 4 ? 'Das Screening ist auffällig.' : 'Das Screening ist unauffällig.'}`);
       return;
     }
     
-    console.log('Ergebnis-Element gefunden:', resultDiv);
-    
-    let resultMessage;
-    let resultClass;
-    
-    if (totalScore >= 4) {
-      resultMessage = "Das Screening ist auffällig. Bei Leidensdruck wird empfohlen, einen Facharzt oder Therapeuten zu konsultieren. Einen tiefergehenden Test finden Sie <a href='https://www.adxs.org/de/test/symptom-v5' target='_blank'>hier</a> zur Erhöhung der Aussagekraft.";
-      resultClass = "auffaellig";
-    } else {
-      resultMessage = "Das Screening ist unauffällig. Wenn dennoch Unsicherheiten bestehen, kann ein Fachgespräch hilfreich sein.";
-      resultClass = "unauffaellig";
+    // Ergebnis-Element finden und aktualisieren
+    const resultDiv = document.getElementById('result');
+    if (resultDiv) {
+      resultDiv.innerHTML = resultMessage;
+      resultDiv.className = `result ${resultClass}`;
     }
     
-    // Ergebnis-DIV aktualisieren
-    resultDiv.innerHTML = resultMessage;
-    resultDiv.className = `result ${resultClass}`;
-    resultDiv.style.display = 'block';
+    // Ergebnis-Badge und Status aktualisieren
+    const scoreBadge = document.getElementById('score-badge');
+    if (scoreBadge) {
+      scoreBadge.textContent = `${totalScore}/6`;
+    }
+    
+    const resultStatusDiv = document.getElementById('result-status');
+    if (resultStatusDiv) {
+      resultStatusDiv.textContent = resultStatus;
+      // Zusätzliche Farbindikatoren je nach Ergebnis
+      resultStatusDiv.style.color = totalScore >= 4 ? 'var(--secondary-color)' : 'var(--innoq-blue)';
+    }
+    
+    // Farbschema der Header anpassen
+    const resultHeader = document.querySelector('.result-header');
+    if (resultHeader) {
+      resultHeader.style.backgroundColor = totalScore >= 4 ? 'var(--secondary-color)' : 'var(--primary-color)';
+    }
+    
+    // Ergebnis-Container anzeigen
+    resultContainer.style.display = 'block';
+    
+    // "Test neu starten" Button-Funktionalität hinzufügen
+    const restartButton = document.getElementById('restart-btn');
+    if (restartButton) {
+      restartButton.addEventListener('click', () => {
+        this.resetQuestionnaire();
+      });
+    }
     
     console.log('Ergebnis wurde in HTML eingefügt');
     
     // Zum Ergebnis scrollen
     try {
-      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
       console.log('Zu Ergebnis gescrollt');
     } catch (e) {
       console.error('Fehler beim Scrollen zum Ergebnis:', e);
@@ -344,20 +385,53 @@ class AsrsQuestionnaire extends HTMLElement {
     
     // Fokus auf Ergebnis setzen für Accessibility
     try {
-      resultDiv.setAttribute('tabindex', '-1');
-      resultDiv.focus();
+      resultContainer.setAttribute('tabindex', '-1');
+      resultContainer.focus();
       console.log('Fokus auf Ergebnis gesetzt');
     } catch (e) {
       console.error('Fehler beim Setzen des Fokus:', e);
     }
     
-    // Event auslösen, das die Auswertung abgeschlossen ist
+    // Event auslösen, dass die Auswertung abgeschlossen ist
     this.dispatchEvent(new CustomEvent('questionnaire-completed', {
       bubbles: true,
       detail: { score: totalScore }
     }));
     
     console.log('Ergebnis-Anzeige abgeschlossen');
+  }
+  
+  // Setzt den Fragebogen zurück
+  resetQuestionnaire() {
+    console.log('Fragebogen wird zurückgesetzt');
+    
+    // Ergebnis-Container ausblenden
+    const resultContainer = document.getElementById('result-container');
+    if (resultContainer) {
+      resultContainer.style.display = 'none';
+    }
+    
+    // Radio-Buttons zurücksetzen
+    this._questions.forEach(question => {
+      const radioButtons = question.querySelectorAll('input[type="radio"]');
+      radioButtons.forEach(radio => {
+        radio.checked = false;
+      });
+      
+      // Buttons deaktivieren
+      const nextButton = question.querySelector('button');
+      if (nextButton) {
+        nextButton.disabled = true;
+      }
+    });
+    
+    // Scores zurücksetzen
+    this._scores = new Array(this._questions.length).fill(null);
+    
+    // Erste Frage anzeigen
+    this.showQuestion(1);
+    
+    console.log('Fragebogen wurde zurückgesetzt');
   }
 }
 
