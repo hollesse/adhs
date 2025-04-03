@@ -176,12 +176,9 @@
         .back-link:before {
             content: '\2190'; /* Unicode für Pfeil nach links */
             margin-right: 8px;
-            font-size: 1.2em;
+            font-size: 1em; /* Gleiche Schriftgröße wie Text */
             display: inline-block;
-            line-height: 1;
-            vertical-align: middle;
             position: relative;
-            top: -1px; /* Feinabstimmung für die vertikale Ausrichtung */
             transition: transform var(--transition-speed) ease;
             font-family: 'Source Sans Pro', sans-serif; /* Explizite Schriftart */
         }
@@ -221,8 +218,9 @@
         button:after {
             content: '\2192'; /* Unicode für Pfeil nach rechts */
             margin-left: 8px;
-            font-size: 1.2em;
+            font-size: 1em; /* Gleiche Schriftgröße wie Text */
             display: inline-block;
+            position: relative;
             transition: transform var(--transition-speed) ease;
             font-family: 'Source Sans Pro', sans-serif; /* Explizite Schriftart */
         }
