@@ -213,15 +213,14 @@
         }
 
         button:after {
-            content: "←";
+            content: '→';
             margin-left: 8px;
-            transform: rotate(180deg);
             display: inline-block;
             transition: transform var(--transition-speed) ease;
         }
 
         button:not(:disabled):hover:after {
-            transform: rotate(180deg) translateX(-4px);
+            transform: translateX(4px);
         }
 
         button#next-6:after {
