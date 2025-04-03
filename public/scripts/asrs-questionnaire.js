@@ -45,13 +45,22 @@ class AsrsQuestion extends HTMLElement {
     // "Weiter"-Button finden und Event-Listener hinzufügen
     const nextButton = this.querySelector('button');
     if (nextButton) {
+      // Prüfen, ob es sich um die letzte Frage handelt, entweder durch das Attribut oder die ID
+      const isLastQuestion = this.hasAttribute('last-question') || this.id === 'question-6';
+      
+      // Debug-Ausgabe
+      console.log(`Initialisiere Button für Frage ${this._questionNumber}, isLastQuestion: ${isLastQuestion}`);
+      
+      // Event-Listener anpassen
       nextButton.addEventListener('click', () => {
-        if (this._isLastQuestion) {
+        if (isLastQuestion) {
+          console.log('Letzte Frage: Starte Auswertung');
           this.dispatchEvent(new CustomEvent('evaluate', {
             bubbles: true,
             composed: true
           }));
         } else {
+          console.log(`Gehe weiter zu Frage ${this._questionNumber + 1}`);
           this.dispatchEvent(new CustomEvent('navigate-next', {
             bubbles: true,
             composed: true,
@@ -59,6 +68,11 @@ class AsrsQuestion extends HTMLElement {
           }));
         }
       });
+      
+      // Anzeige-Text für den Auswertungs-Button anpassen
+      if (isLastQuestion) {
+        nextButton.textContent = 'Auswertung anzeigen';
+      }
     }
     
     // "Zurück"-Link finden und Event-Listener hinzufügen, falls nicht die erste Frage
@@ -225,21 +239,37 @@ class AsrsQuestionnaire extends HTMLElement {
   
   // Wertet den Fragebogen aus
   evaluateASRS() {
+    console.log('Evaluierung wird gestartet...');
+    console.log('Aktuelle Scores:', this._scores);
+    
+    // Prüfen, ob alle Fragen beantwortet wurden
+    if (this._scores.includes(null)) {
+      console.warn('Nicht alle Fragen wurden beantwortet!');
+      // Hier könnten wir eine Meldung für den Benutzer anzeigen,
+      // aber für den Moment lassen wir die Auswertung weiterlaufen
+    }
+    
     let totalScore = 0;
     
     // Fragen 1 bis 3: Punkt, wenn Manchmal (2), Oft (3) oder Sehr oft (4) ausgewählt ist
     for (let i = 0; i < 3; i++) {
-      if (this._scores[i] >= 2) {
+      console.log(`Prüfe Frage ${i+1}, Wert: ${this._scores[i]}`);
+      if (this._scores[i] !== null && this._scores[i] >= 2) {
         totalScore++;
+        console.log(`  -> Punkt für Frage ${i+1}`);
       }
     }
     
     // Fragen 4 bis 6: Punkt, wenn Oft (3) oder Sehr oft (4) ausgewählt ist
     for (let i = 3; i < 6; i++) {
-      if (this._scores[i] >= 3) {
+      console.log(`Prüfe Frage ${i+1}, Wert: ${this._scores[i]}`);
+      if (this._scores[i] !== null && this._scores[i] >= 3) {
         totalScore++;
+        console.log(`  -> Punkt für Frage ${i+1}`);
       }
     }
+    
+    console.log(`Gesamtpunktzahl: ${totalScore}`);
     
     // Ergebnis anzeigen
     this.displayResult(totalScore);
@@ -247,11 +277,17 @@ class AsrsQuestionnaire extends HTMLElement {
   
   // Zeigt das Ergebnis an
   displayResult(totalScore) {
+    console.log('Ergebnis wird angezeigt, Gesamtpunktzahl:', totalScore);
+    
     const resultDiv = document.getElementById('result');
     if (!resultDiv) {
       console.error('Ergebnis-Element nicht gefunden');
+      // Fallback: Ergebnis als Alert anzeigen, damit der Benutzer zumindest etwas sieht
+      alert(`Ergebnis: ${totalScore >= 4 ? 'Das Screening ist auffällig.' : 'Das Screening ist unauffällig.'}`);
       return;
     }
+    
+    console.log('Ergebnis-Element gefunden:', resultDiv);
     
     let resultMessage;
     let resultClass;
@@ -264,22 +300,37 @@ class AsrsQuestionnaire extends HTMLElement {
       resultClass = "unauffaellig";
     }
     
+    // Ergebnis-DIV aktualisieren
     resultDiv.innerHTML = resultMessage;
     resultDiv.className = `result ${resultClass}`;
     resultDiv.style.display = 'block';
     
+    console.log('Ergebnis wurde in HTML eingefügt');
+    
     // Zum Ergebnis scrollen
-    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    try {
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      console.log('Zu Ergebnis gescrollt');
+    } catch (e) {
+      console.error('Fehler beim Scrollen zum Ergebnis:', e);
+    }
     
     // Fokus auf Ergebnis setzen für Accessibility
-    resultDiv.setAttribute('tabindex', '-1');
-    resultDiv.focus();
+    try {
+      resultDiv.setAttribute('tabindex', '-1');
+      resultDiv.focus();
+      console.log('Fokus auf Ergebnis gesetzt');
+    } catch (e) {
+      console.error('Fehler beim Setzen des Fokus:', e);
+    }
     
     // Event auslösen, das die Auswertung abgeschlossen ist
     this.dispatchEvent(new CustomEvent('questionnaire-completed', {
       bubbles: true,
       detail: { score: totalScore }
     }));
+    
+    console.log('Ergebnis-Anzeige abgeschlossen');
   }
 }
 
@@ -289,5 +340,29 @@ customElements.define('asrs-questionnaire', AsrsQuestionnaire);
 
 // Warte auf DOMContentLoaded, um sicherzustellen, dass alle Elemente geladen sind
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('ASRS Fragebogen initialisiert');
+  console.log('ASRS Fragebogen wird initialisiert...');
+  
+  // Stellen wir sicher, dass die Custom Elements korrekt initialisiert werden
+  const questionnaire = document.querySelector('asrs-questionnaire');
+  if (!questionnaire) {
+    console.error('Fragebogen-Element nicht gefunden!');
+    return;
+  }
+
+  // Manuelles Aufrufen der Initialisierung für den Fragebogen, um sicherzustellen, dass alles korrekt geladen wird
+  setTimeout(() => {
+    console.log('Fragebogen-Element gefunden, initialisiere...');
+    // Prüfen, ob alle Fragen korrekt initialisiert wurden
+    const questions = Array.from(document.querySelectorAll('asrs-question'));
+    console.log(`${questions.length} Fragen gefunden`);
+    
+    // Stelle sicher, dass die letzte Frage das last-question Attribut hat
+    const lastQuestion = questions[questions.length - 1];
+    if (lastQuestion && !lastQuestion.hasAttribute('last-question')) {
+      console.log('Setze last-question Attribut auf letzte Frage');
+      lastQuestion.setAttribute('last-question', '');
+    }
+    
+    console.log('ASRS Fragebogen wurde vollständig initialisiert');
+  }, 100);
 });
