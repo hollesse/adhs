@@ -6,20 +6,22 @@
     <title>ADHS Weitere Links</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* INNOQ-spezifische Stile für die Links-Seite */
         .link-section {
-            margin-bottom: 35px;
+            margin-bottom: calc(var(--spacing-unit) * 5);
         }
         
         .link-section h2 {
             color: var(--text-color);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding-bottom: 12px;
-            margin-top: 30px;
+            border-bottom: 1px solid var(--innoq-light-grey);
+            padding-bottom: calc(var(--spacing-unit) * 1.5);
+            margin-top: calc(var(--spacing-unit) * 4);
             font-size: 1.5rem;
+            font-weight: 600;
         }
         
         .link-list {
@@ -28,36 +30,31 @@
         }
         
         .link-list li {
-            margin-bottom: 18px;
-            transition: transform var(--transition-speed) ease;
-        }
-        
-        .link-list li:hover {
-            transform: translateX(4px);
+            margin-bottom: calc(var(--spacing-unit) * 2);
         }
         
         .link-list a {
-            color: var(--primary-color);
+            color: var(--text-color);
             text-decoration: none;
             display: block;
-            padding: 14px;
-            border-left: 4px solid var(--primary-color);
-            background-color: rgba(67, 97, 238, 0.03);
-            border-radius: 0 8px 8px 0;
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2.5);
+            border-left: 3px solid var(--primary-color);
+            background-color: #f9f9f9;
             transition: all var(--transition-speed) ease;
-            font-weight: 500;
+            font-weight: 600;
         }
         
         .link-list a:hover {
-            background-color: rgba(67, 97, 238, 0.07);
-            padding-left: 18px;
+            color: var(--primary-color);
+            background-color: #f5f5f5;
         }
         
         .link-description {
-            margin-top: 8px;
-            color: #6c757d;
-            font-size: 14px;
+            margin-top: calc(var(--spacing-unit));
+            color: var(--innoq-grey);
+            font-size: 15px;
             line-height: 1.5;
+            padding: 0 calc(var(--spacing-unit) * 2.5);
         }
     </style>
 </head>

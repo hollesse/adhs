@@ -6,22 +6,13 @@
     <title>ADHS in der IT: DevDay Dresden 2025</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <style>
-        
-        .content-box {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
+        /* INNOQ-spezifische Stile für die DevDay-Seite */
         .talk-header {
-            margin-bottom: 30px;
+            margin-bottom: calc(var(--spacing-unit) * 4);
             text-align: center;
         }
         
@@ -29,11 +20,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f0f7ff;
-            border-radius: 8px;
-            border-left: 5px solid #007BFF;
+            margin: calc(var(--spacing-unit) * 3) 0;
+            padding: calc(var(--spacing-unit) * 2.5);
+            background-color: #f9f9f9;
+            border-left: 3px solid var(--primary-color);
         }
         
         .talk-meta-item {
@@ -43,28 +33,31 @@
         
         .meta-label {
             font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
+            color: var(--innoq-grey);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            font-weight: 400;
         }
         
         .meta-value {
-            font-weight: bold;
-            color: #333;
+            font-weight: 600;
+            color: var(--text-color);
         }
         
         .section {
-            margin-bottom: 30px;
+            margin-bottom: calc(var(--spacing-unit) * 5);
         }
         
         .section h2 {
-            color: #007BFF;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--innoq-light-grey);
+            padding-bottom: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+            font-weight: 600;
         }
         
         .section p {
             line-height: 1.6;
+            color: var(--text-color);
         }
         
         .key-points {
@@ -73,32 +66,34 @@
         }
         
         .key-points li {
-            margin-bottom: 15px;
-            padding-left: 25px;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            padding-left: calc(var(--spacing-unit) * 3.5);
             position: relative;
+            line-height: 1.5;
         }
         
         .key-points li:before {
-            content: "✓";
+            content: "•";
             position: absolute;
-            left: 0;
-            color: #007BFF;
+            left: calc(var(--spacing-unit));
+            color: var(--primary-color);
             font-weight: bold;
+            font-size: 18px;
         }
         
         .back-button {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #007BFF;
+            margin-top: calc(var(--spacing-unit) * 4);
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5);
+            background-color: var(--primary-color);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            transition: background-color var(--transition-speed) ease;
         }
         
         .back-button:hover {
-            background-color: #0056b3;
+            background-color: #c30610;
         }
         
         footer {
