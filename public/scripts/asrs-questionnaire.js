@@ -191,6 +191,16 @@ class AsrsQuestionnaire extends HTMLElement {
   // Wechselt zur vorherigen Frage
   handleNavigatePrev(event) {
     const { questionNumber } = event.detail;
+    
+    // Bei der letzten Frage: Ergebnis ausblenden, wenn es angezeigt wird
+    if (questionNumber === this._questions.length) {
+      const resultDiv = document.getElementById('result');
+      if (resultDiv && resultDiv.style.display === 'block') {
+        console.log('Ergebnis wird ausgeblendet');
+        resultDiv.style.display = 'none';
+      }
+    }
+    
     if (questionNumber > 1) {
       this.showQuestion(questionNumber - 1);
     }
