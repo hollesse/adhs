@@ -176,6 +176,7 @@
         .back-link:before {
             content: '←';
             margin-right: 8px;
+            font-size: 1.2em;
             transition: transform var(--transition-speed) ease;
         }
 
@@ -212,17 +213,24 @@
         }
 
         button:after {
-            content: "→";
+            content: "←";
             margin-left: 8px;
+            transform: rotate(180deg);
+            display: inline-block;
             transition: transform var(--transition-speed) ease;
         }
 
         button:not(:disabled):hover:after {
-            transform: translateX(4px);
+            transform: rotate(180deg) translateX(-4px);
         }
 
         button#next-6:after {
             content: "✓";
+            transform: none;
+        }
+        
+        button#next-6:hover:after {
+            transform: scale(1.1);
         }
 
         /* Moderne Ergebnisanzeige im INNOQ-Stil */
