@@ -343,17 +343,24 @@ class AsrsQuestionnaire extends HTMLElement {
       resultDiv.className = `result ${resultClass}`;
     }
     
-    // Ergebnis-Badge und Status aktualisieren
-    const scoreBadge = document.getElementById('score-badge');
-    if (scoreBadge) {
-      scoreBadge.textContent = `${totalScore}/6`;
+    // Score anzeigen
+    const scoreValue = document.getElementById('score-value');
+    if (scoreValue) {
+      scoreValue.textContent = `${totalScore}/6`;
     }
     
-    const resultStatusDiv = document.getElementById('result-status');
-    if (resultStatusDiv) {
-      resultStatusDiv.textContent = resultStatus;
-      // Text immer weiß für Lesbarkeit auf dem farbigen Hintergrund
-      resultStatusDiv.style.color = 'white';
+    // Badge-Icon entsprechend des Ergebnisses anpassen
+    const badgeIcon = document.getElementById('badge-icon');
+    if (badgeIcon) {
+      if (totalScore >= 4) {
+        // Rotes X für auffälliges Ergebnis
+        badgeIcon.textContent = "✘";
+        badgeIcon.className = "badge-icon alert";
+      } else {
+        // Grünes Häkchen für unauffälliges Ergebnis
+        badgeIcon.textContent = "✓";
+        badgeIcon.className = "badge-icon success";
+      }
     }
     
     // Farbschema der Header anpassen

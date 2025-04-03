@@ -274,29 +274,57 @@
             z-index: 2;
         }
         
-        .score-badge {
-            background-color: white;
-            color: var(--primary-color);
-            width: 70px;
-            height: 70px;
+        .result-badge {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border: 2px solid rgba(255,255,255,0.8);
+            border: 3px solid white;
+            position: relative;
+            background-color: white;
         }
         
-        .result-status {
-            font-size: 1.6rem;
+        .badge-icon {
+            font-size: 2.5rem;
             font-weight: bold;
-            /* Für bessere Lesbarkeit */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Icon-Stile für verschiedene Ergebnisse */
+        .badge-icon.success {
+            color: #2ecc71; /* Grün */
+        }
+        
+        .badge-icon.alert {
+            color: #e74c3c; /* Rot */
+        }
+        
+        .score-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .score-label {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        
+        .score-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
             text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            background-color: rgba(0,0,0,0.1);
-            padding: 4px 12px;
-            border-radius: 6px;
         }
         
         .result-details {
@@ -482,15 +510,24 @@
             
             .result-summary {
                 flex-direction: column;
-                gap: calc(var(--spacing-unit) * 2);
+                gap: calc(var(--spacing-unit) * 3);
             }
             
             .result-header h2 {
                 font-size: 1.8rem;
             }
             
-            .result-status {
-                font-size: 1.4rem;
+            .score-value {
+                font-size: 1.5rem;
+            }
+            
+            .result-badge {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .badge-icon {
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -633,8 +670,13 @@
             <div class="result-header">
                 <h2>Ihr Ergebnis</h2>
                 <div class="result-summary">
-                    <div class="score-badge" id="score-badge">0/6</div>
-                    <div class="result-status" id="result-status"></div>
+                    <div class="result-badge" id="result-badge">
+                        <div class="badge-icon" id="badge-icon">✓</div>
+                    </div>
+                    <div class="score-display">
+                        <div class="score-label">Punktzahl</div>
+                        <div class="score-value" id="score-value">0/6</div>
+                    </div>
                 </div>
             </div>
             
