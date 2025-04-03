@@ -174,10 +174,11 @@
         }
 
         .back-link:before {
-            content: '←';
+            content: '\2190'; /* Unicode für Pfeil nach links */
             margin-right: 8px;
             font-size: 1.2em;
             transition: transform var(--transition-speed) ease;
+            font-family: 'Source Sans Pro', sans-serif; /* Explizite Schriftart */
         }
 
         .back-link.hidden {
@@ -213,10 +214,12 @@
         }
 
         button:after {
-            content: '→';
+            content: '\2192'; /* Unicode für Pfeil nach rechts */
             margin-left: 8px;
+            font-size: 1.2em;
             display: inline-block;
             transition: transform var(--transition-speed) ease;
+            font-family: 'Source Sans Pro', sans-serif; /* Explizite Schriftart */
         }
 
         button:not(:disabled):hover:after {
