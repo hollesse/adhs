@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHS Vorträge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 30px;
+        }
+        
+        .menu {
+            background-color: #333;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .menu a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        
+        .menu a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+        
+        .menu a.active {
+            background-color: #007BFF;
+            color: white;
+        }
+        
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .talks-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .talk-item {
+            margin-bottom: 25px;
+            border-left: 4px solid #007BFF;
+            padding-left: 15px;
+            background-color: #f8f9fa;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .talk-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+        
+        .talk-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+            padding: 10px 0;
+        }
+        
+        .talk-date {
+            background-color: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .talk-venue {
+            color: #666;
+            font-style: italic;
+            margin: 5px 0 10px 0;
+        }
+        
+        .talk-description {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        
+        .talk-links {
+            margin-top: 15px;
+        }
+        
+        .talk-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .talk-link:hover {
+            background-color: #0056b3;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="index.html">Screening Fragebogen</a>
+        <a href="links.html">Weitere Links</a>
+        <a href="vortraege.html" class="active">Vorträge</a>
+    </div>
+
+    <h1>Meine Vorträge zum Thema ADHS</h1>
+    
+    <div class="content">
+        <p>
+            Hier findest du eine Übersicht meiner Vorträge zum Thema ADHS in der IT-Branche und darüber hinaus.
+            Bei Interesse an einem Vortrag für deine Konferenz oder Veranstaltung kontaktiere mich gerne.
+        </p>
+        
+        <ul class="talks-list">
+            <li class="talk-item">
+                <div class="talk-header">
+                    <h2 class="talk-title">ADHS in der IT: Herausforderungen und Stärken</h2>
+                    <span class="talk-date">12. März 2025</span>
+                </div>
+                <p class="talk-venue">DevDay Dresden 2025</p>
+                <p class="talk-description">
+                    In diesem Vortrag beleuchte ich die besonderen Herausforderungen und Stärken, die Menschen mit ADHS in der IT-Branche haben. 
+                    Anhand persönlicher Erfahrungen und wissenschaftlicher Erkenntnisse stelle ich dar, wie ADHS-typische Eigenschaften wie Hyperfokus, kreatives Denken und Problemlösungsfähigkeiten in der Softwareentwicklung sowohl Vor- als auch Nachteile bieten können.
+                </p>
+                <div class="talk-links">
+                    <a href="devday2025.html" class="talk-link">Details zum Vortrag</a>
+                    <a href="#" class="talk-link">Folien (noch nicht verfügbar)</a>
+                </div>
+            </li>
+            
+            <!-- Platzhalter für zukünftige Vorträge -->
+            <li class="talk-item">
+                <div class="talk-header">
+                    <h2 class="talk-title">Geplante und vergangene Vorträge</h2>
+                </div>
+                <p class="talk-description">
+                    Weitere Vorträge werden hier angekündigt, sobald Termine feststehen. Nach den Veranstaltungen werden hier auch die Präsentationsfolien und ggf. Videoaufzeichnungen verlinkt.
+                </p>
+            </li>
+        </ul>
+    </div>
+    
+    <footer>
+        <p>© 2025 - Bei Interesse an Vorträgen zum Thema ADHS, insbesondere im IT-Kontext, kontaktieren Sie mich bitte.</p>
+    </footer>
+</body>
+</html>
