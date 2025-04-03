@@ -9,11 +9,41 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             padding: 20px;
+            margin: 0;
         }
 
         h1 {
             text-align: center;
             color: #333;
+            margin-top: 30px;
+        }
+        
+        .menu {
+            background-color: #333;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .menu a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        
+        .menu a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+        
+        .menu a.active {
+            background-color: #007BFF;
+            color: white;
         }
 
         form {
@@ -116,6 +146,11 @@
     </style>
 </head>
 <body>
+    <div class="menu">
+        <a href="index.html" class="active">Screening Fragebogen</a>
+        <a href="links.html">Weitere Links</a>
+        <a href="vortraege.html">Vorträge</a>
+    </div>
 
     <h1>ASRS v1.1 Fragebogen</h1>
     <form id="asrs-form">
