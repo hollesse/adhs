@@ -169,8 +169,9 @@ class AsrsQuestionnaire extends HTMLElement {
     this.addEventListener('navigate-prev', this.handleNavigatePrev.bind(this));
     this.addEventListener('evaluate', this.evaluateASRS.bind(this));
     
-    // Erste Frage aktivieren
+    // Erste Frage aktivieren und Fortschrittsbalken initialisieren
     this.showQuestion(1);
+    this.updateProgressBar(1);
     
     // Bestehenden Zustand wiederherstellen, falls vorhanden
     this.restoreState();
@@ -222,11 +223,27 @@ class AsrsQuestionnaire extends HTMLElement {
       questionToShow.classList.add('active');
       this._currentQuestion = questionNumber;
       
+      // Fortschrittsbalken aktualisieren
+      this.updateProgressBar(questionNumber);
+      
       // Fokus auf die Frage für Accessibility
       setTimeout(() => {
         const questionLabel = questionToShow.querySelector('label');
         if (questionLabel) questionLabel.focus();
       }, 100);
+    }
+  }
+  
+  // Aktualisiert den Fortschrittsbalken basierend auf der aktuellen Frage
+  updateProgressBar(questionNumber) {
+    const progressIndicator = document.getElementById('progress-indicator');
+    if (progressIndicator) {
+      // Berechne den Fortschritt (jede Frage ist 1/6 des Gesamtfortschritts)
+      const progressPercentage = (questionNumber / this._questions.length) * 100;
+      progressIndicator.style.width = `${progressPercentage}%`;
+      
+      // Fortschrittsanzeige mit Animation
+      progressIndicator.style.transition = 'width 0.4s ease';
     }
   }
   
