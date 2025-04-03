@@ -6,47 +6,65 @@
     <title>ADHS Vorträge</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f9;
-            padding: 20px;
             margin: 0;
+            padding: 0;
         }
 
         h1 {
             text-align: center;
             color: #333;
-            margin-top: 30px;
+            margin-top: 40px;
+            margin-bottom: 30px;
         }
         
         .menu {
-            background-color: #333;
-            overflow: hidden;
-            margin-bottom: 20px;
+            background-color: #262626;
+            width: 100%;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+        }
+        
+        .menu-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            padding: 0 20px;
         }
         
         .menu a {
-            float: left;
-            color: white;
+            color: #e5e5e5;
             text-align: center;
-            padding: 14px 16px;
+            padding: 18px 24px;
             text-decoration: none;
-            font-size: 17px;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
         }
         
         .menu a:hover {
-            background-color: #007BFF;
             color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-bottom: 3px solid #007BFF;
         }
         
         .menu a.active {
-            background-color: #007BFF;
             color: white;
+            border-bottom: 3px solid #007BFF;
         }
         
         .content {
+            padding: 0 20px;
+        }
+        
+        .content-box {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -133,14 +151,17 @@
 </head>
 <body>
     <div class="menu">
-        <a href="index.html">Screening Fragebogen</a>
-        <a href="links.html">Weitere Links</a>
-        <a href="vortraege.html" class="active">Vorträge</a>
+        <div class="menu-container">
+            <a href="index.html">Screening Fragebogen</a>
+            <a href="links.html">Weitere Links</a>
+            <a href="vortraege.html" class="active">Vorträge</a>
+        </div>
     </div>
-
-    <h1>Meine Vorträge zum Thema ADHS</h1>
     
     <div class="content">
+        <h1>Meine Vorträge zum Thema ADHS</h1>
+        
+        <div class="content-box">
         <p>
             Hier findest du eine Übersicht meiner Vorträge zum Thema ADHS in der IT-Branche und darüber hinaus.
             Bei Interesse an einem Vortrag für deine Konferenz oder Veranstaltung kontaktiere mich gerne.
@@ -174,6 +195,9 @@
             </li>
         </ul>
     </div>
+    
+        </div><!-- Ende .content-box -->
+    </div><!-- Ende .content -->
     
     <footer>
         <p>© 2025 - Bei Interesse an Vorträgen zum Thema ADHS, insbesondere im IT-Kontext, kontaktieren Sie mich bitte.</p>
