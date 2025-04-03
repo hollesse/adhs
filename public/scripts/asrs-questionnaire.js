@@ -352,8 +352,8 @@ class AsrsQuestionnaire extends HTMLElement {
     const resultStatusDiv = document.getElementById('result-status');
     if (resultStatusDiv) {
       resultStatusDiv.textContent = resultStatus;
-      // Zusätzliche Farbindikatoren je nach Ergebnis
-      resultStatusDiv.style.color = totalScore >= 4 ? 'var(--secondary-color)' : 'var(--innoq-blue)';
+      // Text immer weiß für Lesbarkeit auf dem farbigen Hintergrund
+      resultStatusDiv.style.color = 'white';
     }
     
     // Farbschema der Header anpassen
