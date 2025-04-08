@@ -11,50 +11,92 @@
     <link rel="stylesheet" href="/assets/styles.css">
     <style>
         /* INNOQ-spezifische Stile für die Links-Seite */
-        .link-section {
-            margin-bottom: calc(var(--spacing-unit) * 5);
+        .link-card-container {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 4);
+            margin-bottom: calc(var(--spacing-unit) * 6);
         }
         
-        .link-section h2 {
-            color: var(--text-color);
-            border-bottom: 1px solid var(--innoq-light-grey);
-            padding-bottom: calc(var(--spacing-unit) * 1.5);
-            margin-top: calc(var(--spacing-unit) * 4);
-            font-size: 1.5rem;
-            font-weight: 600;
+        .link-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+        
+        .link-card-header {
+            padding: calc(var(--spacing-unit) * 4);
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        
+        .link-card-icon {
+            font-size: 3rem;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        .link-card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+            color: white;
+        }
+        
+        .link-card-content {
+            padding: calc(var(--spacing-unit) * 4);
         }
         
         .link-list {
             list-style-type: none;
             padding-left: 0;
+            margin: 0;
         }
         
         .link-list li {
-            margin-bottom: calc(var(--spacing-unit) * 2);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            border-bottom: 1px solid var(--innoq-light-grey);
+            padding-bottom: calc(var(--spacing-unit) * 3);
         }
         
-        .link-list a {
-            color: var(--text-color);
-            text-decoration: none;
-            display: block;
-            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2.5);
-            border-left: 3px solid var(--primary-color);
-            background-color: #f9f9f9;
-            transition: all var(--transition-speed) ease;
+        .link-list li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .link-title {
             font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: calc(var(--spacing-unit));
+            display: block;
         }
         
-        .link-list a:hover {
+        .link-title a {
             color: var(--primary-color);
-            background-color: #f5f5f5;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .link-title a:hover {
+            color: var(--secondary-color);
         }
         
         .link-description {
-            margin-top: calc(var(--spacing-unit));
-            color: var(--innoq-grey);
-            font-size: 15px;
+            color: var(--text-color);
+            font-size: 0.95rem;
             line-height: 1.5;
-            padding: 0 calc(var(--spacing-unit) * 2.5);
+            margin: 0;
         }
     </style>
 </head>
@@ -72,78 +114,105 @@
         <h1>Hilfreiche Links</h1>
         
         <div class="content-wrapper" style="max-width: 800px; margin: 0 auto;">
-        <div class="link-section">
-            <h2>Selbsttests und Diagnose</h2>
-            <ul class="link-list">
-                <li>
-                    <a href="https://www.adxs.org/de/page/248/tests-selbsttests-und-umfragen#content-11-großer-adhs-symptomtest" target="_blank">ADXS.org - Großer ADHS-Symptomtest</a>
-                    <p class="link-description">Ausführlicher Selbsttest mit detaillierter Auswertung nach DSM-5 Kriterien.</p>
-                </li>
-                <li>
-                    <a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/6Q_German_final.pdf" target="_blank">ASRS v1.1 Fragebogen (PDF)</a>
-                    <p class="link-description">Offizieller WHO Screening-Fragebogen mit Auswertungsanleitung.</p>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="link-section">
-            <h2>Informationsseiten</h2>
-            <ul class="link-list">
-                <li>
-                    <a href="https://www.adxs.org" target="_blank">ADXS.org</a>
-                    <p class="link-description">Umfassende Informationsplattform mit wissenschaftlich fundierten Erkenntnissen zu ADHS, detaillierten Informationen zu Medikamenten und umfangreichen Selbsttests.</p>
-                </li>
-                <li>
-                    <a href="https://www.adhs.org/" target="_blank">ADHS Deutschland e.V.</a>
-                    <p class="link-description">Selbsthilfeverband für Menschen mit ADHS und ihre Angehörigen mit vielen Informationen.</p>
-                </li>
-                <li>
-                    <a href="https://www.adhs-ratgeber.com/" target="_blank">ADHS-Ratgeber</a>
-                    <p class="link-description">Umfassender Ratgeber zu allen Aspekten von ADHS bei Kindern und Erwachsenen.</p>
-                </li>
-                <li>
-                    <a href="https://www.adhspedia.de/" target="_blank">ADHSpedia</a>
-                    <p class="link-description">Informationsportal mit zahlreichen Artikeln zu ADHS im Alltag.</p>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="link-section">
-            <h2>Online-Communities</h2>
-            <ul class="link-list">
-                <li>
-                    <a href="https://www.reddit.com/r/ADHD/" target="_blank">r/ADHD (Reddit)</a>
-                    <p class="link-description">Große internationale Community für Austausch und Unterstützung.</p>
-                </li>
-                <li>
-                    <a href="https://www.facebook.com/groups/adhs.deutschland/" target="_blank">ADHS Deutschland Facebook-Gruppe</a>
-                    <p class="link-description">Austausch unter Betroffenen und Angehörigen im deutschsprachigen Raum.</p>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="link-section">
-            <h2>Bücher und Literatur</h2>
-            <ul class="link-list">
-                <li>
-                    <a href="https://www.thalia.de/shop/home/artikeldetails/A1052272625" target="_blank">Aufmerksamkeitsdefizit-/Hyperaktivitätsstörung bei Erwachsenen (Kompendium)</a>
-                    <p class="link-description">Standardwerk von Prof. Dr. Alexandra Philipsen und Prof. Dr. Dr. Andreas Heßlinger.</p>
-                </li>
-                <li>
-                    <a href="https://www.thalia.de/shop/home/artikeldetails/A1050442546" target="_blank">Endlich Fokus! (Sandra Störkel)</a>
-                    <p class="link-description">Praxisnahes Buch mit Strategien für den Alltag mit ADHS.</p>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="link-section">
-            <h2>Podcasts</h2>
-            <ul class="link-list">
-                <li>
-                    <a href="https://kein-grund-zur-panik.podigee.io/" target="_blank">ADHS: Kein Grund zur Panik!</a>
-                    <p class="link-description">Medizinisch orientierter Podcast des Expertenrats ADHS in Zusammenarbeit mit MEDICE, der primär für Ärzte und medizinisches Fachpersonal konzipiert ist. Bietet tiefgehende, wissenschaftliche Einblicke in die Thematik, ist jedoch aufgrund des Fachniveaus für Laien nicht immer leicht zugänglich.</p>
-                </li>
-            </ul>
+        <div class="link-card-container">
+            <div class="link-card">
+                <div class="link-card-header">
+                    <div class="link-card-icon">📋</div>
+                    <h2 class="link-card-title">Selbsttests und Diagnose</h2>
+                </div>
+                <div class="link-card-content">
+                    <ul class="link-list">
+                        <li>
+                            <span class="link-title"><a href="https://www.adxs.org/de/page/248/tests-selbsttests-und-umfragen#content-11-großer-adhs-symptomtest" target="_blank">ADXS.org - Großer ADHS-Symptomtest</a></span>
+                            <p class="link-description">Ausführlicher Selbsttest mit detaillierter Auswertung nach DSM-5 Kriterien.</p>
+                        </li>
+                        <li>
+                            <span class="link-title"><a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/6Q_German_final.pdf" target="_blank">ASRS v1.1 Fragebogen (PDF)</a></span>
+                            <p class="link-description">Offizieller WHO Screening-Fragebogen mit Auswertungsanleitung.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-card-header">
+                    <div class="link-card-icon">🌐</div>
+                    <h2 class="link-card-title">Informationsseiten</h2>
+                </div>
+                <div class="link-card-content">
+                    <ul class="link-list">
+                        <li>
+                            <span class="link-title"><a href="https://www.adxs.org" target="_blank">ADXS.org</a></span>
+                            <p class="link-description">Umfassende Informationsplattform mit wissenschaftlich fundierten Erkenntnissen zu ADHS, detaillierten Informationen zu Medikamenten und umfangreichen Selbsttests.</p>
+                        </li>
+                        <li>
+                            <span class="link-title"><a href="https://www.adhs.org/" target="_blank">ADHS Deutschland e.V.</a></span>
+                            <p class="link-description">Selbsthilfeverband für Menschen mit ADHS und ihre Angehörigen mit vielen Informationen.</p>
+                        </li>
+                        <li>
+                            <span class="link-title"><a href="https://www.adhs-ratgeber.com/" target="_blank">ADHS-Ratgeber</a></span>
+                            <p class="link-description">Umfassender Ratgeber zu allen Aspekten von ADHS bei Kindern und Erwachsenen.</p>
+                        </li>
+                        <li>
+                            <span class="link-title"><a href="https://www.adhspedia.de/" target="_blank">ADHSpedia</a></span>
+                            <p class="link-description">Informationsportal mit zahlreichen Artikeln zu ADHS im Alltag.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-card-header">
+                    <div class="link-card-icon">👥</div>
+                    <h2 class="link-card-title">Online-Communities</h2>
+                </div>
+                <div class="link-card-content">
+                    <ul class="link-list">
+                        <li>
+                            <span class="link-title"><a href="https://www.reddit.com/r/ADHD/" target="_blank">r/ADHD (Reddit)</a></span>
+                            <p class="link-description">Große internationale Community für Austausch und Unterstützung.</p>
+                        </li>
+                        <li>
+                            <span class="link-title"><a href="https://www.facebook.com/groups/adhs.deutschland/" target="_blank">ADHS Deutschland Facebook-Gruppe</a></span>
+                            <p class="link-description">Austausch unter Betroffenen und Angehörigen im deutschsprachigen Raum.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-card-header">
+                    <div class="link-card-icon">📚</div>
+                    <h2 class="link-card-title">Bücher und Literatur</h2>
+                </div>
+                <div class="link-card-content">
+                    <ul class="link-list">
+                        <li>
+                            <span class="link-title"><a href="https://www.thalia.de/shop/home/artikeldetails/A1052272625" target="_blank">Aufmerksamkeitsdefizit-/Hyperaktivitätsstörung bei Erwachsenen (Kompendium)</a></span>
+                            <p class="link-description">Standardwerk von Prof. Dr. Alexandra Philipsen und Prof. Dr. Dr. Andreas Heßlinger.</p>
+                        </li>
+                        <li>
+                            <span class="link-title"><a href="https://www.thalia.de/shop/home/artikeldetails/A1050442546" target="_blank">Endlich Fokus! (Sandra Störkel)</a></span>
+                            <p class="link-description">Praxisnahes Buch mit Strategien für den Alltag mit ADHS.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-card-header">
+                    <div class="link-card-icon">🎧</div>
+                    <h2 class="link-card-title">Podcasts</h2>
+                </div>
+                <div class="link-card-content">
+                    <ul class="link-list">
+                        <li>
+                            <span class="link-title"><a href="https://kein-grund-zur-panik.podigee.io/" target="_blank">ADHS: Kein Grund zur Panik!</a></span>
+                            <p class="link-description">Medizinisch orientierter Podcast des Expertenrats ADHS in Zusammenarbeit mit MEDICE, der primär für Ärzte und medizinisches Fachpersonal konzipiert ist. Bietet tiefgehende, wissenschaftliche Einblicke in die Thematik, ist jedoch aufgrund des Fachniveaus für Laien nicht immer leicht zugänglich.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         
         </div><!-- Ende .content-wrapper -->
