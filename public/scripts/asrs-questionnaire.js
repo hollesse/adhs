@@ -363,24 +363,30 @@ class AsrsQuestionnaire extends HTMLElement {
       scoreValue.textContent = `${totalScore}/6`;
     }
     
-    // Badge-Icon entsprechend des Ergebnisses anpassen
+    // Badge-Icon mit Punktzahl anzeigen statt Icon
     const badgeIcon = document.getElementById('badge-icon');
     if (badgeIcon) {
+      // Punktzahl im Kreis anzeigen
+      badgeIcon.textContent = totalScore;
+      
+      // CSS-Klasse je nach Ergebnis anpassen
       if (totalScore >= 4) {
-        // Rotes X für auffälliges Ergebnis
-        badgeIcon.textContent = "✘";
         badgeIcon.className = "badge-icon alert";
       } else {
-        // Grünes Häkchen für unauffälliges Ergebnis
-        badgeIcon.textContent = "✓";
         badgeIcon.className = "badge-icon success";
       }
     }
     
-    // Farbschema der Header anpassen
+    // Farbschema der Header anpassen und Überschrift ändern
     const resultHeader = document.querySelector('.result-header');
     if (resultHeader) {
       resultHeader.style.backgroundColor = totalScore >= 4 ? 'var(--secondary-color)' : 'var(--primary-color)';
+      
+      // Überschrift aktualisieren
+      const resultHeading = resultHeader.querySelector('h2');
+      if (resultHeading) {
+        resultHeading.textContent = totalScore >= 4 ? 'Dein Screening ist auffällig' : 'Dein Screening ist unauffällig';
+      }
     }
     
     // Ergebnis-Container anzeigen
@@ -430,6 +436,25 @@ class AsrsQuestionnaire extends HTMLElement {
     const resultContainer = document.getElementById('result-container');
     if (resultContainer) {
       resultContainer.style.display = 'none';
+      
+      // Ergebnis-Überschrift zurücksetzen für den nächsten Durchlauf
+      const resultHeading = resultContainer.querySelector('.result-header h2');
+      if (resultHeading) {
+        resultHeading.textContent = 'Ihr Ergebnis';
+      }
+      
+      // Badge-Icon zurücksetzen
+      const badgeIcon = document.getElementById('badge-icon');
+      if (badgeIcon) {
+        badgeIcon.textContent = "0";
+        badgeIcon.className = "badge-icon";
+      }
+      
+      // Score-Anzeige zurücksetzen
+      const scoreValue = document.getElementById('score-value');
+      if (scoreValue) {
+        scoreValue.textContent = "0/6";
+      }
     }
     
     // Fortschrittsbalken wieder anzeigen
