@@ -301,13 +301,14 @@
         }
         
         .badge-icon {
-            font-size: 2.5rem;
             font-weight: bold;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
             height: 100%;
+            text-align: center;
         }
         
         /* Icon-Stile für verschiedene Ergebnisse */
@@ -319,25 +320,18 @@
             color: #e74c3c; /* Rot */
         }
         
-        .score-display {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .score-label {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-        
-        .score-value {
+        #score-value {
             font-size: 1.8rem;
             font-weight: bold;
-            color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            line-height: 1.2;
+        }
+        
+        .badge-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 2px;
         }
         
         .result-details {
@@ -530,17 +524,17 @@
                 font-size: 1.8rem;
             }
             
-            .score-value {
-                font-size: 1.5rem;
-            }
-            
             .result-badge {
                 width: 70px;
                 height: 70px;
             }
             
-            .badge-icon {
-                font-size: 2.2rem;
+            #score-value {
+                font-size: 1.5rem;
+            }
+            
+            .badge-label {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -684,11 +678,10 @@
                 <h2>Ihr Ergebnis</h2>
                 <div class="result-summary">
                     <div class="result-badge" id="result-badge">
-                        <div class="badge-icon" id="badge-icon">✓</div>
-                    </div>
-                    <div class="score-display">
-                        <div class="score-label">Punktzahl</div>
-                        <div class="score-value" id="score-value">0/6</div>
+                        <div class="badge-icon" id="badge-icon">
+                            <span id="score-value">0/6</span>
+                            <span class="badge-label">Punkte</span>
+                        </div>
                     </div>
                 </div>
             </div>

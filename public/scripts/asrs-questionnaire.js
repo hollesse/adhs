@@ -357,18 +357,15 @@ class AsrsQuestionnaire extends HTMLElement {
       resultDiv.className = `result ${resultClass}`;
     }
     
-    // Score anzeigen
+    // Score im Badge anzeigen
     const scoreValue = document.getElementById('score-value');
     if (scoreValue) {
       scoreValue.textContent = `${totalScore}/6`;
     }
     
-    // Badge-Icon mit Punktzahl anzeigen statt Icon
+    // Badge-Farbe anpassen je nach Ergebnis
     const badgeIcon = document.getElementById('badge-icon');
     if (badgeIcon) {
-      // Punktzahl im Kreis anzeigen
-      badgeIcon.textContent = totalScore;
-      
       // CSS-Klasse je nach Ergebnis anpassen
       if (totalScore >= 4) {
         badgeIcon.className = "badge-icon alert";
@@ -446,7 +443,6 @@ class AsrsQuestionnaire extends HTMLElement {
       // Badge-Icon zurücksetzen
       const badgeIcon = document.getElementById('badge-icon');
       if (badgeIcon) {
-        badgeIcon.textContent = "0";
         badgeIcon.className = "badge-icon";
       }
       
