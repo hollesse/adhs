@@ -14,52 +14,66 @@
         .talks-list {
             list-style-type: none;
             padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 4);
+            width: 100%;
         }
         
         .talk-item {
-            margin-bottom: calc(var(--spacing-unit) * 4);
-            border-left: 3px solid var(--primary-color);
-            padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3.5);
-            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        .talk-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
         }
         
         .talk-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            padding: calc(var(--spacing-unit) * 4);
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
         }
         
         .talk-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin: 0;
-            padding: calc(var(--spacing-unit)) 0;
-        }
-        
-        .talk-date {
-            background-color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 0 calc(var(--spacing-unit) * 2) 0;
             color: white;
-            padding: calc(var(--spacing-unit) * 0.8) calc(var(--spacing-unit) * 1.5);
-            font-size: 14px;
-            font-weight: 600;
         }
         
-        .talk-venue {
-            color: var(--innoq-grey);
-            margin: calc(var(--spacing-unit) * 0.5) 0 calc(var(--spacing-unit) * 1.5) 0;
+        .talk-date, .talk-venue {
+            color: white;
+            margin-bottom: calc(var(--spacing-unit));
             font-weight: 400;
+            display: block;
+        }
+        
+        .talk-content {
+            padding: calc(var(--spacing-unit) * 4);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .talk-description {
-            margin: calc(var(--spacing-unit) * 1.5) 0;
-            line-height: 1.5;
+            margin: 0 0 calc(var(--spacing-unit) * 3) 0;
+            line-height: 1.6;
             color: var(--text-color);
+            flex-grow: 1;
         }
         
         .talk-links {
-            margin-top: calc(var(--spacing-unit) * 2.5);
+            margin-top: auto;
         }
         
         /* Talk link styles now in global CSS */
@@ -85,7 +99,7 @@
     <div class="content">
         <h1>Meine Vorträge zum Thema ADHS</h1>
         
-        <div class="content-box">
+        <div class="content-wrapper" style="max-width: 800px; margin: 0 auto;">
         <p>
             Hier findest du eine Übersicht meiner Vorträge zum Thema ADHS in der IT-Branche und darüber hinaus.
             Bei Interesse an einem Vortrag für deine Konferenz oder Veranstaltung kontaktiere mich gerne.
@@ -96,33 +110,23 @@
                 <div class="talk-header">
                     <h2 class="talk-title">ADHS in der IT: Vom Chaos zum Code</h2>
                     <span class="talk-date">08. April 2025</span>
+                    <span class="talk-venue">DevDay Dresden 2025 | Börse Dresden | 14:30 - 15:30</span>
                 </div>
-                <p class="talk-venue">DevDay Dresden 2025 | Börse Dresden | 14:30 - 15:30</p>
-                <p class="talk-description">
-                    ADHS ist mehr als nur das Bild des zappeligen Kindes — gerade in der IT-Branche sind viele Erwachsene betroffen, 
-                    oft ohne es zu wissen. In diesem Vortrag klären wir über die typischen Symptome von ADHS auf und geben erste Anhaltspunkte, 
-                    wie man bei sich selbst mögliche Anzeichen erkennen kann. Außerdem teilen wir konkrete Strategien für Softwareentwickler, 
-                    wie sie mit den Herausforderungen von ADHS besser umgehen und ihre Stärken besser nutzen können.
-                </p>
-                <div class="talk-links">
-                    <a href="devday2025.html" class="talk-link">Details zum Vortrag</a>
-                    <a href="https://files.speakerdeck.com/presentations/34e1128017e0482eb8dddb87a2f5a382/ADHS-in-der-IT.pdf" class="talk-link">Folien herunterladen</a>
+                <div class="talk-content">
+                    <p class="talk-description">
+                        ADHS ist mehr als nur das Bild des zappeligen Kindes — gerade in der IT-Branche sind viele Erwachsene betroffen, 
+                        oft ohne es zu wissen. In diesem Vortrag klären wir über die typischen Symptome von ADHS auf und geben erste Anhaltspunkte, 
+                        wie man bei sich selbst mögliche Anzeichen erkennen kann. Außerdem teilen wir konkrete Strategien für Softwareentwickler, 
+                        wie sie mit den Herausforderungen von ADHS besser umgehen und ihre Stärken besser nutzen können.
+                    </p>
+                    <div class="talk-links">
+                        <a href="devday2025.html" class="talk-link">Details zum Vortrag</a>
+                        <a href="https://files.speakerdeck.com/presentations/34e1128017e0482eb8dddb87a2f5a382/ADHS-in-der-IT.pdf" class="talk-link">Folien herunterladen</a>
+                    </div>
                 </div>
-            </li>
-            
-            <!-- Platzhalter für zukünftige Vorträge -->
-            <li class="talk-item">
-                <div class="talk-header">
-                    <h2 class="talk-title">Geplante und vergangene Vorträge</h2>
-                </div>
-                <p class="talk-description">
-                    Weitere Vorträge werden hier angekündigt, sobald Termine feststehen. Nach den Veranstaltungen werden hier auch die Präsentationsfolien und ggf. Videoaufzeichnungen verlinkt.
-                </p>
             </li>
         </ul>
-    </div>
-    
-        </div><!-- Ende .content-box -->
+        </div><!-- Ende .content-wrapper -->
     </div><!-- Ende .content -->
     
     <footer>
