@@ -246,6 +246,40 @@ footer a:hover {
     color: var(--secondary-color);
 }
 
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes slideUp {
+    0% { 
+        transform: translateY(0);
+        opacity: 1; 
+        max-height: 200px;
+        margin-top: calc(var(--spacing-unit) * 6);
+        margin-bottom: calc(var(--spacing-unit) * 6);
+    }
+    100% { 
+        transform: translateY(-100%);
+        opacity: 0;
+        max-height: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.slide-up-animation {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: top center;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .menu-container {

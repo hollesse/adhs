@@ -278,8 +278,14 @@
                 
                 // Button-Event-Handler hinzufügen
                 closeButton.addEventListener('click', () => {
-                    // Banner ausblenden
-                    targetElement.style.display = 'none';
+                    // Animation starten
+                    targetElement.classList.add('slide-up-animation');
+                    
+                    // Nach der Animation Banner ausblenden und Animation-Klasse entfernen
+                    targetElement.addEventListener('animationend', () => {
+                        targetElement.style.display = 'none';
+                        targetElement.classList.remove('slide-up-animation');
+                    }, { once: true });
                     
                     // URL-Parameter entfernen
                     const paramName = this.getAttribute('param-name') || 'src';
