@@ -35,6 +35,39 @@
             display: none; /* Initially hidden */
         }
         
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 18px;
+            width: 32px;
+            height: 32px;
+            min-width: unset;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 0;
+            line-height: 1;
+        }
+        
+        .close-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .close-button:focus {
+            outline: 3px solid white;
+            outline-offset: 2px;
+        }
+        
         .hero h1, .hero-thank-you h1 {
             color: white;
             font-size: 2.8rem;
@@ -213,11 +246,49 @@
             
             connectedCallback() {
                 // Warten bis das DOM vollständig geladen ist
-                window.addEventListener('load', () => this.checkVisibility());
+                window.addEventListener('load', () => {
+                    this.checkVisibility();
+                    this.setupCloseButton();
+                });
+                
                 // Falls das load-Event bereits ausgelöst wurde
                 if (document.readyState === 'complete') {
                     this.checkVisibility();
+                    this.setupCloseButton();
                 }
+            }
+            
+            setupCloseButton() {
+                const closeButtonId = this.getAttribute('close-button-id');
+                if (!closeButtonId) return; // Wenn keine Button-ID angegeben ist, ignorieren
+                
+                const targetId = this.getAttribute('target-id');
+                if (!targetId) return;
+                
+                // Button finden
+                const closeButton = document.getElementById(closeButtonId);
+                if (!closeButton) {
+                    console.error(`url-param-visibility: Close-Button mit ID ${closeButtonId} nicht gefunden`);
+                    return;
+                }
+                
+                // Ziel-Element finden
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) return;
+                
+                // Button-Event-Handler hinzufügen
+                closeButton.addEventListener('click', () => {
+                    // Banner ausblenden
+                    targetElement.style.display = 'none';
+                    
+                    // URL-Parameter entfernen
+                    const paramName = this.getAttribute('param-name') || 'src';
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete(paramName);
+                    
+                    // History-API verwenden, um URL ohne Neuladen zu ändern
+                    window.history.replaceState({}, '', url.toString());
+                });
             }
             
             checkVisibility() {
@@ -259,13 +330,16 @@
             
             // Beobachtete Attribute definieren
             static get observedAttributes() {
-                return ['param-name', 'param-value', 'target-id', 'display-type'];
+                return ['param-name', 'param-value', 'target-id', 'display-type', 'close-button-id'];
             }
             
             // Reaktion auf Attributänderungen
             attributeChangedCallback(name, oldValue, newValue) {
                 if (this.isConnected) {
                     this.checkVisibility();
+                    if (name === 'close-button-id') {
+                        this.setupCloseButton();
+                    }
                 }
             }
         }
@@ -289,10 +363,12 @@
             param-name="src" 
             param-value="devdaydresden2025" 
             target-id="devdayThankYou" 
-            display-type="block">
+            display-type="block"
+            close-button-id="closeThankYouBanner">
         
         
             <div id="devdayThankYou" class="hero-thank-you">
+                <button id="closeThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
                 <h1>Danke, dass du dabei warst!</h1>
                 <p>Ich freue mich, dass du meinen Vortrag beim Dev Day 2025 in Dresden besucht hast. Dein Feedback ist mir wichtig - bitte teile mir deine Gedanken mit!</p>
                 <br>
