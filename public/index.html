@@ -22,18 +22,55 @@
             overflow: hidden;
         }
         
-        .hero h1 {
+        .hero-thank-you {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 5);
+            text-align: center;
+            margin-top: calc(var(--spacing-unit) * 6);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: none; /* Initially hidden */
+        }
+        
+        .hero h1, .hero-thank-you h1 {
             color: white;
             font-size: 2.8rem;
             margin-top: 0;
             margin-bottom: calc(var(--spacing-unit) * 3);
         }
         
-        .hero p {
+        .hero p, .hero-thank-you p {
             font-size: 1.3rem;
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.6;
+        }
+        
+        .feedback-button {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            background-color: white;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 6px;
+            margin-top: calc(var(--spacing-unit) * 3);
+            transition: all 0.3s ease;
+        }
+        
+        .feedback-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .feedback-button:focus {
+            outline: 3px solid white;
+            outline-offset: 2px;
         }
         
         .card-grid {
@@ -137,15 +174,15 @@
         
         /* Responsive Anpassungen */
         @media (max-width: 768px) {
-            .hero {
+            .hero, .hero-thank-you {
                 padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 3);
             }
             
-            .hero h1 {
+            .hero h1, .hero-thank-you h1 {
                 font-size: 2rem;
             }
             
-            .hero p {
+            .hero p, .hero-thank-you p {
                 font-size: 1.1rem;
             }
             
@@ -166,6 +203,76 @@
             }
         }
     </style>
+    <script>
+        // Generische Web Component für URL-Parameter-basierte Anzeige
+        class UrlParamVisibility extends HTMLElement {
+            constructor() {
+                super();
+                // Nicht Shadow DOM verwenden, da wir existierendes HTML umschließen
+            }
+            
+            connectedCallback() {
+                // Warten bis das DOM vollständig geladen ist
+                window.addEventListener('load', () => this.checkVisibility());
+                // Falls das load-Event bereits ausgelöst wurde
+                if (document.readyState === 'complete') {
+                    this.checkVisibility();
+                }
+            }
+            
+            checkVisibility() {
+                // Attribute auslesen
+                const paramName = this.getAttribute('param-name') || 'src';
+                const paramValue = this.getAttribute('param-value');
+                const targetId = this.getAttribute('target-id');
+                const displayType = this.getAttribute('display-type') || 'block';
+                
+                if (!paramValue || !targetId) {
+                    console.error('url-param-visibility: param-value und target-id sind erforderlich');
+                    return;
+                }
+                
+                // URL-Parameter überprüfen
+                const urlParams = new URLSearchParams(window.location.search);
+                const actualParamValue = urlParams.get(paramName);
+                
+                // Ziel-Element finden - suche zuerst innerhalb der Component
+                let targetElement = this.querySelector('#' + targetId);
+                
+                // Falls nicht gefunden, suche im gesamten Dokument
+                if (!targetElement) {
+                    targetElement = document.getElementById(targetId);
+                }
+                
+                if (!targetElement) {
+                    console.error(`url-param-visibility: Element mit ID ${targetId} nicht gefunden`);
+                    return;
+                }
+                
+                // Display-Eigenschaft setzen basierend auf Parameter-Match
+                if (actualParamValue === paramValue) {
+                    targetElement.style.display = displayType;
+                } else {
+                    targetElement.style.display = 'none';
+                }
+            }
+            
+            // Beobachtete Attribute definieren
+            static get observedAttributes() {
+                return ['param-name', 'param-value', 'target-id', 'display-type'];
+            }
+            
+            // Reaktion auf Attributänderungen
+            attributeChangedCallback(name, oldValue, newValue) {
+                if (this.isConnected) {
+                    this.checkVisibility();
+                }
+            }
+        }
+        
+        // Web Component registrieren
+        customElements.define('url-param-visibility', UrlParamVisibility);
+    </script>
 </head>
 <body>
     <div class="menu">
@@ -178,6 +285,21 @@
     </div>
     
     <div class="content">
+        <url-param-visibility 
+            param-name="src" 
+            param-value="devdaydresden2025" 
+            target-id="devdayThankYou" 
+            display-type="block">
+        
+        
+            <div id="devdayThankYou" class="hero-thank-you">
+                <h1>Danke, dass du dabei warst!</h1>
+                <p>Ich freue mich, dass du meinen Vortrag beim Dev Day 2025 in Dresden besucht hast. Dein Feedback ist mir wichtig - bitte teile mir deine Gedanken mit!</p>
+                <br>
+                <a href="https://forms.office.com/e/jz7Wmx1zdm" target="_blank" class="feedback-button">Feedback geben</a>
+            </div>
+        </url-param-visibility>
+        
         <div class="hero">
             <h1>ADHS in der IT</h1>
             <p>Begleitmaterial zu meinen Vorträgen zum Thema ADHS mit besonderem Fokus auf Erwachsene in der IT-Branche. Hier teile ich als Betroffener meine Erfahrungen, gesammelte Ressourcen und praktische Tools.</p>
