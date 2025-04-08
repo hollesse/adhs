@@ -124,28 +124,31 @@
         }
         
         .info-content {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 240px 1fr;
             gap: calc(var(--spacing-unit) * 4);
-            justify-content: space-between;
             align-items: flex-start;
         }
         
+        .profile-image-container {
+            width: 220px;
+            height: 220px;
+            position: relative;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
         .info-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .info-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-        
-        .info-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         /* Responsive Anpassungen */
@@ -171,7 +174,11 @@
             }
             
             .info-content {
-                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-image-container {
+                margin: 0 auto calc(var(--spacing-unit) * 4) auto;
             }
         }
     </style>
@@ -232,11 +239,12 @@
         <div class="info-section">
             <h2>Über mich</h2>
             <div class="info-content">
+                <div class="profile-image-container">
+                    <img src="/assets/images/joshua-toepfer-small-512.png" alt="Joshua Töpfer" class="profile-image">
+                </div>
                 <div class="info-text">
                     <p>Ich bin Joshua Töpfer, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank">INNOQ</a>, wo ich als Softwareentwickler und -architekt arbeite. Meine Schwerpunkte liegen in der Erstellung skalierbarer, moderner Frontends und der Beratung zu Softwarearchitekturen und -entwicklungsprozessen.</p>
                     <p>Im Sommer 2024 erhielt ich meine ADHS-Diagnose, nachdem ich bereits 2021 erste Vermutungen hatte. Damals fiel mir während eines Monats ohne Projekt auf, dass ich trotz vieler spannender Themen auf meiner Liste es nicht schaffte, mich zu fokussieren und ein Thema zu Ende zu bringen. Die Themen verloren schnell ihren Reiz, und ich begann viele Dinge, ohne sie abzuschließen.</p>
-                </div>
-                <div class="info-text">
                     <p>Die bevorstehende Elternzeit und die damit verbundene Verantwortung verstärkten meine ADHS-Symptome erheblich. Meine bisherigen Bewältigungsstrategien funktionierten nicht mehr. Nach Gesprächen mit Kollegen wurde ich auf ADHS aufmerksam und erkannte mich sowohl in aktuellen als auch in Kindheitssymptomen wieder.</p>
                     <p>Aufgrund langer Wartezeiten ließ ich die Diagnostik privat durchführen. Aktuell werde ich medikamentös eingestellt und erhalte Verhaltenstherapie – beides hilft mir sehr. Die Diagnose und Behandlung haben meine Ehe gerettet, weshalb es mir ein großes Anliegen ist, über ADHS zu informieren und zu zeigen, dass das oft verbreitete Bild des "Zappelphilipps" nur auf einen Teil der Betroffenen zutrifft.</p>
                 </div>
