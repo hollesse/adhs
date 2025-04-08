@@ -238,8 +238,10 @@ class AsrsQuestionnaire extends HTMLElement {
   updateProgressBar(questionNumber) {
     const progressIndicator = document.getElementById('progress-indicator');
     if (progressIndicator) {
-      // Berechne den Fortschritt (jede Frage ist 1/6 des Gesamtfortschritts)
-      const progressPercentage = (questionNumber / this._questions.length) * 100;
+      // Berechne den Fortschritt (Frage 1 hat 0%, letzte Frage hat 5/6 oder ca. 83%)
+      // Anstatt direkt die Frage als Fortschritt zu nehmen, rechnen wir die Anzahl der
+      // bereits beantworteten Fragen
+      const progressPercentage = ((questionNumber - 1) / this._questions.length) * 100;
       progressIndicator.style.width = `${progressPercentage}%`;
       
       // Fortschrittsanzeige mit Animation
