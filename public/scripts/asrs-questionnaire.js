@@ -199,6 +199,12 @@ class AsrsQuestionnaire extends HTMLElement {
       if (resultContainer && resultContainer.style.display === 'block') {
         console.log('Ergebnis wird ausgeblendet');
         resultContainer.style.display = 'none';
+        
+        // Fortschrittsbalken wieder anzeigen, wenn vom Ergebnis zurück navigiert wird
+        const progressContainer = document.querySelector('.progress-container');
+        if (progressContainer) {
+          progressContainer.style.display = 'block';
+        }
       }
     }
     
@@ -314,6 +320,12 @@ class AsrsQuestionnaire extends HTMLElement {
       lastQuestion.classList.remove('active');
     }
     
+    // Fortschrittsbalken ausblenden
+    const progressContainer = document.querySelector('.progress-container');
+    if (progressContainer) {
+      progressContainer.style.display = 'none';
+    }
+    
     // Basis-Ergebnistext und Klasse
     let resultMessage;
     let resultClass;
@@ -420,6 +432,12 @@ class AsrsQuestionnaire extends HTMLElement {
       resultContainer.style.display = 'none';
     }
     
+    // Fortschrittsbalken wieder anzeigen
+    const progressContainer = document.querySelector('.progress-container');
+    if (progressContainer) {
+      progressContainer.style.display = 'block';
+    }
+    
     // Radio-Buttons zurücksetzen
     this._questions.forEach(question => {
       const radioButtons = question.querySelectorAll('input[type="radio"]');
@@ -437,7 +455,7 @@ class AsrsQuestionnaire extends HTMLElement {
     // Scores zurücksetzen
     this._scores = new Array(this._questions.length).fill(null);
     
-    // Erste Frage anzeigen
+    // Erste Frage anzeigen und Fortschrittsbalken auf Anfang setzen
     this.showQuestion(1);
     
     console.log('Fragebogen wurde zurückgesetzt');
