@@ -636,21 +636,23 @@
     </div>
     
     <div class="content">
-        <h1>ASRS v1.1 Fragebogen</h1>
+        <h1>ADHS Screening</h1>
         <form id="asrs-form">
-        <asrs-questionnaire>
+        <asrs-questionnaire start-button-id="start-test">
             <!-- Info-Karte -->
             <div class="info-card" id="info-card">
                 <div class="info-card-header">
                     <div class="info-card-icon">🧠</div>
-                    <h2 class="info-card-title">ADHS Screening-Test</h2>
+                    <h2 class="info-card-title">ASRS v1.1 Screening-Test</h2>
                 </div>
                 <div class="info-card-content">
-                    <p>Dieser Fragebogen basiert auf dem wissenschaftlich validierten ASRS v1.1 (Adult ADHD Self-Report Scale), der gemeinsam von der Weltgesundheitsorganisation (WHO) und Forschern der Harvard Medical School entwickelt wurde.</p>
-                    <p>Der Test umfasst 6 Fragen und dauert ca. 3 Minuten. Er dient als erste Orientierung, ob weitere diagnostische Abklärung sinnvoll sein könnte.</p>
+                    <p>Dieser Fragebogen basiert auf dem wissenschaftlich validierten <a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/6Q_German_final.pdf">ASRS v1.1 (Adult ADHD Self-Report Scale)</a>, der gemeinsam von der Weltgesundheitsorganisation (WHO) und Forschern der Harvard Medical School entwickelt wurde.</p>
+                    <p>Der Test umfasst 6 Fragen bezüglich Ihrer Gefühle und Ihres Verhalten in den letzten 6 Monaten und dauert ca. 3 Minuten. Der Test dient als erste Orientierung, ob weitere diagnostische Abklärung sinnvoll sein könnte.</p>
+                    <p>Pro Frage kann maximal ein Punkt erreicht werden. Ab insgesamt 4 Punkten gilt das Screening als auffällig.</p>
                     <p><strong>Wichtige Hinweise:</strong></p>
                     <ul>
                         <li>Ein auffälliges Ergebnis bedeutet nicht, dass Sie ADHS haben.</li>
+                        <li>Ein unauffälliges Ergebnis schließt ADHS nicht aus.</li>
                         <li>Eine zuverlässige Diagnose kann nur durch Fachpersonal gestellt werden.</li>
                         <li>Der Test ersetzt keine ärztliche oder psychologische Beratung.</li>
                     </ul>
@@ -672,7 +674,7 @@
             <asrs-question question-number="1" class="question" id="question-1">
                 <div class="question-header">
                     <div class="question-number">1</div>
-                    <label for="q1">Wie oft hatten Sie in den letzten 6 Monaten Schwierigkeiten, Details aufmerksam durchzulesen oder sie zu erledigen?</label>
+                    <label for="q1">Wie oft haben Sie Probleme, die letzten Feinheiten einer Arbeit zum Abschluss zu bringen, nachdem Sie die wesentlichen Punkte erledigt haben?</label>
                 </div>
                 <div class="options">
                     <label><input type="radio" name="q1" value="0" required><span>Nie</span></label>
@@ -690,7 +692,7 @@
             <asrs-question question-number="2" class="question" id="question-2">
                 <div class="question-header">
                     <div class="question-number">2</div>
-                    <label for="q2">Wie oft hatten Sie in den letzten 6 Monaten Schwierigkeiten, Ihre Aufmerksamkeit bei der Arbeit zu halten?</label>
+                    <label for="q2">Wie oft fällt es Ihnen schwer, Dinge in die Reihe zu bekommen, wenn Sie an einer Aufgabe arbeiten, bei der Organisation gefragt ist?</label>
                 </div>
                 <div class="options">
                     <label><input type="radio" name="q2" value="0" required><span>Nie</span></label>
@@ -708,7 +710,7 @@
             <asrs-question question-number="3" class="question" id="question-3">
                 <div class="question-header">
                     <div class="question-number">3</div>
-                    <label for="q3">Wie oft sind Sie in den letzten 6 Monaten mitten in der Aufgabe gedanklich abgeschweift?</label>
+                    <label for="q3">Wie oft haben Sie Probleme, sich an Termine oder Verabredungen zu erinnern?</label>
                 </div>
                 <div class="options">
                     <label><input type="radio" name="q3" value="0" required><span>Nie</span></label>
@@ -726,7 +728,7 @@
             <asrs-question question-number="4" class="question" id="question-4">
                 <div class="question-header">
                     <div class="question-number">4</div>
-                    <label for="q4">Wie oft haben Sie Aufgaben, die längeres Nachdenken erforderten, vermieden?</label>
+                    <label for="q4">Wie oft vermeiden Sie oder verzögern Sie, die Aufgabe zu beginnen, wenn Sie vor einer Aufgabe stehen, bei der sehr viel Denkvermögen gefragt ist?</label>
                 </div>
                 <div class="options">
                     <label><input type="radio" name="q4" value="0" required><span>Nie</span></label>
@@ -744,7 +746,7 @@
             <asrs-question question-number="5" class="question" id="question-5">
                 <div class="question-header">
                     <div class="question-number">5</div>
-                    <label for="q5">Wie oft haben Sie in den letzten 6 Monaten Dinge verlegt?</label>
+                    <label for="q5">Wie oft sind Ihre Hände bzw. Füße bei langem Sitzen in Bewegung?</label>
                 </div>
                 <div class="options">
                     <label><input type="radio" name="q5" value="0" required><span>Nie</span></label>
@@ -762,7 +764,7 @@
             <asrs-question question-number="6" class="question" id="question-6">
                 <div class="question-header">
                     <div class="question-number">6</div>
-                    <label for="q6">Wie oft wurden Sie durch äußere Reize abgelenkt?</label>
+                    <label for="q6">Wie oft fühlen Sie sich übermäßig aktiv und verspüren den Drang Dinge zu tun, als ob Sie von einem Motor angetrieben würden?</label>
                 </div>
                 <div class="options">
                     <label><input type="radio" name="q6" value="0" required><span>Nie</span></label>
@@ -796,6 +798,9 @@
                 <div class="result-section">
                     <h3>Was bedeutet dieses Ergebnis?</h3>
                     <div class="result" id="result"></div>
+                    <p style="margin-top: 10px; font-size: 0.95rem;">
+                        <strong>Bewertung:</strong> Ab 4 Punkten gilt das Screening als auffällig, bei 0-3 Punkten als unauffällig.
+                    </p>
                 </div>
                 
                 <div class="result-section">
@@ -804,22 +809,29 @@
                         <div class="next-step">
                             <div class="step-icon">📚</div>
                             <div class="step-content">
-                                <h4>Mehr Informationen</h4>
-                                <p>Der ASRS v1.1 Fragebogen ist ein wissenschaftlich validiertes Screening-Instrument, das auf den diagnostischen Kriterien des DSM-IV basiert.</p>
+                                <h4>Mehr über ADHS erfahren</h4>
+                                <p>Auf der Seite <a href="/links.html">Weitere Links</a> finden Sie Quellen um mehr über ADHS zu lernen.</p>
                             </div>
                         </div>
                         <div class="next-step">
                             <div class="step-icon">🔍</div>
                             <div class="step-content">
                                 <h4>Tiefergehender Test</h4>
-                                <p>Einen ausführlicheren Test finden Sie <a href='https://www.adxs.org/de/test/symptom-v5' target='_blank'>hier bei ADXS.org</a>.</p>
+                                <p>Einen ausführlicheren Screening-Test finden Sie bei <a href='https://www.adxs.org/de/test/symptom-v5' target='_blank'>ADXS.org</a>.</p>
+                            </div>
+                        </div>
+                        <div class="next-step">
+                            <div class="step-icon">👥</div>
+                            <div class="step-content">
+                                <h4>Selbsthilfegruppen</h4>
+                                <p>An Selbsthilfegruppen, können Sie meist auch ohne Diagnose teilnehmen und sich so mit betroffenen Austauschen, um besser einschätzen zu können, ob Sie eventuell selbst betroffen sind. Selbsthilfegruppen in der Nähe können Sie über die Suche von <a href='https://www.adhs-deutschland.de/unser-angebot/selbsthilfegruppen' target='_blank'>adhs-deutschland.de</a> finden.</p>
                             </div>
                         </div>
                         <div class="next-step">
                             <div class="step-icon">👩‍⚕️</div>
                             <div class="step-content">
-                                <h4>Fachliche Beratung</h4>
-                                <p>Bei Fragen wenden Sie sich an einen Facharzt für Psychiatrie mit ADHS-Expertise oder einen spezialisierten Psychotherapeuten.</p>
+                                <h4>Fachliche Beratung & Diagnostik</h4>
+                                <p>Für einen Termin zur Diagnostik oder bei Fragen wenden Sie sich an einen Facharzt für Psychiatrie oder Neurologie mit ADHS-Expertise oder einen spezialisierten Psychotherapeuten.</p>
                             </div>
                         </div>
                     </div>

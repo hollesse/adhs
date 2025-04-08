@@ -148,6 +148,7 @@ class AsrsQuestionnaire extends HTMLElement {
     this._currentQuestion = 1;
     this._questions = [];
     this._scores = [];
+    this._startButtonId = this.getAttribute('start-button-id');
   }
   
   connectedCallback() {
@@ -169,12 +170,22 @@ class AsrsQuestionnaire extends HTMLElement {
     this.addEventListener('navigate-prev', this.handleNavigatePrev.bind(this));
     this.addEventListener('evaluate', this.evaluateASRS.bind(this));
     
-    // Erste Frage aktivieren und Fortschrittsbalken initialisieren
-    this.showQuestion(1);
-    this.updateProgressBar(1);
-    
-    // Bestehenden Zustand wiederherstellen, falls vorhanden
-    this.restoreState();
+    // Wenn ein Start-Button angegeben wurde, registriere Event-Listener
+    if (this._startButtonId) {
+      const startButton = document.getElementById(this._startButtonId);
+      if (startButton) {
+        startButton.addEventListener('click', () => {
+          this.showQuestion(1);
+          this.updateProgressBar(1);
+          this.restoreState();
+        });
+      }
+    } else {
+      // Wenn kein Start-Button angegeben wurde, initialisiere direkt
+      this.showQuestion(1);
+      this.updateProgressBar(1);
+      this.restoreState();
+    }
   }
   
   // Verarbeitet eine beantwortete Frage
