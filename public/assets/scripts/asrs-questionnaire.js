@@ -498,6 +498,32 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // Start-Button-Funktionalität hinzufügen
+  const startButton = document.getElementById('start-test');
+  const infoCard = document.getElementById('info-card');
+  const progressContainer = document.querySelector('.progress-container');
+  const firstQuestion = document.getElementById('question-1');
+
+  if (startButton && infoCard && progressContainer && firstQuestion) {
+    console.log('Start-Button gefunden, initialisiere...');
+    
+    // Beim Klick auf den Start-Button: Info-Karte ausblenden, Fortschrittsbalken und erste Frage einblenden
+    startButton.addEventListener('click', () => {
+      console.log('Start-Button geklickt, starte Fragebogen...');
+      
+      // Info-Karte ausblenden
+      infoCard.style.display = 'none';
+      
+      // Fortschrittsbalken einblenden
+      progressContainer.style.display = 'block';
+      
+      // Erste Frage einblenden
+      firstQuestion.classList.add('active');
+    });
+  } else {
+    console.warn('Eine oder mehrere Komponenten für den Start-Button nicht gefunden!');
+  }
+
   // Manuelles Aufrufen der Initialisierung für den Fragebogen, um sicherzustellen, dass alles korrekt geladen wird
   setTimeout(() => {
     console.log('Fragebogen-Element gefunden, initialisiere...');
