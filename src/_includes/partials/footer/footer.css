@@ -1,0 +1,14 @@
+/* INNOQ style footer */
+footer {
+    text-align: center;
+    margin-top: calc(var(--spacing-unit) * 5);
+    padding: calc(var(--spacing-unit) * 4) 0;
+    color: var(--innoq-grey);
+    border-top: 1px solid var(--innoq-light-grey);
+    background-color: var(--light-bg);
+}
+
+footer a {
+    font-weight: 500;
+    text-decoration: none;
+}

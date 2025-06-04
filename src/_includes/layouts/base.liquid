@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | ADHS in der IT</title>
+    <!-- Lokale Fonts statt Google Fonts -->
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <link rel="stylesheet" href="/assets/bundle.css">
+    {% if extraStyles %}
+        <style>
+            {{ extraStyles }}
+        </style>
+    {% endif %}
+    {% if extraScripts %}
+        <script>
+            {{ extraScripts }}
+        </script>
+    {% endif %}
+</head>
+<body>
+    {% include 'partials/menu/menu.liquid' %}
+    
+    <div class="content">
+        {{ content }}
+    </div>
+    
+    {% include 'partials/footer/footer.liquid' %}
+    
+    {% if pageScripts %}
+        <script src="{{ pageScripts }}"></script>
+    {% endif %}
+</body>
+</html>

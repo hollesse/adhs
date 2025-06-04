@@ -1,0 +1,17 @@
+a {
+    color: var(--primary-color);
+    text-decoration: underline; /* Unterstrichen für bessere Erkennbarkeit als Link */
+    transition: all var(--transition-speed) ease;
+    font-weight: 600; /* Fetter für besseren Kontrast */
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+    text-decoration: underline;
+}

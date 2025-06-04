@@ -1,0 +1,28 @@
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+    font-weight: 600;
+    font-size: 18px; /* Größere Schrift für bessere Lesbarkeit */
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: inline-block;
+    min-width: 120px; /* Mindestbreite für bessere Klickbarkeit */
+}
+
+button:hover {
+    background-color: #002a36; /* Dunklere Farbe für besseren Kontrast */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Visuelles Feedback */
+}
+
+button:focus {
+    outline: 3px solid var(--secondary-color); /* Deutlicher Fokus-Indikator */
+    outline-offset: 2px;
+}
+
+button:disabled {
+    background-color: #e0e0e0; /* Dunklerer Hintergrund für besseren Kontrast */
+    color: #707070; /* Dunklerer Text für besseren Kontrast */
+    cursor: not-allowed;
+}

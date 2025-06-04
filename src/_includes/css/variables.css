@@ -1,0 +1,24 @@
+:root {
+    --innoq-red: #e20613;
+    --innoq-dark-blue: #23234c;
+    --innoq-blue: #0072a3; 
+    --innoq-petrol: #003a49; 
+    --innoq-apricot: #e57b42; 
+    --innoq-grey: #505050; 
+    --innoq-light-grey: #f1f2f2;
+    
+    --primary-color: var(--innoq-petrol);
+    --secondary-color: var(--innoq-apricot);
+    --accent-color: var(--innoq-blue);
+    --text-color: #222222; 
+    --light-bg: #ffffff;
+    --card-bg: #ffffff;
+    --menu-bg: #ffffff;
+    
+    /* Design tokens */
+    --border-radius: 0;
+    --box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    --transition-speed: 0.2s;
+    --spacing-unit: 8px;
+    --content-max-width: 1280px;
+}

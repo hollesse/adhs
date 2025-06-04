@@ -1,0 +1,8 @@
+<div class="menu">
+    <div class="menu-container">
+        <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Start</a>
+        <a href="/screening/" {% if page.url contains "screening" %}class="active"{% endif %}>Screening Fragebogen</a>
+        <a href="/links/" {% if page.url contains "links" %}class="active"{% endif %}>Hilfreiche Links</a>
+        <a href="/vortraege/" {% if page.url contains "vortraege" %}class="active"{% endif %}>Vorträge</a>
+    </div>
+</div>
