@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHS in der IT: Vom Chaos zum Code — BED Con 2025</title>
+    <!-- Lokale Fonts statt Google Fonts -->
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <style>
+        .talk-header {
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            text-align: center;
+        }
+        
+        .talk-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: calc(var(--spacing-unit) * 3) 0;
+            padding: calc(var(--spacing-unit) * 2.5);
+            background-color: #f9f9f9;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .talk-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 14px;
+            color: var(--innoq-grey);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            font-weight: 400;
+        }
+        
+        .meta-value {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .section {
+            margin-bottom: calc(var(--spacing-unit) * 5);
+        }
+        
+        .section h2 {
+            color: var(--text-color);
+            border-bottom: 1px solid var(--innoq-light-grey);
+            padding-bottom: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+            font-weight: 600;
+        }
+        
+        .section p {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .key-points {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .key-points li {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            padding-left: calc(var(--spacing-unit) * 3.5);
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .key-points li:before {
+            content: "•";
+            position: absolute;
+            left: calc(var(--spacing-unit));
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* Back button styles now in global CSS */
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-container">
+            <a href="/">Start</a>
+            <a href="index.html">Screening Fragebogen</a>
+            <a href="links.html">Hilfreiche Links</a>
+            <a href="vortraege.html" class="active">Vorträge</a>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="content-box">
+        <div class="talk-header">
+            <h1>ADHS in der IT: Vom Chaos zum Code</h1>
+        </div>
+        
+        <div class="talk-meta">
+            <div class="talk-meta-item">
+                <span class="meta-label">Datum</span>
+                <span class="meta-value">8. Oktober 2025</span>
+            </div>
+            <div class="talk-meta-item">
+                <span class="meta-label">Veranstaltung</span>
+                <span class="meta-value">Berlin Expert Days</span>
+            </div>
+            <div class="talk-meta-item">
+                <span class="meta-label">Dauer</span>
+                <span class="meta-value">60 Minuten</span>
+            </div>
+            <div class="talk-meta-item">
+                <span class="meta-label">Uhrzeit</span>
+                <span class="meta-value">09:00 - 10:00</span>
+            </div>
+            <div class="talk-meta-item">
+                <span class="meta-label">Ort</span>
+                <span class="meta-value">Urania Berlin</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Beschreibung</h2>
+            <p>
+                ADHS ist mehr als nur das Bild des zappeligen Kindes — gerade in der IT-Branche sind viele Erwachsene betroffen, 
+                oft ohne es zu wissen. Doch ADHS kann sowohl Fluch als auch Segen sein: Die kreativen Höhenflüge und das tiefe 
+                Hyperfokus-Tauchen sind oft genauso präsent wie das chaotische Durcheinander und der ständige Kampf mit Prokrastination.
+            </p>
+            <p>
+                In diesem Vortrag klären wir über die typischen Symptome von ADHS auf und geben erste Anhaltspunkte, wie man bei sich 
+                selbst mögliche Anzeichen erkennen kann. Außerdem beleuchten wir, wie Teams am besten mit ADHS-betroffenen Kollegen 
+                umgehen können, um deren Potenziale voll auszuschöpfen. Abschließend teilen wir konkrete Strategien und Tipps für 
+                Softwareentwickler, wie sie mit den Herausforderungen von ADHS besser umgehen und ihre Stärken besser nutzen können. 
+                Dieser Vortrag richtet sich an alle, die in der IT arbeiten und mehr über ADHS erfahren wollen — egal, ob als 
+                Betroffene oder als Kollegen.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>Material</h2>
+            <h3>ChatGPT Prompt</h3>
+            <p>Mit folgendem ChatGPT Prompt arbeite ich regelmäßig, um meine aktuell größten Probleme auf der Arbeit festzustellen und dann zu überlegen, wie ich diese Probleme angehen kann. Ich hoffe, dass es euch auch helfen kann. Hier nun das Prompt:</p>
+            <p>
+                Bitte führe mich durch eine tiefgehende Coaching-Session und versuche zuerst die Probleme du identifizieren - stelle die Fragen nacheinander, wie in einer echten Coaching-Session. Nachdem du alle Probleme erfasst hast und diese gemeinsam mit mir priorisiert hast. Erarbeite mir einen Plan wie ich nach und nach diese Probleme angehen kann, sage mir was mir helfen kann die Lösungen auch lang langfristig umzusetzen und worauf ich besonders achten sollte.
+            </p>
+            <h3>Folien</h3>
+            <p>Hier findest du die Folien zu meinem Vortrag:</p>
+            <div class="slides-container" style="margin: 30px 0;">
+                <script defer class="speakerdeck-embed" data-id="ff9728f5cb3f43829bb72eb4e0cdbfb7" data-ratio="1.7777777777777777" src="//speakerdeck.com/assets/embed.js"></script>
+            </div>
+            <p>
+                <a href="https://files.speakerdeck.com/presentations/ff9728f5cb3f43829bb72eb4e0cdbfb7/ADHS-in-der-IT.pdf"
+                   class="card-link" style="margin-top: 15px;">
+                   Folien herunterladen (PDF)
+                </a>
+            </p>
+        </div>
+        
+        <a href="vortraege.html" class="back-button">← Zurück zur Vortragsübersicht</a>
+    </div>
+    
+        </div><!-- Ende .content-box -->
+    </div><!-- Ende .content -->
+    
+    <footer>
+        <p>Made with ❤️ by <a href="https://www.linkedin.com/in/joshua-toepfer/" target="_blank">Joshua Töpfer</a> | <a href="impressum.html">Impressum</a> | <a href="datenschutzerklaerung.html">Datenschutz</a></p>
+    </footer>
+</body>
+</html>
