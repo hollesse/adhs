@@ -183,7 +183,7 @@ input[type="radio"] {
 }
 
 /* Button-style Links */
-.card-link, .talk-link, .back-button {
+.card-link, .back-button {
     display: inline-block;
     padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
     background-color: var(--primary-color);
@@ -194,14 +194,28 @@ input[type="radio"] {
     transition: all 0.3s ease;
 }
 
-.card-link:hover, .talk-link:hover, .back-button:hover {
+.card-link:hover, .back-button:hover {
     background-color: var(--secondary-color);
     color: white;
 }
 
+/* Button-style Links */
 .talk-link {
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
     margin-right: calc(var(--spacing-unit) * 1.5);
     margin-bottom: calc(var(--spacing-unit) * 1.5);
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.talk-link:hover {
+    background-color: var(--innoq-light-grey);
+    color: var(--primary-color);
 }
 
 .back-button {
