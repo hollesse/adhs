@@ -121,7 +121,7 @@ a:focus {
     position: absolute;
     left: calc(var(--spacing-unit) * 2);
     right: calc(var(--spacing-unit) * 2);
-    bottom: calc(var(--spacing-unit) * 1.5);
+    bottom: calc(var(--spacing-unit) * 2);
     height: 3px;
     background-color: var(--primary-color);
     transform: scaleX(0);
