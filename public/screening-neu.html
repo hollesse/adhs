@@ -232,16 +232,10 @@
             margin: calc(var(--spacing-unit) * 4) 0 calc(var(--spacing-unit) * 6);
         }
         
-        .back-link {
-            color: var(--innoq-grey);
-            font-weight: 500;
-            text-decoration: none;
-        }
-        
+        .back-link,
         .back-link:hover,
-        .back-link:focus-visible {
-            color: var(--secondary-color);
-            text-decoration: underline;
+        .back-link:focus {
+            text-decoration: none;
         }
         
         .back-link.hidden {
@@ -466,7 +460,7 @@
                     <label><input type="radio" name="q1" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link hidden">Zurück</a>
+                    <a href="#" class="btn btn-secondary back-link hidden">Zurück</a>
                     <button type="button" id="next-1" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
@@ -484,7 +478,7 @@
                     <label><input type="radio" name="q2" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
                     <button type="button" id="next-2" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
@@ -502,7 +496,7 @@
                     <label><input type="radio" name="q3" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
                     <button type="button" id="next-3" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
@@ -520,7 +514,7 @@
                     <label><input type="radio" name="q4" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
                     <button type="button" id="next-4" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
@@ -538,7 +532,7 @@
                     <label><input type="radio" name="q5" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
                     <button type="button" id="next-5" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
@@ -556,7 +550,7 @@
                     <label><input type="radio" name="q6" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
                     <button type="button" id="next-6" class="btn" disabled>Auswertung anzeigen</button>
                 </div>
             </asrs-question>
