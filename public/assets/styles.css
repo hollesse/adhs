@@ -112,18 +112,38 @@ a:focus {
     font-size: 17px; /* Größere Schrift im Menü */
     font-weight: 600;
     position: relative;
-    border-bottom: 3px solid transparent;
-    transition: all var(--transition-speed) ease;
+    transition: color var(--transition-speed) ease;
+}
+
+/* Unterstrich nur so breit wie der Text */
+.menu-links a::after {
+    content: "";
+    position: absolute;
+    left: calc(var(--spacing-unit) * 2);
+    right: calc(var(--spacing-unit) * 2);
+    bottom: 0;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-speed) ease;
+}
+
+.menu-links a:last-child::after {
+    right: 0;
 }
 
 .menu a:hover {
     color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
+}
+
+.menu-links a:hover::after,
+.menu-links a.active::after {
+    transform: scaleX(1);
 }
 
 .menu a.active {
     color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
     font-weight: 700; /* Fettere Schrift für aktiven Menüpunkt */
 }
 
@@ -368,13 +388,15 @@ input[type="radio"] {
         text-align: left;
         padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2);
         font-size: 16px;
-        border-bottom: none;
         border-left: 3px solid transparent;
+    }
+    
+    .menu-links a::after {
+        display: none;
     }
     
     .menu-links a:hover,
     .menu-links a.active {
-        border-bottom: none;
         border-left-color: var(--primary-color);
         background-color: rgba(0,0,0,0.03);
     }
