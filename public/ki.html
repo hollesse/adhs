@@ -26,12 +26,24 @@
             letter-spacing: -0.01em;
         }
         
-        .page-head p {
+        .page-intro {
             max-width: 38em;
-            margin: 0;
-            font-size: 1.15rem;
-            line-height: 1.55;
+        }
+        
+        .page-intro p {
+            margin: 0 0 calc(var(--spacing-unit) * 2.5);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .page-intro p:first-child {
+            font-size: 1.2rem;
             color: var(--innoq-grey);
+        }
+        
+        .page-intro p:last-child {
+            margin-bottom: 0;
         }
         
         .resource-section {
@@ -197,7 +209,13 @@
     <div class="content">
         <header class="page-head">
             <h1>ADHS und KI</h1>
-            <p>KI-Werkzeuge können bei ADHS helfen, bergen aber auch eigene Risiken. Die meisten Quellen hier sind persönliche Erfahrungsberichte. Forschung zum Thema gibt es bisher kaum.</p>
+            <div class="page-intro">
+                <p>KI ist nicht auf dieser Seite, weil sie gerade überall ist. Sie ist hier, weil ich in meinem Umfeld etwas beobachte: Auffällig viele Menschen mit ADHS sind schnell und tief im Agentic Engineering angekommen, schneller als die meisten anderen. Und fast alle von ihnen kämpfen mit derselben Frage, nämlich wo die Grenze zwischen gesund und zu viel liegt.</p>
+                <p>Die Stärke zuerst. Unsere Aufmerksamkeit ist nicht schwach, sie ist anders verteilt. Wir springen zwischen Themen, halten viele Fäden gleichzeitig und ertragen Leerlauf schlecht. Mit KI-Agents wird genau das zum Vorteil: mehrere Aufgaben parallel anstoßen, zwischen ihnen wechseln, Ergebnisse prüfen, weiter. Was anderen als Zerfahrenheit erscheint, ist hier die passende Arbeitsweise. Im Alltag kommt dazu, dass KI Pläne macht, sortiert und den ersten Schritt vorgibt, also genau die Funktionen stützt, die bei uns am wenigsten verlässlich sind.</p>
+                <p>Am deutlichsten merke ich das bei Side Projects. Früher habe ich sie entweder gar nicht angefangen, weil der Einstieg in eine unbekannte Technologie sich zu schwer anfühlte, oder ich habe sie nach der ersten Phase hoher Motivation liegen lassen, sobald die Langeweile kam. Mit KI ist die Hürde am Anfang so gut wie weg, fehlendes Wissen ist kein Grund mehr, nicht zu starten. Und ein Projekt lässt sich oft fertigstellen, bevor die Motivation kippt.</p>
+                <p>Die Herausforderung ist dieselbe Mechanik von der anderen Seite. Jedes Ergebnis eines Agents ist ein kleiner Dopaminkick, und davon gibt es ständig neue. Für ein Gehirn, das auf Dopamin reagiert wie unseres, ist das eine Falle: Der Hyperfokus hält uns fest, bis Schlaf, Essen und die Menschen um uns herum zu kurz kommen. Nichts zwingt uns mehr zur Pause, weil nichts mehr stockt.</p>
+                <p>Diese Sammlung zeigt beide Seiten: Berichte vom Programmieren mit Agents, Erfahrungen aus dem Alltag und Texte über die Schattenseiten, dazu die ersten Studien. Forschung gibt es noch kaum, die meisten Quellen sind persönliche Berichte. Nimm sie als Landkarte einer Gratwanderung, auf der wir alle noch unterwegs sind.</p>
+            </div>
         </header>
         
             <section class="resource-section">
