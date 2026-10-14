@@ -102,16 +102,43 @@
         
         @media (max-width: 600px) {
             .talk-item {
-                flex-wrap: wrap;
+                gap: calc(var(--spacing-unit) * 2);
+            }
+            
+            .talk-date {
+                flex-basis: 64px;
+                padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit));
+            }
+            
+            .talk-day {
+                font-size: 1.5rem;
+            }
+            
+            .talk-month {
+                font-size: 0.75rem;
             }
             
             .talk-info {
-                padding-right: calc(var(--spacing-unit) * 3);
+                padding: calc(var(--spacing-unit) * 1.5) 0;
+            }
+            
+            .talk-title {
+                font-size: 1.05rem;
+            }
+            
+            .talk-venue {
+                font-size: 0.85rem;
+                line-height: 1.35;
             }
             
             .talk-action {
-                flex-basis: 100%;
-                padding: 0 calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3) calc(96px + var(--spacing-unit) * 3);
+                padding-right: calc(var(--spacing-unit) * 2);
+            }
+            
+            .talk-action .talk-link,
+            .talk-pending {
+                padding: calc(var(--spacing-unit)) calc(var(--spacing-unit) * 2);
+                font-size: 0.9rem;
             }
         }
         
@@ -152,7 +179,7 @@
                 </div>
                 <div class="talk-info">
                     <h2 class="talk-title">BaselOne</h2>
-                    <span class="talk-venue">10:15 - 11:00 Uhr | Markthalle Basel</span>
+                    <span class="talk-venue">10:15 - 11:00 Uhr<br>Markthalle Basel</span>
                 </div>
                 <div class="talk-action">
                     <span class="talk-pending">Folien folgen</span>
@@ -165,10 +192,10 @@
                 </div>
                 <div class="talk-info">
                     <h2 class="talk-title">DevLand</h2>
-                    <span class="talk-venue">11:00 - 11:45 Uhr | Europapark Rust</span>
+                    <span class="talk-venue">11:00 - 11:45 Uhr<br>Europapark Rust</span>
                 </div>
                 <div class="talk-action">
-                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-devland" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-devland" target="_blank" class="talk-link">Folien</a>
                 </div>
             </li>
             <li class="talk-item">
@@ -178,10 +205,10 @@
                 </div>
                 <div class="talk-info">
                     <h2 class="talk-title">JavaLand</h2>
-                    <span class="talk-venue">12:00 - 12:40 Uhr | Europapark Rust</span>
+                    <span class="talk-venue">12:00 - 12:40 Uhr<br>Europapark Rust</span>
                 </div>
                 <div class="talk-action">
-                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-javaland" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-javaland" target="_blank" class="talk-link">Folien</a>
                 </div>
             </li>
             <li class="talk-item">
@@ -191,10 +218,10 @@
                 </div>
                 <div class="talk-info">
                     <h2 class="talk-title">IT-Tage</h2>
-                    <span class="talk-venue">15:00 - 15:45 Uhr | Kap Europa Frankfurt</span>
+                    <span class="talk-venue">15:00 - 15:45 Uhr<br>Kap Europa Frankfurt</span>
                 </div>
                 <div class="talk-action">
-                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-it-tage-frankfurt" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-it-tage-frankfurt" target="_blank" class="talk-link">Folien</a>
                 </div>
             </li>
             <li class="talk-item">
@@ -204,10 +231,10 @@
                 </div>
                 <div class="talk-info">
                     <h2 class="talk-title">Berlin Expert Days</h2>
-                    <span class="talk-venue">09:00 - 10:00 Uhr | Urania Berlin</span>
+                    <span class="talk-venue">09:00 - 10:00 Uhr<br>Urania Berlin</span>
                 </div>
                 <div class="talk-action">
-                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-berlin-expert-days-2025" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-berlin-expert-days-2025" target="_blank" class="talk-link">Folien</a>
                 </div>
             </li>
             <li class="talk-item">
@@ -217,10 +244,10 @@
                 </div>
                 <div class="talk-info">
                     <h2 class="talk-title">Java Forum Nord</h2>
-                    <span class="talk-venue">10:00 - 10:45 Uhr | Hannover Congress Centrum</span>
+                    <span class="talk-venue">10:00 - 10:45 Uhr<br>Hannover Congress Centrum</span>
                 </div>
                 <div class="talk-action">
-                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-java-forum-nord-2025" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-java-forum-nord-2025" target="_blank" class="talk-link">Folien</a>
                 </div>
             </li>
             <li class="talk-item">
@@ -230,10 +257,10 @@
                 </div>
                 <div class="talk-info">
                     <h2 class="talk-title">techcamp Hamburg</h2>
-                    <span class="talk-venue">14:00 - 14:45 Uhr | Klubhaus St. Pauli</span>
+                    <span class="talk-venue">14:00 - 14:45 Uhr<br>Klubhaus St. Pauli</span>
                 </div>
                 <div class="talk-action">
-                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-chaos-zum-code-at-techcamp-hamburg-2025" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-chaos-zum-code-at-techcamp-hamburg-2025" target="_blank" class="talk-link">Folien</a>
                 </div>
             </li>
             <li class="talk-item">
@@ -243,10 +270,10 @@
                 </div>
                 <div class="talk-info">
                     <h2 class="talk-title">DevDay Dresden</h2>
-                    <span class="talk-venue">18:00 - 19:00 Uhr | Börse Dresden</span>
+                    <span class="talk-venue">18:00 - 19:00 Uhr<br>Börse Dresden</span>
                 </div>
                 <div class="talk-action">
-                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-chaos-zum-code-wie-wir-die-starken-nutzen-und-die-herausforderungen-meistern-at-dev-day-2025-in-dresden" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-chaos-zum-code-wie-wir-die-starken-nutzen-und-die-herausforderungen-meistern-at-dev-day-2025-in-dresden" target="_blank" class="talk-link">Folien</a>
                 </div>
             </li>
         </ul>
