@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHS in der IT (Entwurf)</title>
+    <!-- Lokale Fonts statt Google Fonts -->
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <style>
+        /* Entwurf Startseite: ruhig, linksbündig, ohne Karten */
+        .notice {
+            display: none;
+            position: relative;
+            margin: calc(var(--spacing-unit) * 4) 0 0;
+            padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 7) calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3);
+            border-left: 4px solid var(--secondary-color);
+            background-color: #fff7f2;
+        }
+        
+        .notice h2 {
+            font-size: 1.25rem;
+            margin: 0 0 calc(var(--spacing-unit));
+            color: var(--primary-color);
+        }
+        
+        .notice p {
+            margin: 0 0 calc(var(--spacing-unit) * 2);
+            max-width: 42em;
+        }
+        
+        .notice a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 0.18em;
+            text-decoration-thickness: 2px;
+            text-decoration-color: var(--secondary-color);
+        }
+        
+        .notice .close-button {
+            position: absolute;
+            top: calc(var(--spacing-unit) * 2);
+            right: calc(var(--spacing-unit) * 2);
+            width: 32px;
+            height: 32px;
+            min-width: 0;
+            padding: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            color: var(--innoq-grey);
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        
+        .notice .close-button:hover {
+            background: none;
+            color: var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .intro {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: calc(var(--spacing-unit) * 8);
+            align-items: end;
+            margin: calc(var(--spacing-unit) * 8) 0 calc(var(--spacing-unit) * 5);
+            padding-bottom: calc(var(--spacing-unit) * 5);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .intro h1 {
+            text-align: left;
+            font-size: 3.6rem;
+            line-height: 1.02;
+            letter-spacing: -0.015em;
+            margin: 0;
+            color: var(--primary-color);
+        }
+        
+        .intro h1 span {
+            display: block;
+            font-weight: 400;
+            color: var(--innoq-grey);
+            font-size: 1.6rem;
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+        
+        .intro-lede p {
+            font-size: 1.15rem;
+            line-height: 1.55;
+            margin: 0 0 calc(var(--spacing-unit) * 3);
+            max-width: 32em;
+        }
+        
+        .intro-lede a {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .intro-lede a:hover,
+        .intro-lede a:focus-visible {
+            background-color: var(--secondary-color);
+            outline: none;
+        }
+        
+        .index {
+            list-style: none;
+            margin: 0 0 calc(var(--spacing-unit) * 10);
+            padding: 0;
+        }
+        
+        .index li {
+            border-bottom: 1px solid var(--innoq-light-grey);
+        }
+        
+        .index a {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: calc(var(--spacing-unit) * 6);
+            padding: calc(var(--spacing-unit) * 3.5) 0;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .index h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: var(--primary-color);
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .index p {
+            margin: 0;
+            max-width: 42em;
+            line-height: 1.55;
+        }
+        
+        .index a:hover h2,
+        .index a:focus-visible h2 {
+            color: var(--secondary-color);
+            text-decoration: underline;
+            text-underline-offset: 0.18em;
+            text-decoration-thickness: 2px;
+        }
+        
+        .index a:focus-visible {
+            outline: none;
+        }
+        
+        .about {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: calc(var(--spacing-unit) * 6);
+            align-items: start;
+            padding-top: calc(var(--spacing-unit) * 5);
+            border-top: 3px solid var(--primary-color);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+        
+        .about-side h2 {
+            font-size: 1.5rem;
+            margin: 0 0 calc(var(--spacing-unit) * 3);
+            color: var(--primary-color);
+        }
+        
+        .about-side img {
+            display: block;
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+        }
+        
+        .about-text {
+            max-width: 42em;
+        }
+        
+        .about-text p {
+            margin: 0 0 calc(var(--spacing-unit) * 2.5);
+            line-height: 1.6;
+        }
+        
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .about-text a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+        
+        @media (max-width: 768px) {
+            .intro {
+                grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit) * 3);
+                margin-top: calc(var(--spacing-unit) * 5);
+                padding-bottom: calc(var(--spacing-unit) * 4);
+            }
+            
+            .intro h1 {
+                font-size: 2.5rem;
+            }
+            
+            .intro h1 span {
+                font-size: 1.25rem;
+            }
+            
+            .index a {
+                grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit));
+                padding: calc(var(--spacing-unit) * 2.5) 0;
+            }
+            
+            .index h2 {
+                font-size: 1.3rem;
+            }
+            
+            .about {
+                grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit) * 3);
+            }
+            
+            .about-side img {
+                max-width: 160px;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            color: #666;
+        }
+    </style>
+    <script>
+        // Generische Web Component für URL-Parameter-basierte Anzeige
+        class UrlParamVisibility extends HTMLElement {
+            constructor() {
+                super();
+                // Nicht Shadow DOM verwenden, da wir existierendes HTML umschließen
+            }
+            
+            connectedCallback() {
+                // Warten bis das DOM vollständig geladen ist
+                window.addEventListener('load', () => {
+                    this.checkVisibility();
+                    this.setupCloseButton();
+                });
+                
+                // Falls das load-Event bereits ausgelöst wurde
+                if (document.readyState === 'complete') {
+                    this.checkVisibility();
+                    this.setupCloseButton();
+                }
+            }
+            
+            setupCloseButton() {
+                const closeButtonId = this.getAttribute('close-button-id');
+                if (!closeButtonId) return; // Wenn keine Button-ID angegeben ist, ignorieren
+                
+                const targetId = this.getAttribute('target-id');
+                if (!targetId) return;
+                
+                // Button finden
+                const closeButton = document.getElementById(closeButtonId);
+                if (!closeButton) {
+                    console.error(`url-param-visibility: Close-Button mit ID ${closeButtonId} nicht gefunden`);
+                    return;
+                }
+                
+                // Ziel-Element finden
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) return;
+                
+                // Button-Event-Handler hinzufügen
+                closeButton.addEventListener('click', () => {
+                    // Animation starten
+                    targetElement.classList.add('slide-up-animation');
+                    
+                    // Nach der Animation Banner ausblenden und Animation-Klasse entfernen
+                    targetElement.addEventListener('animationend', () => {
+                        targetElement.style.display = 'none';
+                        targetElement.classList.remove('slide-up-animation');
+                    }, { once: true });
+                    
+                    // URL-Parameter entfernen
+                    const paramName = this.getAttribute('param-name') || 'src';
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete(paramName);
+                    
+                    // History-API verwenden, um URL ohne Neuladen zu ändern
+                    window.history.replaceState({}, '', url.toString());
+                });
+            }
+            
+            checkVisibility() {
+                // Attribute auslesen
+                const paramName = this.getAttribute('param-name') || 'src';
+                const paramValue = this.getAttribute('param-value');
+                const targetId = this.getAttribute('target-id');
+                const displayType = this.getAttribute('display-type') || 'block';
+                
+                if (!paramValue || !targetId) {
+                    console.error('url-param-visibility: param-value und target-id sind erforderlich');
+                    return;
+                }
+                
+                // URL-Parameter überprüfen
+                const urlParams = new URLSearchParams(window.location.search);
+                const actualParamValue = urlParams.get(paramName);
+                
+                // Ziel-Element finden - suche zuerst innerhalb der Component
+                let targetElement = this.querySelector('#' + targetId);
+                
+                // Falls nicht gefunden, suche im gesamten Dokument
+                if (!targetElement) {
+                    targetElement = document.getElementById(targetId);
+                }
+                
+                if (!targetElement) {
+                    console.error(`url-param-visibility: Element mit ID ${targetId} nicht gefunden`);
+                    return;
+                }
+                
+                // Display-Eigenschaft setzen basierend auf Parameter-Match
+                if (actualParamValue === paramValue) {
+                    targetElement.style.display = displayType;
+                } else {
+                    targetElement.style.display = 'none';
+                }
+            }
+            
+            // Beobachtete Attribute definieren
+            static get observedAttributes() {
+                return ['param-name', 'param-value', 'target-id', 'display-type', 'close-button-id'];
+            }
+            
+            // Reaktion auf Attributänderungen
+            attributeChangedCallback(name, oldValue, newValue) {
+                if (this.isConnected) {
+                    this.checkVisibility();
+                    if (name === 'close-button-id') {
+                        this.setupCloseButton();
+                    }
+                }
+            }
+        }
+        
+        // Web Component registrieren
+        customElements.define('url-param-visibility', UrlParamVisibility);
+    </script>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-container">
+            <a href="index.html" class="menu-brand">🧠 ADHS in der IT</a>
+            <button type="button" class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="menu-links" id="main-nav">
+            <a href="index.html" class="active">Start</a>
+            <a href="screening.html">Screening Fragebogen</a>
+            <a href="links.html">ADHS verstehen</a>
+            <a href="ki.html">ADHS und KI</a>
+            <a href="vortraege.html">Vorträge</a>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="content">
+        <url-param-visibility 
+            param-name="src" 
+            param-value="devdaydresden2025" 
+            target-id="devdayThankYou" 
+            display-type="block"
+            close-button-id="closeDevdayThankYouBanner">
+
+            <div id="devdayThankYou" class="notice">
+                <button id="closeDevdayThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
+                <h2>Danke, dass du dabei warst!</h2>
+                <p>Ich freue mich, dass du meinen Vortrag beim Dev Day 2025 in Dresden besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
+                <a href="https://forms.office.com/e/jz7Wmx1zdm" target="_blank">Feedback geben</a>
+            </div>
+        </url-param-visibility>
+        <url-param-visibility
+            param-name="src"
+            param-value="techcamphamburg2025"
+            target-id="techcampHamburg2025ThankYou"
+            display-type="block"
+            close-button-id="closeTechcampHamburgThankYouBanner">
+
+          <div id="techcampHamburg2025ThankYou" class="notice">
+            <button id="closeTechcampHamburgThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
+            <h2>Danke, dass du dabei warst!</h2>
+            <p>Ich freue mich, dass du meinen Vortrag beim techcamp Hamburg besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
+            <a href="https://forms.office.com/e/FhT36NHy6Z" target="_blank">Feedback geben</a>
+          </div>
+        </url-param-visibility>
+        <url-param-visibility
+            param-name="src"
+            param-value="JavaForumNordHannover2025"
+            target-id="JavaForumNordHannover2025ThankYou"
+            display-type="block"
+            close-button-id="closeJavaForumNordHannover2025ThankYouBanner">
+
+          <div id="JavaForumNordHannover2025ThankYou" class="notice">
+            <button id="closeJavaForumNordHannover2025ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
+            <h2>Danke, dass du dabei warst!</h2>
+            <p>Ich freue mich, dass du meinen Vortrag beim Java Forum Nord besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
+            <a href="https://forms.cloud.microsoft/e/X7hiXCXKXH" target="_blank">Feedback geben</a>
+          </div>
+        </url-param-visibility>
+        <url-param-visibility
+            param-name="src"
+            param-value="BedCon2025"
+            target-id="BedCon2025ThankYou"
+            display-type="block"
+            close-button-id="closeBedCon2025ThankYouBanner">
+
+          <div id="BedCon2025ThankYou" class="notice">
+            <button id="closeBedCon2025ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
+            <h2>Danke, dass du dabei warst!</h2>
+            <p>Ich freue mich, dass du meinen Vortrag bei den Berlin Expert Days besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
+            <a href="https://forms.office.com/e/iRnbYVUD3v" target="_blank">Feedback geben</a>
+          </div>
+        </url-param-visibility>
+        <url-param-visibility
+            param-name="src"
+            param-value="ItTage2025"
+            target-id="ItTage2025ThankYou"
+            display-type="block"
+            close-button-id="closeItTage2025ThankYouBanner">
+
+            <div id="ItTage2025ThankYou" class="notice">
+                <button id="closeItTage2025ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
+                <h2>Danke, dass du dabei warst!</h2>
+                <p>Ich freue mich, dass du meinen Vortrag bei den IT-Tagen besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
+                <a href="https://forms.cloud.microsoft/e/RXDqzmWLW2" target="_blank">Feedback geben</a>
+            </div>
+        </url-param-visibility>
+        <url-param-visibility
+            param-name="src"
+            param-value="Javaland2026"
+            target-id="Javaland2026ThankYou"
+            display-type="block"
+            close-button-id="closeJavaland2026ThankYouBanner">
+
+            <div id="Javaland2026ThankYou" class="notice">
+                <button id="closeJavaland2026ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
+                <h2>Danke, dass du dabei warst!</h2>
+                <p>Ich freue mich, dass du meinen Vortrag bei der JavaLand besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
+                <a href="https://forms.office.com/e/5kdsmCmVj3" target="_blank">Feedback geben</a>
+            </div>
+        </url-param-visibility>
+        <url-param-visibility
+            param-name="src"
+            param-value="Devland2026"
+            target-id="Devland2026ThankYou"
+            display-type="block"
+            close-button-id="closeDevland2026ThankYouBanner">
+
+            <div id="Devland2026ThankYou" class="notice">
+                <button id="closeDevland2026ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
+                <h2>Danke, dass du dabei warst!</h2>
+                <p>Ich freue mich, dass du meinen Vortrag bei der DevLand besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
+                <a href="https://forms.office.com/e/kJB4fZXBQA" target="_blank">Feedback geben</a>
+            </div>
+        </url-param-visibility>
+
+        <url-param-visibility
+            param-name="src"
+            param-value="BaselOne2026"
+            target-id="BaselOne2026ThankYou"
+            display-type="block"
+            close-button-id="closeBaselOne2026ThankYouBanner">
+
+            <div id="BaselOne2026ThankYou" class="notice">
+                <button id="closeBaselOne2026ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
+                <h2>Danke, dass du dabei warst!</h2>
+                <p>Ich freue mich, dass du meinen Vortrag bei der BaselOne besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
+                <a href="https://sfeedback.com/vh50wY" target="_blank">Feedback geben</a>
+            </div>
+        </url-param-visibility>
+
+        <header class="intro">
+            <h1>ADHS in der IT<span>Vom Chaos zum Code</span></h1>
+            <div class="intro-lede">
+                <p>Begleitmaterial zu meinen Vorträgen über ADHS bei Erwachsenen in der IT. Als Betroffener teile ich hier meine Erfahrungen, gesammelte Quellen und Werkzeuge, die mir im Arbeitsalltag helfen.</p>
+                <a href="screening.html">Selbsttest starten</a>
+            </div>
+        </header>
+        
+        <ul class="index">
+            <li>
+                <a href="screening.html">
+                    <h2>Screening-Test</h2>
+                    <p>Sechs Fragen nach dem ASRS v1.1 der WHO, in drei Minuten beantwortet. Das Ergebnis zeigt, ob eine fachliche Abklärung sinnvoll sein könnte.</p>
+                </a>
+            </li>
+            <li>
+                <a href="links.html">
+                    <h2>ADHS verstehen</h2>
+                    <p>Informationsseiten, Bücher, Podcasts, Communities und Apps auf Rezept, die helfen, die eigene Diagnose einzuordnen.</p>
+                </a>
+            </li>
+            <li>
+                <a href="ki.html">
+                    <h2>ADHS und KI</h2>
+                    <p>Erfahrungsberichte, Studien und Werkzeuge dazu, wie KI beim Programmieren und im Alltag mit ADHS hilft, und wo sie schadet.</p>
+                </a>
+            </li>
+            <li>
+                <a href="vortraege.html">
+                    <h2>Vorträge</h2>
+                    <p>Termine und Folien meiner Vorträge, von DevDay Dresden bis BaselOne.</p>
+                </a>
+            </li>
+        </ul>
+        
+        <section class="about">
+            <div class="about-side">
+                <h2>Über mich</h2>
+                <img src="/assets/images/joshua-toepfer-small-512.png" alt="Joshua Töpfer">
+            </div>
+            <div class="about-text">
+                <p>Ich bin Joshua Töpfer, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank">INNOQ</a>, wo ich als Softwareentwickler und -architekt arbeite. Meine Schwerpunkte liegen in der Erstellung skalierbarer, moderner Frontends und der Beratung zu Softwarearchitekturen und -entwicklungsprozessen.</p>
+                    <p>Im Sommer 2024 erhielt ich meine ADHS-Diagnose, nachdem ich bereits 2021 erste Vermutungen hatte. Damals fiel mir während eines Monats ohne Projekt auf, dass ich trotz vieler spannender Themen auf meiner Liste es nicht schaffte, mich zu fokussieren und ein Thema zu Ende zu bringen. Die Themen verloren schnell ihren Reiz, und ich begann viele Dinge, ohne sie abzuschließen.</p>
+                    <p>Die bevorstehende Elternzeit und die damit verbundene Verantwortung verstärkten meine ADHS-Symptome erheblich. Meine bisherigen Bewältigungsstrategien funktionierten nicht mehr. Nach Gesprächen mit Kollegen wurde ich auf ADHS aufmerksam und erkannte mich sowohl in aktuellen als auch in Kindheitssymptomen wieder.</p>
+                    <p>Aufgrund langer Wartezeiten ließ ich die Diagnostik privat durchführen. Aktuell werde ich medikamentös eingestellt und erhalte Verhaltenstherapie – beides hilft mir sehr. Die Diagnose und Behandlung haben meine Ehe gerettet, weshalb es mir ein großes Anliegen ist, über ADHS zu informieren und zu zeigen, dass das oft verbreitete Bild des "Zappelphilipps" nur auf einen Teil der Betroffenen zutrifft.</p>
+            </div>
+        </section>
+    </div><!-- Ende .content -->
+    
+    <footer>
+        <p>Made with ❤️ by <a href="https://www.linkedin.com/in/joshua-toepfer/" target="_blank">Joshua Töpfer</a> | <a href="impressum.html">Impressum</a> | <a href="datenschutzerklaerung.html">Datenschutz</a></p>
+    </footer>
+    <script src="/assets/scripts/menu.js"></script>
+</body>
+</html>
