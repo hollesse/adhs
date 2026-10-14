@@ -108,7 +108,7 @@
         
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: calc(var(--spacing-unit) * 4);
             margin-bottom: calc(var(--spacing-unit) * 6);
         }
@@ -120,7 +120,7 @@
             overflow: hidden;
             transition: all 0.3s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             height: 100%;
             border: 1px solid rgba(0,0,0,0.04);
         }
@@ -131,33 +131,41 @@
         }
         
         .card-header {
-            padding: calc(var(--spacing-unit) * 4);
+            flex: 0 0 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: var(--primary-color);
             color: white;
-            text-align: center;
         }
         
         .card-icon {
             font-size: 3rem;
-            margin-bottom: calc(var(--spacing-unit) * 2);
         }
         
         .card-title {
             font-size: 1.4rem;
             font-weight: 700;
-            margin: 0;
-            color: white;
+            margin: 0 0 calc(var(--spacing-unit) * 1.5);
+            color: var(--primary-color);
         }
         
         .card-content {
             padding: calc(var(--spacing-unit) * 4);
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .card-description {
             color: var(--text-color);
             margin-bottom: calc(var(--spacing-unit) * 3);
             line-height: 1.6;
+        }
+        
+        .card-content .card-link {
+            margin-top: auto;
+            align-self: flex-start;
         }
         
         /* Card link styles now in global CSS */
@@ -221,6 +229,15 @@
             
             .card-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .card {
+                flex-direction: column;
+            }
+            
+            .card-header {
+                flex: 0 0 auto;
+                padding: calc(var(--spacing-unit) * 3);
             }
             
             .info-section {
@@ -499,9 +516,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">📋</div>
-                    <h3 class="card-title">Screening-Test</h3>
                 </div>
                 <div class="card-content">
+                    <h3 class="card-title">Screening-Test</h3>
                     <p class="card-description">Ein kurzer Selbsttest basierend auf dem wissenschaftlich validierten ASRS v1.1 Fragebogen, der Ihnen erste Hinweise geben kann, ob weitere diagnostische Abklärung sinnvoll sein könnte.</p>
                     <a href="screening.html" class="card-link">Zum Test</a>
                 </div>
@@ -509,21 +526,21 @@
             
             <div class="card">
                 <div class="card-header">
-                    <div class="card-icon">🔗</div>
-                    <h3 class="card-title">ADHS verstehen</h3>
+                    <div class="card-icon">📚</div>
                 </div>
                 <div class="card-content">
+                    <h3 class="card-title">ADHS verstehen</h3>
                     <p class="card-description">Eine kuratierte Sammlung von Informationsseiten, Fachbüchern, Podcasts, Communities und digitalen Gesundheitsanwendungen zum Thema ADHS.</p>
-                    <a href="links.html" class="card-link">Zu den Links</a>
+                    <a href="links.html" class="card-link">Zur Übersicht</a>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">🤖</div>
-                    <h3 class="card-title">ADHS und KI</h3>
                 </div>
                 <div class="card-content">
+                    <h3 class="card-title">ADHS und KI</h3>
                     <p class="card-description">Erfahrungsberichte, Forschung und praktische Tipps dazu, wie KI-Werkzeuge bei ADHS helfen können und wo ihre Risiken liegen.</p>
                     <a href="ki.html" class="card-link">Zur Übersicht</a>
                 </div>
@@ -532,10 +549,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">🎤</div>
-                    <h3 class="card-title">Vorträge</h3>
                 </div>
                 <div class="card-content">
-                    <p class="card-description">Informationen zu Vorträgen zum Thema "ADHS in der IT" sowie Präsentationsunterlagen und weiterführende Materialien.</p>
+                    <h3 class="card-title">Vorträge</h3>
+                    <p class="card-description">Termine und Folien meiner Vorträge zum Thema „ADHS in der IT“ sowie weiterführende Materialien.</p>
                     <a href="vortraege.html" class="card-link">Zu den Vorträgen</a>
                 </div>
             </div>
