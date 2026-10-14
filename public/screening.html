@@ -301,12 +301,12 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        button:not(:disabled):hover {
+        button:not(.menu-toggle):not(:disabled):hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
 
-        button:after {
+        button:not(.menu-toggle):after {
             content: '\2192'; /* Unicode für Pfeil nach rechts */
             margin-left: 8px;
             font-size: 1em; /* Gleiche Schriftgröße wie Text */
@@ -316,7 +316,7 @@
             font-family: 'Source Sans Pro', sans-serif; /* Explizite Schriftart */
         }
 
-        button:not(:disabled):hover:after {
+        button:not(.menu-toggle):not(:disabled):hover:after {
             transform: translateX(4px);
         }
 
