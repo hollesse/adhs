@@ -323,35 +323,43 @@ footer a:hover {
         border-bottom: none;
     }
     
-    .menu-toggle {
+    .menu .menu-toggle,
+    .menu .menu-toggle:hover,
+    .menu .menu-toggle:focus {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: 5px;
         width: 44px;
+        min-width: 0;
         height: 44px;
-        padding: 0 10px;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
         background: none;
+        box-shadow: none;
         border: none;
         cursor: pointer;
         border-radius: 6px;
     }
     
-    .menu-toggle:focus-visible {
+    .menu .menu-toggle:focus-visible {
         outline: 3px solid var(--secondary-color);
+        outline-offset: -3px;
     }
     
     .menu-toggle span {
         display: block;
-        height: 3px;
-        width: 100%;
+        height: 2px;
+        width: 22px;
         background-color: var(--primary-color);
         border-radius: 2px;
         transition: transform 0.25s ease, opacity 0.25s ease;
     }
     
     .menu.open .menu-toggle span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
+        transform: translateY(7px) rotate(45deg);
     }
     
     .menu.open .menu-toggle span:nth-child(2) {
@@ -359,7 +367,7 @@ footer a:hover {
     }
     
     .menu.open .menu-toggle span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(-7px) rotate(-45deg);
     }
     
     .menu-links {
