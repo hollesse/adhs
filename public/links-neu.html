@@ -67,15 +67,6 @@
             color: var(--innoq-grey);
         }
         
-        .section-note {
-            margin: calc(var(--spacing-unit) * 2) 0 0;
-            padding-top: calc(var(--spacing-unit) * 2);
-            border-top: 1px solid var(--innoq-light-grey);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: var(--innoq-grey);
-        }
-        
         .entries {
             list-style: none;
             margin: 0;
@@ -140,18 +131,33 @@
             
             .resource-section {
                 grid-template-columns: 1fr;
-                gap: calc(var(--spacing-unit) * 3);
-                padding: calc(var(--spacing-unit) * 4) 0;
+                gap: 0;
+                padding: 0 0 calc(var(--spacing-unit) * 5);
+                border-bottom: none;
             }
             
             .section-head {
-                position: static;
+                position: sticky;
+                top: 60px;
+                z-index: 5;
+                background-color: var(--light-bg);
+                margin: 0 calc(var(--spacing-unit) * -3);
+                padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+                border-top: 3px solid var(--primary-color);
+                border-bottom: 1px solid var(--innoq-light-grey);
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: calc(var(--spacing-unit) * 2);
             }
             
-            .section-note {
-                border-top: none;
-                padding-top: 0;
-                margin-top: calc(var(--spacing-unit));
+            .section-head h2 {
+                font-size: 1.3rem;
+                margin: 0;
+            }
+            
+            .entries {
+                padding-top: calc(var(--spacing-unit) * 2);
             }
         }
         
@@ -262,7 +268,6 @@
                 <header class="section-head">
                     <h2>Digitale Gesundheitsanwendungen (DiGA)</h2>
                     <p class="section-count">2 Quellen</p>
-                    <p class="section-note">Vom BfArM geprüfte „Apps auf Rezept“ – verschreibbar und von der Krankenkasse bezahlt.</p>
                 </header>
                 <ol class="entries">
                     <li class="entry">
