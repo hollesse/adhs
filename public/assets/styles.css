@@ -144,6 +144,8 @@ a:focus {
 
 .menu a.active {
     color: var(--primary-color);
+    /* Wirkt wie Fettdruck, ohne die Textbreite zu ändern */
+    -webkit-text-stroke: 0.6px currentColor;
 }
 
 .menu a:focus {
