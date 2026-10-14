@@ -399,6 +399,31 @@
             font-weight: 700;
         }
         
+        .footer-about {
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .footer-logo img {
+            display: block;
+            height: 22px;
+            width: auto;
+            margin-top: 2px;
+        }
+        
+        .footer-logo:hover img,
+        .footer-logo:focus-visible img {
+            opacity: 0.8;
+        }
+        
         .site-footer a {
             color: white;
             font-weight: 500;
@@ -750,7 +775,7 @@
     
     <footer class="site-footer">
         <div class="footer-inner">
-            <p class="footer-about"><span class="footer-name">Joshua Töpfer</span>, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank">INNOQ</a></p>
+            <p class="footer-about"><span class="footer-name">Joshua Töpfer</span>, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank" class="footer-logo"><img src="/assets/images/innoq-logo--whiteapricot.svg" alt="INNOQ" width="226" height="56"></a></p>
             <nav class="footer-links" aria-label="Weitere Links">
                 <a href="https://www.linkedin.com/in/joshua-toepfer/" target="_blank">LinkedIn</a>
                 <a href="impressum.html">Impressum</a>
