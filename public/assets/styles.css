@@ -121,7 +121,7 @@ a:focus {
     position: absolute;
     left: calc(var(--spacing-unit) * 2);
     right: calc(var(--spacing-unit) * 2);
-    bottom: 0;
+    bottom: calc(var(--spacing-unit) * 1.5);
     height: 3px;
     background-color: var(--primary-color);
     transform: scaleX(0);
@@ -144,8 +144,6 @@ a:focus {
 
 .menu a.active {
     color: var(--primary-color);
-    /* Wirkt wie Fettdruck, ohne die Textbreite zu ändern */
-    -webkit-text-stroke: 0.6px currentColor;
 }
 
 .menu a:focus {
