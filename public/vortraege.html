@@ -15,72 +15,105 @@
             padding-left: 0;
             display: flex;
             flex-direction: column;
-            gap: calc(var(--spacing-unit) * 4);
+            gap: calc(var(--spacing-unit) * 2);
             width: 100%;
         }
         
         .talk-item {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 3);
             background-color: var(--card-bg);
             border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             overflow: hidden;
             transition: all 0.3s ease;
-            height: 100%;
             border: 1px solid rgba(0,0,0,0.04);
         }
         
         .talk-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 12px 24px rgba(0,0,0,0.12);
         }
         
-        .talk-header {
-            padding: calc(var(--spacing-unit) * 4);
+        .talk-date {
+            flex: 0 0 96px;
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--spacing-unit) * 2);
             background-color: var(--primary-color);
             color: white;
-            text-align: center;
+            line-height: 1.1;
+        }
+        
+        .talk-day {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .talk-month {
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: calc(var(--spacing-unit) * 0.5);
+            white-space: nowrap;
+        }
+        
+        .talk-info {
+            flex: 1 1 auto;
+            padding: calc(var(--spacing-unit) * 2) 0;
+            min-width: 0;
         }
         
         .talk-title {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            margin: 0 0 calc(var(--spacing-unit) * 2) 0;
-            color: white;
+            margin: 0 0 calc(var(--spacing-unit) * 0.75) 0;
+            color: var(--primary-color);
         }
         
-        .talk-date, .talk-venue {
-            color: white;
-            margin-bottom: calc(var(--spacing-unit));
-            font-weight: 400;
+        .talk-venue {
+            color: var(--innoq-grey);
+            font-size: 0.95rem;
             display: block;
         }
         
-        .talk-content {
-            padding: calc(var(--spacing-unit) * 4);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+        .talk-action {
+            flex: 0 0 auto;
+            padding-right: calc(var(--spacing-unit) * 3);
         }
         
-        .talk-description {
-            margin: 0 0 calc(var(--spacing-unit) * 3) 0;
-            line-height: 1.6;
-            color: var(--text-color);
-            flex-grow: 1;
+        .talk-action .talk-link {
+            margin: 0;
+            white-space: nowrap;
         }
         
-        .talk-links {
-            margin-top: calc(var(--spacing-unit) * 4);
-        }
-
-        .talk-links > talk-link {
-            color: white;
-            background-color: var(--secondary-color);
+        .talk-pending {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            border: 1px dashed var(--innoq-grey);
+            border-radius: 6px;
+            color: var(--innoq-grey);
+            font-weight: 600;
+            white-space: nowrap;
         }
         
-        /* Talk link styles now in global CSS */
+        @media (max-width: 600px) {
+            .talk-item {
+                flex-wrap: wrap;
+            }
+            
+            .talk-info {
+                padding-right: calc(var(--spacing-unit) * 3);
+            }
+            
+            .talk-action {
+                flex-basis: 100%;
+                padding: 0 calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3) calc(96px + var(--spacing-unit) * 3);
+            }
+        }
         
         footer {
             text-align: center;
@@ -106,89 +139,114 @@
         
         <div class="content-wrapper" style="max-width: 800px; margin: 0 auto;">
         <p>
-            Hier findest du eine Übersicht meiner Vorträge zum Thema ADHS in der IT-Branche und darüber hinaus.
+            Hier findest du eine Übersicht meiner Vorträge zum Thema ADHS in der IT-Branche.
+            Der Vortrag „ADHS in der IT: Vom Chaos zum Code“ klärt über typische Symptome auf, zeigt, wie Teams mit betroffenen Kolleg:innen umgehen können, und gibt konkrete Strategien für Softwareentwickler:innen.
             Bei Interesse an einem Vortrag für deine Konferenz oder Veranstaltung kontaktiere mich gerne.
         </p>
         
         <ul class="talks-list">
-          <li class="talk-item">
-            <div class="talk-header">
-              <h2 class="talk-title">BaselOne</h2>
-              <span class="talk-venue">15. Oktober 2026 | 10:15 - 11:00 | Markthalle Basel</span>
-              <div class="talk-links">
-                <a href="baselone2026.html" class="talk-link">Details zum Vortrag</a>
-                <a href="baselone2026.html#folien" class="talk-link">Folien</a>
-              </div>
-            </div>
-          </li>
-          <li class="talk-item">
-            <div class="talk-header">
-              <h2 class="talk-title">DevLand</h2>
-              <span class="talk-venue">13. März 2026 | 11:00 - 11:45 | Europapark Rust</span>
-              <div class="talk-links">
-                <a href="devland2026.html" class="talk-link">Details zum Vortrag</a>
-                <a href="devland2026.html#folien" class="talk-link">Folien</a>
-              </div>
-            </div>
-          </li>
-          <li class="talk-item">
-            <div class="talk-header">
-              <h2 class="talk-title">JavaLand</h2>
-              <span class="talk-venue">11. März 2026 | 12:00 - 12:40 | Europapark Rust</span>
-              <div class="talk-links">
-                <a href="javaland2026.html" class="talk-link">Details zum Vortrag</a>
-                <a href="javaland2026.html#folien" class="talk-link">Folien</a>
-              </div>
-            </div>
-          </li>
-          <li class="talk-item">
-            <div class="talk-header">
-              <h2 class="talk-title">IT-Tage</h2>
-              <span class="talk-venue">9. Dezember 2025 | 15:00 - 15:45 | Kap Europa Frankfurt</span>
-              <div class="talk-links">
-                <a href="ittage2025.html" class="talk-link">Details zum Vortrag</a>
-                <a href="ittage2025.html#folien" class="talk-link">Folien</a>
-              </div>
-            </div>
-          </li>
-          <li class="talk-item">
-            <div class="talk-header">
-              <h2 class="talk-title">Berlin Expert Days</h2>
-              <span class="talk-venue">8. Oktober 2025 | 09:00 - 10:00 | Urania Berlin</span>
-              <div class="talk-links">
-                <a href="bedcon2025.html" class="talk-link">Details zum Vortrag</a>
-                <a href="bedcon2025.html#folien" class="talk-link">Folien</a>
-              </div>
-            </div>
-          </li>
             <li class="talk-item">
-            <div class="talk-header">
-              <h2 class="talk-title">Java Forum Nord</h2>
-              <span class="talk-venue">16. September 2025 | 10:00 - 10:45 | Hannover Congress Centrum</span>
-              <div class="talk-links">
-                <a href="javaforumnord2025.html" class="talk-link">Details zum Vortrag</a>
-                <a href="javaforumnord2025.html#folien" class="talk-link">Folien</a>
-              </div>
-            </div>
-          </li>
-            <li class="talk-item">
-                <div class="talk-header">
-                    <h2 class="talk-title">techcamp Hamburg</h2>
-                    <span class="talk-venue">04. Juni 2025 | 14:00 - 14:45 | Klubhaus St. Pauli</span>
-                    <div class="talk-links">
-                      <a href="techcamphamburg2025.html" class="talk-link">Details zum Vortrag</a>
-                      <a href="techcamphamburg2025.html#folien" class="talk-link">Folien</a>
-                    </div>
+                <div class="talk-date">
+                    <span class="talk-day">15</span>
+                    <span class="talk-month">Okt 2026</span>
+                </div>
+                <div class="talk-info">
+                    <h2 class="talk-title">BaselOne</h2>
+                    <span class="talk-venue">10:15 - 11:00 Uhr | Markthalle Basel</span>
+                </div>
+                <div class="talk-action">
+                    <span class="talk-pending">Folien folgen</span>
                 </div>
             </li>
             <li class="talk-item">
-                <div class="talk-header">
-                  <h2 class="talk-title">DevDay Dresden</h2>
-                  <span class="talk-venue">08. April 2025 | 18:00 - 19:00 | Börse Dresden</span>
-                  <div class="talk-links">
-                    <a href="devday2025.html" class="talk-link">Details zum Vortrag</a>
-                    <a href="devday2025.html#folien" class="talk-link">Folien</a>
-                  </div>
+                <div class="talk-date">
+                    <span class="talk-day">13</span>
+                    <span class="talk-month">Mär 2026</span>
+                </div>
+                <div class="talk-info">
+                    <h2 class="talk-title">DevLand</h2>
+                    <span class="talk-venue">11:00 - 11:45 Uhr | Europapark Rust</span>
+                </div>
+                <div class="talk-action">
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-devland" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                </div>
+            </li>
+            <li class="talk-item">
+                <div class="talk-date">
+                    <span class="talk-day">11</span>
+                    <span class="talk-month">Mär 2026</span>
+                </div>
+                <div class="talk-info">
+                    <h2 class="talk-title">JavaLand</h2>
+                    <span class="talk-venue">12:00 - 12:40 Uhr | Europapark Rust</span>
+                </div>
+                <div class="talk-action">
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-javaland" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                </div>
+            </li>
+            <li class="talk-item">
+                <div class="talk-date">
+                    <span class="talk-day">9</span>
+                    <span class="talk-month">Dez 2025</span>
+                </div>
+                <div class="talk-info">
+                    <h2 class="talk-title">IT-Tage</h2>
+                    <span class="talk-venue">15:00 - 15:45 Uhr | Kap Europa Frankfurt</span>
+                </div>
+                <div class="talk-action">
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-it-tage-frankfurt" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                </div>
+            </li>
+            <li class="talk-item">
+                <div class="talk-date">
+                    <span class="talk-day">8</span>
+                    <span class="talk-month">Okt 2025</span>
+                </div>
+                <div class="talk-info">
+                    <h2 class="talk-title">Berlin Expert Days</h2>
+                    <span class="talk-venue">09:00 - 10:00 Uhr | Urania Berlin</span>
+                </div>
+                <div class="talk-action">
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-berlin-expert-days-2025" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                </div>
+            </li>
+            <li class="talk-item">
+                <div class="talk-date">
+                    <span class="talk-day">16</span>
+                    <span class="talk-month">Sep 2025</span>
+                </div>
+                <div class="talk-info">
+                    <h2 class="talk-title">Java Forum Nord</h2>
+                    <span class="talk-venue">10:00 - 10:45 Uhr | Hannover Congress Centrum</span>
+                </div>
+                <div class="talk-action">
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-choas-zum-code-at-java-forum-nord-2025" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                </div>
+            </li>
+            <li class="talk-item">
+                <div class="talk-date">
+                    <span class="talk-day">4</span>
+                    <span class="talk-month">Jun 2025</span>
+                </div>
+                <div class="talk-info">
+                    <h2 class="talk-title">techcamp Hamburg</h2>
+                    <span class="talk-venue">14:00 - 14:45 Uhr | Klubhaus St. Pauli</span>
+                </div>
+                <div class="talk-action">
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-chaos-zum-code-at-techcamp-hamburg-2025" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
+                </div>
+            </li>
+            <li class="talk-item">
+                <div class="talk-date">
+                    <span class="talk-day">8</span>
+                    <span class="talk-month">Apr 2025</span>
+                </div>
+                <div class="talk-info">
+                    <h2 class="talk-title">DevDay Dresden</h2>
+                    <span class="talk-venue">18:00 - 19:00 Uhr | Börse Dresden</span>
+                </div>
+                <div class="talk-action">
+                    <a href="https://speakerdeck.com/hollesse/adhs-in-der-it-vom-chaos-zum-code-wie-wir-die-starken-nutzen-und-die-herausforderungen-meistern-at-dev-day-2025-in-dresden" target="_blank" class="talk-link">Folien auf Speaker Deck</a>
                 </div>
             </li>
         </ul>
