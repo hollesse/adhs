@@ -90,8 +90,19 @@ a:focus {
     width: 100%;
     max-width: var(--content-max-width);
     display: flex;
+    align-items: stretch;
     justify-content: flex-start;
     padding: 0 calc(var(--spacing-unit) * 3);
+}
+
+.menu-links {
+    display: flex;
+}
+
+/* Marke und Hamburger nur auf kleinen Bildschirmen */
+.menu-brand,
+.menu-toggle {
+    display: none;
 }
 
 .menu a {
@@ -297,14 +308,85 @@ footer a:hover {
 /* Responsive Design */
 @media (max-width: 768px) {
     .menu-container {
-        justify-content: flex-start;
-        overflow-x: auto;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
         padding: 0 calc(var(--spacing-unit) * 2);
     }
     
-    .menu a {
+    .menu a.menu-brand {
+        display: block;
+        padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit));
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--primary-color);
+        border-bottom: none;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        padding: 0 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+    
+    .menu-toggle:focus-visible {
+        outline: 3px solid var(--secondary-color);
+    }
+    
+    .menu-toggle span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    
+    .menu.open .menu-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .menu.open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu.open .menu-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .menu-links {
+        display: none;
+        flex-basis: 100%;
+        flex-direction: column;
+        border-top: 1px solid var(--innoq-light-grey);
+        padding: calc(var(--spacing-unit)) 0;
+    }
+    
+    .menu.open .menu-links {
+        display: flex;
+    }
+    
+    .menu-links a {
+        text-align: left;
         padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2);
-        font-size: 15px;
+        font-size: 16px;
+        border-bottom: none;
+        border-left: 3px solid transparent;
+    }
+    
+    .menu-links a:hover,
+    .menu-links a.active {
+        border-bottom: none;
+        border-left-color: var(--primary-color);
+        background-color: rgba(0,0,0,0.03);
     }
     
     .content-box {
