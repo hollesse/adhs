@@ -141,25 +141,18 @@
                 font-size: 0.9rem;
             }
         }
-        
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            color: #666;
-        }
     </style>
 </head>
 <body>
     <div class="menu">
         <div class="menu-container">
-            <a href="index.html" class="menu-brand">🧠 ADHS in der IT</a>
+            <a href="index.html" class="menu-brand">ADHS in der IT</a>
             <button type="button" class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
                 <span></span><span></span><span></span>
             </button>
             <nav class="menu-links" id="main-nav">
             <a href="index.html">Start</a>
-            <a href="screening.html">Screening Fragebogen</a>
+            <a href="screening.html">Selbsttest</a>
             <a href="links.html">ADHS verstehen</a>
             <a href="ki.html">ADHS und KI</a>
             <a href="vortraege.html" class="active">Vorträge</a>
@@ -286,8 +279,15 @@
         </div><!-- Ende .content-wrapper -->
     </div><!-- Ende .content -->
     
-    <footer>
-        <p>Made with ❤️ by <a href="https://www.linkedin.com/in/joshua-toepfer/" target="_blank">Joshua Töpfer</a> | <a href="impressum.html">Impressum</a> | <a href="datenschutzerklaerung.html">Datenschutz</a></p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-about"><span class="footer-name">Joshua Töpfer</span>, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank">INNOQ</a></p>
+            <nav class="footer-links" aria-label="Weitere Links">
+                <a href="https://www.linkedin.com/in/joshua-toepfer/" target="_blank">LinkedIn</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
     </footer>
     <script src="/assets/scripts/menu.js"></script>
 </body>

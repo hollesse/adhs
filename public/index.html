@@ -9,249 +9,326 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
     <link rel="stylesheet" href="/assets/styles.css">
     <style>
-        /* INNOQ-spezifische Stile für die Home-Seite */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 5);
-            text-align: center;
-            margin-top: calc(var(--spacing-unit) * 6);
-            margin-bottom: calc(var(--spacing-unit) * 6);
-            border-radius: 12px;
+        /* Entwurf Startseite: ruhig, linksbündig, ohne Karten */
+        .notice {
+            display: none;
             position: relative;
-            overflow: hidden;
+            margin: calc(var(--spacing-unit) * 4) 0 0;
+            padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 7) calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3);
+            border-left: 4px solid var(--secondary-color);
+            background-color: #fff7f2;
         }
         
-        .hero-thank-you {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 5);
-            text-align: center;
-            margin-top: calc(var(--spacing-unit) * 6);
-            margin-bottom: calc(var(--spacing-unit) * 6);
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-            display: none; /* Initially hidden */
+        .notice h2 {
+            font-size: 1.25rem;
+            margin: 0 0 calc(var(--spacing-unit));
+            color: var(--primary-color);
         }
         
-        .close-button {
+        .notice p {
+            margin: 0 0 calc(var(--spacing-unit) * 2);
+            max-width: 42em;
+        }
+        
+        .notice a {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            padding-bottom: 2px;
+            border-bottom: 2px solid currentColor;
+            transition: border-color var(--transition-speed) ease;
+        }
+        
+        .notice a:hover,
+        .notice a:focus-visible {
+            color: var(--primary-color);
+            text-decoration: none;
+            border-bottom-color: var(--secondary-color);
+            outline: none;
+        }
+        
+        .notice .close-button {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            font-size: 18px;
+            top: calc(var(--spacing-unit) * 2);
+            right: calc(var(--spacing-unit) * 2);
             width: 32px;
             height: 32px;
-            min-width: unset;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            min-width: 0;
             padding: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            color: var(--innoq-grey);
+            font-size: 18px;
             line-height: 1;
+            cursor: pointer;
         }
         
-        .close-button:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        .notice .close-button:hover {
+            background: none;
+            color: var(--primary-color);
+            box-shadow: none;
         }
         
-        .close-button:focus {
-            outline: 3px solid white;
-            outline-offset: 2px;
+        .intro {
+            margin: calc(var(--spacing-unit) * 8) 0 calc(var(--spacing-unit) * 5);
+            max-width: 40em;
         }
         
-        .hero h1, .hero-thank-you h1 {
-            color: white;
-            font-size: 2.8rem;
-            margin-top: 0;
-            margin-bottom: calc(var(--spacing-unit) * 3);
-        }
-        
-        .hero p, .hero-thank-you p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        
-        .feedback-button {
-            display: inline-block;
-            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
-            background-color: white;
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 6px;
-            margin-top: calc(var(--spacing-unit) * 3);
-            transition: all 0.3s ease;
-        }
-        
-        .feedback-button:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .feedback-button:focus {
-            outline: 3px solid white;
-            outline-offset: 2px;
-        }
-        
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: calc(var(--spacing-unit) * 4);
-            margin-bottom: calc(var(--spacing-unit) * 6);
-        }
-        
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-        }
-        
-        .card-header {
-            flex: 0 0 110px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .card-icon {
+        .intro h1 {
+            text-align: left;
             font-size: 3rem;
-        }
-        
-        .card-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin: 0 0 calc(var(--spacing-unit) * 1.5);
+            line-height: 1.08;
+            letter-spacing: -0.01em;
+            margin: 0 0 calc(var(--spacing-unit) * 3);
             color: var(--primary-color);
         }
         
-        .card-content {
-            padding: calc(var(--spacing-unit) * 4);
-            flex-grow: 1;
+        .intro p {
+            font-size: 1.2rem;
+            line-height: 1.55;
+            margin: 0;
+        }
+        
+        .doors {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(var(--spacing-unit) * 3);
+            margin: 0 0 calc(var(--spacing-unit) * 3);
+        }
+        
+        .door {
             display: flex;
             flex-direction: column;
+            min-height: 280px;
+            padding: calc(var(--spacing-unit) * 4);
+            color: white;
+            font-weight: 400;
+            text-decoration: none;
+            transition: background-color var(--transition-speed) ease;
         }
         
-        .card-description {
-            color: var(--text-color);
-            margin-bottom: calc(var(--spacing-unit) * 3);
-            line-height: 1.6;
+        .door-test {
+            background-color: var(--primary-color);
         }
         
-        .card-content .card-link {
+        .door-learn {
+            background-color: var(--secondary-color);
+        }
+        
+        .door:hover,
+        .door:focus,
+        .door:focus-visible {
+            color: white;
+            text-decoration: none;
+            outline: none;
+        }
+        
+        .door-test:hover,
+        .door-test:focus-visible {
+            background-color: #002632;
+        }
+        
+        .door-learn:hover,
+        .door-learn:focus-visible {
+            background-color: #cf6a33;
+        }
+        
+        .door:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+        
+        .door-learn:focus-visible {
+            outline-color: var(--primary-color);
+        }
+        
+        .door small {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        .door h2 {
+            color: white;
+            font-size: 2rem;
+            line-height: 1.1;
+            margin: 0 0 calc(var(--spacing-unit) * 2);
+        }
+        
+        .door p {
+            margin: 0 0 calc(var(--spacing-unit) * 3);
+            line-height: 1.5;
+            max-width: 30em;
+        }
+        
+        .door-action {
             margin-top: auto;
             align-self: flex-start;
+            font-weight: 600;
+            padding-bottom: 2px;
+            border-bottom: 2px solid currentColor;
+            transition: border-color var(--transition-speed) ease;
         }
         
-        /* Card link styles now in global CSS */
+        .door-test .door-action:hover {
+            border-bottom-color: var(--secondary-color);
+        }
         
-        .info-section {
-            background-color: #f9f9f9;
-            padding: calc(var(--spacing-unit) * 6);
-            border-radius: 12px;
+        .door-learn .door-action:hover {
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .more .door-action:hover {
+            border-bottom-color: var(--secondary-color);
+        }
+        
+        .more {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(var(--spacing-unit) * 3);
+            margin: 0 0 calc(var(--spacing-unit) * 10);
+        }
+        
+        .more a {
+            display: flex;
+            flex-direction: column;
+            padding: calc(var(--spacing-unit) * 4);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 400;
+            text-decoration: none;
+            transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+        
+        .more small {
+            font-size: 1rem;
+            color: var(--innoq-grey);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        .more h2 {
+            font-size: 1.6rem;
+            line-height: 1.15;
+            margin: 0 0 calc(var(--spacing-unit) * 2);
+            color: var(--primary-color);
+        }
+        
+        .more p {
+            margin: 0 0 calc(var(--spacing-unit) * 3);
+            line-height: 1.5;
+            max-width: 30em;
+        }
+        
+        .more .door-action {
+            color: var(--primary-color);
+        }
+        
+        .more a:hover,
+        .more a:focus,
+        .more a:focus-visible {
+            background-color: var(--innoq-light-grey);
+            border-color: var(--secondary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            outline: none;
+        }
+        
+        .more a:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+        
+        .more a:hover h2,
+        .more a:focus-visible h2 {
+            color: var(--secondary-color);
+        }
+        
+        .about {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: calc(var(--spacing-unit) * 5);
+            align-items: start;
+            padding-top: calc(var(--spacing-unit) * 4);
+            border-top: 1px solid var(--innoq-light-grey);
             margin-bottom: calc(var(--spacing-unit) * 6);
         }
         
-        .info-section h2 {
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: calc(var(--spacing-unit) * 4);
-            font-size: 1.8rem;
-            text-align: center;
-        }
-        
-        .info-content {
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: calc(var(--spacing-unit) * 4);
-            align-items: flex-start;
-        }
-        
-        .profile-image-container {
-            width: 220px;
-            height: 220px;
-            position: relative;
-        }
-        
-        .profile-image {
+        .about img {
+            display: block;
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            height: auto;
         }
         
-        .info-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .about h2 {
+            font-size: 2rem;
+            line-height: 1.15;
+            margin: 0 0 calc(var(--spacing-unit) * 2.5);
+            color: var(--primary-color);
         }
         
-        /* Responsive Anpassungen */
+        .about-text {
+            max-width: 42em;
+        }
+        
+        .about-text p {
+            margin: 0 0 calc(var(--spacing-unit) * 2);
+            line-height: 1.6;
+        }
+        
+        .about-text a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+        
+        .about-text a:hover,
+        .about-text a:focus-visible {
+            color: var(--secondary-color);
+        }
+        
         @media (max-width: 768px) {
-            .hero, .hero-thank-you {
-                padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 3);
+            .intro {
+                margin-top: calc(var(--spacing-unit) * 5);
             }
             
-            .hero h1, .hero-thank-you h1 {
-                font-size: 2rem;
+            .intro h1 {
+                font-size: 2.2rem;
             }
             
-            .hero p, .hero-thank-you p {
+            .intro p {
                 font-size: 1.1rem;
             }
             
-            .card-grid {
+            .doors,
+            .more {
                 grid-template-columns: 1fr;
             }
             
-            .card {
-                flex-direction: column;
-            }
-            
-            .card-header {
-                flex: 0 0 auto;
+            .door {
+                min-height: 0;
                 padding: calc(var(--spacing-unit) * 3);
             }
             
-            .info-section {
-                padding: calc(var(--spacing-unit) * 4);
+            .door h2 {
+                font-size: 1.6rem;
             }
             
-            .info-content {
+            .more {
+                margin-bottom: calc(var(--spacing-unit) * 6);
+            }
+            
+            .about {
                 grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit) * 2);
             }
             
-            .profile-image-container {
-                margin: 0 auto calc(var(--spacing-unit) * 4) auto;
+            .about img {
+                max-width: 120px;
             }
         }
+        
     </style>
     <script>
         // Generische Web Component für URL-Parameter-basierte Anzeige
@@ -374,13 +451,13 @@
 <body>
     <div class="menu">
         <div class="menu-container">
-            <a href="index.html" class="menu-brand">🧠 ADHS in der IT</a>
+            <a href="index.html" class="menu-brand">ADHS in der IT</a>
             <button type="button" class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
                 <span></span><span></span><span></span>
             </button>
             <nav class="menu-links" id="main-nav">
             <a href="index.html" class="active">Start</a>
-            <a href="screening.html">Screening Fragebogen</a>
+            <a href="screening.html">Selbsttest</a>
             <a href="links.html">ADHS verstehen</a>
             <a href="ki.html">ADHS und KI</a>
             <a href="vortraege.html">Vorträge</a>
@@ -396,12 +473,11 @@
             display-type="block"
             close-button-id="closeDevdayThankYouBanner">
 
-            <div id="devdayThankYou" class="hero-thank-you">
+            <div id="devdayThankYou" class="notice">
                 <button id="closeDevdayThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
-                <h1>Danke, dass du dabei warst!</h1>
+                <h2>Danke, dass du dabei warst!</h2>
                 <p>Ich freue mich, dass du meinen Vortrag beim Dev Day 2025 in Dresden besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
-                <br>
-                <a href="https://forms.office.com/e/jz7Wmx1zdm" target="_blank" class="feedback-button">Feedback geben</a>
+                <a href="https://forms.office.com/e/jz7Wmx1zdm" target="_blank">Feedback geben</a>
             </div>
         </url-param-visibility>
         <url-param-visibility
@@ -411,12 +487,11 @@
             display-type="block"
             close-button-id="closeTechcampHamburgThankYouBanner">
 
-          <div id="techcampHamburg2025ThankYou" class="hero-thank-you">
+          <div id="techcampHamburg2025ThankYou" class="notice">
             <button id="closeTechcampHamburgThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
-            <h1>Danke, dass du dabei warst!</h1>
+            <h2>Danke, dass du dabei warst!</h2>
             <p>Ich freue mich, dass du meinen Vortrag beim techcamp Hamburg besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
-            <br>
-            <a href="https://forms.office.com/e/FhT36NHy6Z" target="_blank" class="feedback-button">Feedback geben</a>
+            <a href="https://forms.office.com/e/FhT36NHy6Z" target="_blank">Feedback geben</a>
           </div>
         </url-param-visibility>
         <url-param-visibility
@@ -426,12 +501,11 @@
             display-type="block"
             close-button-id="closeJavaForumNordHannover2025ThankYouBanner">
 
-          <div id="JavaForumNordHannover2025ThankYou" class="hero-thank-you">
+          <div id="JavaForumNordHannover2025ThankYou" class="notice">
             <button id="closeJavaForumNordHannover2025ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
-            <h1>Danke, dass du dabei warst!</h1>
+            <h2>Danke, dass du dabei warst!</h2>
             <p>Ich freue mich, dass du meinen Vortrag beim Java Forum Nord besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
-            <br>
-            <a href="https://forms.cloud.microsoft/e/X7hiXCXKXH" target="_blank" class="feedback-button">Feedback geben</a>
+            <a href="https://forms.cloud.microsoft/e/X7hiXCXKXH" target="_blank">Feedback geben</a>
           </div>
         </url-param-visibility>
         <url-param-visibility
@@ -441,12 +515,11 @@
             display-type="block"
             close-button-id="closeBedCon2025ThankYouBanner">
 
-          <div id="BedCon2025ThankYou" class="hero-thank-you">
+          <div id="BedCon2025ThankYou" class="notice">
             <button id="closeBedCon2025ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
-            <h1>Danke, dass du dabei warst!</h1>
+            <h2>Danke, dass du dabei warst!</h2>
             <p>Ich freue mich, dass du meinen Vortrag bei den Berlin Expert Days besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
-            <br>
-            <a href="https://forms.office.com/e/iRnbYVUD3v" target="_blank" class="feedback-button">Feedback geben</a>
+            <a href="https://forms.office.com/e/iRnbYVUD3v" target="_blank">Feedback geben</a>
           </div>
         </url-param-visibility>
         <url-param-visibility
@@ -456,12 +529,11 @@
             display-type="block"
             close-button-id="closeItTage2025ThankYouBanner">
 
-            <div id="ItTage2025ThankYou" class="hero-thank-you">
+            <div id="ItTage2025ThankYou" class="notice">
                 <button id="closeItTage2025ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
-                <h1>Danke, dass du dabei warst!</h1>
+                <h2>Danke, dass du dabei warst!</h2>
                 <p>Ich freue mich, dass du meinen Vortrag bei den IT-Tagen besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
-                <br>
-                <a href="https://forms.cloud.microsoft/e/RXDqzmWLW2" target="_blank" class="feedback-button">Feedback geben</a>
+                <a href="https://forms.cloud.microsoft/e/RXDqzmWLW2" target="_blank">Feedback geben</a>
             </div>
         </url-param-visibility>
         <url-param-visibility
@@ -471,12 +543,11 @@
             display-type="block"
             close-button-id="closeJavaland2026ThankYouBanner">
 
-            <div id="Javaland2026ThankYou" class="hero-thank-you">
+            <div id="Javaland2026ThankYou" class="notice">
                 <button id="closeJavaland2026ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
-                <h1>Danke, dass du dabei warst!</h1>
+                <h2>Danke, dass du dabei warst!</h2>
                 <p>Ich freue mich, dass du meinen Vortrag bei der JavaLand besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
-                <br>
-                <a href="https://forms.office.com/e/5kdsmCmVj3" target="_blank" class="feedback-button">Feedback geben</a>
+                <a href="https://forms.office.com/e/5kdsmCmVj3" target="_blank">Feedback geben</a>
             </div>
         </url-param-visibility>
         <url-param-visibility
@@ -486,12 +557,11 @@
             display-type="block"
             close-button-id="closeDevland2026ThankYouBanner">
 
-            <div id="Devland2026ThankYou" class="hero-thank-you">
+            <div id="Devland2026ThankYou" class="notice">
                 <button id="closeDevland2026ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
-                <h1>Danke, dass du dabei warst!</h1>
+                <h2>Danke, dass du dabei warst!</h2>
                 <p>Ich freue mich, dass du meinen Vortrag bei der DevLand besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
-                <br>
-                <a href="https://forms.office.com/e/kJB4fZXBQA" target="_blank" class="feedback-button">Feedback geben</a>
+                <a href="https://forms.office.com/e/kJB4fZXBQA" target="_blank">Feedback geben</a>
             </div>
         </url-param-visibility>
 
@@ -502,86 +572,70 @@
             display-type="block"
             close-button-id="closeBaselOne2026ThankYouBanner">
 
-            <div id="BaselOne2026ThankYou" class="hero-thank-you">
+            <div id="BaselOne2026ThankYou" class="notice">
                 <button id="closeBaselOne2026ThankYouBanner" type="button" class="close-button" aria-label="Schließen">✕</button>
-                <h1>Danke, dass du dabei warst!</h1>
+                <h2>Danke, dass du dabei warst!</h2>
                 <p>Ich freue mich, dass du meinen Vortrag bei der BaselOne besucht hast. Dein Feedback ist mir wichtig – bitte teile mir deine Gedanken mit!</p>
-                <br>
-                <a href="https://sfeedback.com/vh50wY" target="_blank" class="feedback-button">Feedback geben</a>
+                <a href="https://sfeedback.com/vh50wY" target="_blank">Feedback geben</a>
             </div>
         </url-param-visibility>
 
-        <div class="hero">
-            <h1>ADHS in der IT</h1>
-            <p>Begleitmaterial zu meinen Vorträgen zum Thema ADHS mit besonderem Fokus auf Erwachsene in der IT-Branche. Hier teile ich als Betroffener meine Erfahrungen, gesammelte Ressourcen und praktische Tools.</p>
+        <header class="intro">
+            <h1>Du hast den Vortrag gehört. Wie geht es jetzt weiter?</h1>
+            <p>Diese Seite ist das Begleitmaterial zu „ADHS in der IT: Vom Chaos zum Code“. Ob du gerade im Saal gesessen hast oder jemand dir den Link weitergegeben hat: Hier findest du die Werkzeuge und Quellen, von denen im Vortrag die Rede ist.</p>
+        </header>
+        
+        <div class="doors">
+            <a href="screening.html" class="door door-test">
+                <small>Wenn du dich im Vortrag wiedererkannt hast</small>
+                <h2>Bin ich betroffen?</h2>
+                <p>Sechs Fragen nach dem ASRS v1.1 der WHO, in drei Minuten beantwortet. Das Ergebnis zeigt, ob eine fachliche Abklärung sinnvoll sein könnte.</p>
+                <span class="door-action">Selbsttest starten</span>
+            </a>
+            <a href="links.html" class="door door-learn">
+                <small>Wenn du mehr wissen willst</small>
+                <h2>Was hilft bei ADHS?</h2>
+                <p>Informationsseiten, Bücher, Podcasts, Communities und Apps auf Rezept, die ich selbst nutze oder empfehlen kann.</p>
+                <span class="door-action">ADHS verstehen</span>
+            </a>
         </div>
         
-        <h2 style="text-align: center; margin-bottom: calc(var(--spacing-unit) * 4);">Was bietet diese Seite?</h2>
-        
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">📋</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Screening-Test</h3>
-                    <p class="card-description">Ein kurzer Selbsttest basierend auf dem wissenschaftlich validierten ASRS v1.1 Fragebogen, der Ihnen erste Hinweise geben kann, ob weitere diagnostische Abklärung sinnvoll sein könnte.</p>
-                    <a href="screening.html" class="card-link">Zum Test</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">📚</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">ADHS verstehen</h3>
-                    <p class="card-description">Eine kuratierte Sammlung von Informationsseiten, Fachbüchern, Podcasts, Communities und digitalen Gesundheitsanwendungen zum Thema ADHS.</p>
-                    <a href="links.html" class="card-link">Zur Übersicht</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">🤖</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">ADHS und KI</h3>
-                    <p class="card-description">Erfahrungsberichte, Forschung und praktische Tipps dazu, wie KI-Werkzeuge bei ADHS helfen können und wo ihre Risiken liegen.</p>
-                    <a href="ki.html" class="card-link">Zur Übersicht</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">🎤</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Vorträge</h3>
-                    <p class="card-description">Termine und Folien meiner Vorträge zum Thema „ADHS in der IT“ sowie weiterführende Materialien.</p>
-                    <a href="vortraege.html" class="card-link">Zu den Vorträgen</a>
-                </div>
-            </div>
+        <div class="more">
+            <a href="vortraege.html">
+                <small>Wenn du Folien oder Termine suchst</small>
+                <h2>Wo kann man den Vortrag hören?</h2>
+                <p>Im Vortrag geht es darum, woran man ADHS bei Erwachsenen erkennt, wie Teams mit betroffenen Kolleginnen und Kollegen umgehen können und welche Strategien im Entwickleralltag helfen. Hier findest du alle Termine, an denen ich ihn gehalten habe oder halten werde, und die Folien zum Nachschlagen. Wenn du ihn auf deiner Konferenz oder in deinem Unternehmen hören willst, melde dich gerne.</p>
+                <span class="door-action">Zu den Vorträgen</span>
+            </a>
+            <a href="ki.html">
+                <small>Wenn KI zu deinem Arbeitsalltag gehört</small>
+                <h2>Macht KI es besser oder schlimmer?</h2>
+                <p>KI trifft ADHS an einer empfindlichen Stelle: Sie kann uns deutlich produktiver machen, weil wir ohnehin zwischen Themen springen und mit mehreren Agents parallel arbeiten können. Gleichzeitig liefert sie ständige Dopaminkicks, die uns im Hyperfokus festhalten, bis Schlaf, Essen und die Menschen um uns herum zu kurz kommen. Erfahrungsberichte, erste Studien und Werkzeuge zu dieser Gratwanderung, von Coding-Agents bis zur Suchtgefahr.</p>
+                <span class="door-action">ADHS und KI</span>
+            </a>
         </div>
         
-        <div class="info-section">
-            <h2>Über mich</h2>
-            <div class="info-content">
-                <div class="profile-image-container">
-                    <img src="/assets/images/joshua-toepfer-small-512.png" alt="Joshua Töpfer" class="profile-image">
-                </div>
-                <div class="info-text">
-                    <p>Ich bin Joshua Töpfer, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank">INNOQ</a>, wo ich als Softwareentwickler und -architekt arbeite. Meine Schwerpunkte liegen in der Erstellung skalierbarer, moderner Frontends und der Beratung zu Softwarearchitekturen und -entwicklungsprozessen.</p>
+        <section class="about">
+            <img src="/assets/images/joshua-toepfer-small-512.png" alt="Joshua Töpfer">
+            <div class="about-text">
+                <h2>Über mich</h2>
+                <p>Ich bin Joshua Töpfer, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank">INNOQ</a>, wo ich als Softwareentwickler und -architekt arbeite. Meine Schwerpunkte liegen in der Erstellung skalierbarer, moderner Frontends und der Beratung zu Softwarearchitekturen und -entwicklungsprozessen.</p>
                     <p>Im Sommer 2024 erhielt ich meine ADHS-Diagnose, nachdem ich bereits 2021 erste Vermutungen hatte. Damals fiel mir während eines Monats ohne Projekt auf, dass ich trotz vieler spannender Themen auf meiner Liste es nicht schaffte, mich zu fokussieren und ein Thema zu Ende zu bringen. Die Themen verloren schnell ihren Reiz, und ich begann viele Dinge, ohne sie abzuschließen.</p>
                     <p>Die bevorstehende Elternzeit und die damit verbundene Verantwortung verstärkten meine ADHS-Symptome erheblich. Meine bisherigen Bewältigungsstrategien funktionierten nicht mehr. Nach Gesprächen mit Kollegen wurde ich auf ADHS aufmerksam und erkannte mich sowohl in aktuellen als auch in Kindheitssymptomen wieder.</p>
                     <p>Aufgrund langer Wartezeiten ließ ich die Diagnostik privat durchführen. Aktuell werde ich medikamentös eingestellt und erhalte Verhaltenstherapie – beides hilft mir sehr. Die Diagnose und Behandlung haben meine Ehe gerettet, weshalb es mir ein großes Anliegen ist, über ADHS zu informieren und zu zeigen, dass das oft verbreitete Bild des "Zappelphilipps" nur auf einen Teil der Betroffenen zutrifft.</p>
-                </div>
             </div>
-        </div>
+        </section>
     </div><!-- Ende .content -->
     
-    <footer>
-        <p>Made with ❤️ by <a href="https://www.linkedin.com/in/joshua-toepfer/" target="_blank">Joshua Töpfer</a> | <a href="impressum.html">Impressum</a> | <a href="datenschutzerklaerung.html">Datenschutz</a></p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-about"><span class="footer-name">Joshua Töpfer</span>, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank">INNOQ</a></p>
+            <nav class="footer-links" aria-label="Weitere Links">
+                <a href="https://www.linkedin.com/in/joshua-toepfer/" target="_blank">LinkedIn</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
     </footer>
     <script src="/assets/scripts/menu.js"></script>
 </body>
