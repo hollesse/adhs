@@ -129,31 +129,6 @@
             border-color: var(--secondary-color);
         }
         
-        /* Fortschritt */
-        .progress-container {
-            margin: calc(var(--spacing-unit) * 6) 0 calc(var(--spacing-unit) * 4);
-        }
-        
-        .progress-bar {
-            height: 4px;
-            background-color: var(--innoq-light-grey);
-            overflow: hidden;
-        }
-        
-        .progress-indicator {
-            height: 100%;
-            width: 0;
-            background-color: var(--primary-color);
-        }
-        
-        .progress-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: calc(var(--spacing-unit));
-            font-size: 0.9rem;
-            color: var(--innoq-grey);
-        }
-        
         /* Fragen */
         .question {
             display: none;
@@ -478,16 +453,6 @@
                 <button type="button" class="btn" id="start-test">Selbsttest starten</button>
             </div>
             
-            <div class="progress-container" style="display: none;">
-                <div class="progress-bar">
-                    <div class="progress-indicator" id="progress-indicator"></div>
-                </div>
-                <div class="progress-steps">
-                    <span>Frage 1</span>
-                    <span>Frage 6</span>
-                </div>
-            </div>
-
             <asrs-question question-number="1" class="question" id="question-1">
                 <div class="question-header">
                     <div class="question-number">1</div>

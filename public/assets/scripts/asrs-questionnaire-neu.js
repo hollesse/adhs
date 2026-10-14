@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressContainer = document.querySelector('.progress-container');
   const firstQuestion = document.getElementById('question-1');
 
-  if (startButton && infoCard && progressContainer && firstQuestion) {
+  if (startButton && infoCard && firstQuestion) {
     console.log('Start-Button gefunden, initialisiere...');
     
     // Beim Klick auf den Start-Button: Info-Karte ausblenden, Fortschrittsbalken und erste Frage einblenden
@@ -525,8 +525,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Info-Karte ausblenden
       infoCard.style.display = 'none';
       
-      // Fortschrittsbalken einblenden
-      progressContainer.style.display = 'block';
+      // Fortschrittsbalken einblenden (falls vorhanden)
+      if (progressContainer) progressContainer.style.display = 'block';
       
       // Erste Frage einblenden
       firstQuestion.classList.add('active');
