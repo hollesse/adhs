@@ -156,10 +156,29 @@
         
         .door-action {
             margin-top: auto;
+            align-self: flex-start;
             font-weight: 600;
-            text-decoration: underline;
-            text-underline-offset: 0.2em;
-            text-decoration-thickness: 2px;
+            padding-bottom: 2px;
+            border-bottom: 2px solid currentColor;
+            transition: border-color var(--transition-speed) ease, padding var(--transition-speed) ease;
+        }
+        
+        .door-test:hover .door-action,
+        .door-test:focus-visible .door-action {
+            border-bottom-color: var(--secondary-color);
+            padding-bottom: 5px;
+        }
+        
+        .door-learn:hover .door-action,
+        .door-learn:focus-visible .door-action {
+            border-bottom-color: var(--primary-color);
+            padding-bottom: 5px;
+        }
+        
+        .more a:hover .door-action,
+        .more a:focus-visible .door-action {
+            border-bottom-color: var(--secondary-color);
+            padding-bottom: 5px;
         }
         
         .more {
