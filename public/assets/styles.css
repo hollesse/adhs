@@ -144,7 +144,6 @@ a:focus {
 
 .menu a.active {
     color: var(--primary-color);
-    font-weight: 700; /* Fettere Schrift für aktiven Menüpunkt */
 }
 
 .menu a:focus {
@@ -443,10 +442,6 @@ input[type="radio"] {
     font-size: 1rem;
     font-weight: 500;
     padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 2);
-}
-
-.menu-links a.active {
-    font-weight: 700;
 }
 
 .menu-links a:last-child {
