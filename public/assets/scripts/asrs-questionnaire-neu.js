@@ -343,11 +343,11 @@ class AsrsQuestionnaire extends HTMLElement {
     let resultStatus;
     
     if (totalScore >= 4) {
-      resultMessage = "Das Screening ist auffällig. Bei Leidensdruck wird empfohlen, einen Facharzt oder Therapeuten zu konsultieren.";
+      resultMessage = "Ab vier Punkten gilt das Screening als auffällig. Bei Leidensdruck wird empfohlen, eine Fachärztin, einen Facharzt oder eine therapeutische Praxis aufzusuchen.";
       resultClass = "auffaellig";
       resultStatus = "Auffällig";
     } else {
-      resultMessage = "Das Screening ist unauffällig. Wenn dennoch Unsicherheiten bestehen, kann ein Fachgespräch hilfreich sein.";
+      resultMessage = "Erst ab vier Punkten gilt das Screening als auffällig. Wenn dennoch Unsicherheiten bestehen, kann ein Fachgespräch hilfreich sein.";
       resultClass = "unauffaellig";
       resultStatus = "Unauffällig";
     }
