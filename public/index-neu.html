@@ -31,12 +31,21 @@
         }
         
         .notice a {
+            display: inline-block;
             color: var(--primary-color);
             font-weight: 600;
-            text-decoration: underline;
-            text-underline-offset: 0.18em;
-            text-decoration-thickness: 2px;
-            text-decoration-color: var(--secondary-color);
+            text-decoration: none;
+            padding-bottom: 2px;
+            border-bottom: 2px solid currentColor;
+            transition: border-color var(--transition-speed) ease;
+        }
+        
+        .notice a:hover,
+        .notice a:focus-visible {
+            color: var(--primary-color);
+            text-decoration: none;
+            border-bottom-color: var(--secondary-color);
+            outline: none;
         }
         
         .notice .close-button {
