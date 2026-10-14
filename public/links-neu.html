@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHS verstehen (Entwurf)</title>
+    <!-- Lokale Fonts statt Google Fonts -->
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <style>
+        /* Entwurf: ruhiges Verzeichnis-Layout ohne Karten */
+        .page-head {
+            max-width: 1040px;
+            margin: calc(var(--spacing-unit) * 6) auto calc(var(--spacing-unit) * 4);
+            padding-bottom: calc(var(--spacing-unit) * 4);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .page-head h1 {
+            font-size: 2.6rem;
+            line-height: 1.1;
+            margin: 0 0 calc(var(--spacing-unit) * 2);
+            color: var(--primary-color);
+            letter-spacing: -0.01em;
+        }
+        
+        .page-head p {
+            max-width: 38em;
+            margin: 0;
+            font-size: 1.15rem;
+            line-height: 1.55;
+            color: var(--innoq-grey);
+        }
+        
+        .resource-section {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-unit) * 5) 0;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: calc(var(--spacing-unit) * 6);
+            border-bottom: 1px solid var(--innoq-light-grey);
+        }
+        
+        .resource-section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .section-head {
+            position: sticky;
+            top: calc(var(--spacing-unit) * 10);
+            align-self: start;
+        }
+        
+        .section-head h2 {
+            font-size: 1.5rem;
+            line-height: 1.2;
+            margin: 0 0 calc(var(--spacing-unit));
+            color: var(--primary-color);
+        }
+        
+        .section-count {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--innoq-grey);
+        }
+        
+        .section-note {
+            margin: calc(var(--spacing-unit) * 2) 0 0;
+            padding-top: calc(var(--spacing-unit) * 2);
+            border-top: 1px solid var(--innoq-light-grey);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--innoq-grey);
+        }
+        
+        .entries {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-width: 42em;
+        }
+        
+        .entry {
+            padding: calc(var(--spacing-unit) * 2.5) 0;
+            border-top: 1px solid var(--innoq-light-grey);
+        }
+        
+        .entry:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        .entry-title {
+            margin: 0 0 calc(var(--spacing-unit) * 0.5);
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+        
+        .entry-title a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-underline-offset: 0.18em;
+            text-decoration-thickness: 2px;
+            transition: text-decoration-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+        
+        .entry-title a:hover,
+        .entry-title a:focus-visible {
+            color: var(--secondary-color);
+            text-decoration-color: var(--secondary-color);
+            outline: none;
+        }
+        
+        .entry-text {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.55;
+            color: var(--text-color);
+        }
+        
+        .entry-text a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+        
+        @media (max-width: 768px) {
+            .page-head {
+                margin-top: calc(var(--spacing-unit) * 4);
+            }
+            
+            .page-head h1 {
+                font-size: 2rem;
+            }
+            
+            .resource-section {
+                grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit) * 3);
+                padding: calc(var(--spacing-unit) * 4) 0;
+            }
+            
+            .section-head {
+                position: static;
+            }
+            
+            .section-note {
+                border-top: none;
+                padding-top: 0;
+                margin-top: calc(var(--spacing-unit));
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-container">
+            <a href="index.html" class="menu-brand">🧠 ADHS in der IT</a>
+            <button type="button" class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="menu-links" id="main-nav">
+            <a href="index.html">Start</a>
+            <a href="screening.html">Screening Fragebogen</a>
+            <a href="links.html" class="active">ADHS verstehen</a>
+            <a href="ki.html">ADHS und KI</a>
+            <a href="vortraege.html">Vorträge</a>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="content">
+        <header class="page-head">
+            <h1>ADHS verstehen</h1>
+            <p>Wer ADHS versteht, kann besser damit umgehen. Diese Psychoedukation, also das Wissen über die eigene Diagnose, gilt als wichtiger Baustein jeder Behandlung. Hier findest du Informationsseiten, Bücher, Podcasts, Communities und digitale Gesundheitsanwendungen, die dabei helfen.</p>
+        </header>
+        
+            <section class="resource-section">
+                <header class="section-head">
+                    <h2>Informationen</h2>
+                    <p class="section-count">6 Quellen</p>
+                </header>
+                <ol class="entries">
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.adxs.org" target="_blank">ADXS.org</a></p>
+                        <p class="entry-text">Umfassende Informationsplattform mit wissenschaftlich fundierten Erkenntnissen zu ADHS, detaillierten Informationen zu Medikamenten und umfangreichen Selbsttests.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.adhs-deutschland.de/" target="_blank">ADHS Deutschland e.V.</a></p>
+                        <p class="entry-text">Selbsthilfeverband für Menschen mit ADHS und ihre Angehörigen mit vielen Informationen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://gemeinsam-adhs-begegnen.de/" target="_blank">Fachkreis – Gemeinsam ADHS begegnen</a></p>
+                        <p class="entry-text">Umfassender Ratgeber zu allen Aspekten von ADHS bei Kindern und Erwachsenen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.adhspedia.de/" target="_blank">ADHSpedia</a></p>
+                        <p class="entry-text">Informationsportal mit zahlreichen Artikeln zu ADHS im Alltag.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.adhs.info/" target="_blank">ADHS.info</a></p>
+                        <p class="entry-text">Offizielle Informationsplattform der zentralen ADHS-Netzwerke in Deutschland mit qualitätsgesicherten Informationen zu Symptomen, Diagnostik und Behandlung für Betroffene, Angehörige und Fachleute.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://kaianew.github.io/GetMeInTheGroove.pdf" target="_blank">„Get Me In The Groove“ – Supporting ADHD Professional Programmers (ICSE 2025)</a></p>
+                        <p class="entry-text">Große Studie mit fast 500 Befragten über Stärken und Hürden von Programmierer:innen mit ADHS. (Englisch, PDF)</p>
+                    </li>
+                </ol>
+            </section>
+            <section class="resource-section">
+                <header class="section-head">
+                    <h2>Bücher und Literatur</h2>
+                    <p class="section-count">8 Quellen</p>
+                </header>
+                <ol class="entries">
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.ag-adhs.de/assets/infos/patientenleitlinie.pdf" target="_blank">Patientenleitlinie ADHS (PDF, kostenlos)</a></p>
+                        <p class="entry-text">Eine für Patienten und Laien verständlich aufbereitete Version der S3-Leitlinien zu ADHS. Dieses kostenlose PDF-Dokument erklärt in klarer Sprache die wissenschaftlich fundierten Diagnose- und Behandlungsmethoden bei ADHS in verschiedenen Altersgruppen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.amazon.de/ADHS-bei-Kindern-Jugendlichen-Erwachsenen/dp/3170435744/" target="_blank">ADHS bei Kindern, Jugendlichen und Erwachsenen (Cordula Neuhaus)</a></p>
+                        <p class="entry-text">Umfassendes Standardwerk zur ADHS über alle Altersgruppen hinweg. Bietet fundierte Informationen zu Symptomen, Ursachen, Diagnose und Behandlung, sowohl für Betroffene als auch für Angehörige und Fachpersonal.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.thalia.de/shop/home/artikeldetails/A1048135169" target="_blank">ADHS im Erwachsenenalter - Symptome, Differentialdiagnose, Therapie (Johanna Krause, Klaus-Henning Krause)</a></p>
+                        <p class="entry-text">Wissenschaftlich fundiertes Fachbuch zu ADHS im Erwachsenenalter. Umfassende Darstellung von Symptomen, diagnostischen Verfahren und therapeutischen Ansätzen. Besonders für medizinisches Fachpersonal und Therapeuten geeignet, aber auch für Betroffene, die tiefer in die Thematik einsteigen wollen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.thalia.de/shop/home/artikeldetails/A1068358550" target="_blank">Habe ich AD(H)S? ...und wenn ja, was mache ich Gutes draus? (Astrid Neuy-Lobkowicz)</a></p>
+                        <p class="entry-text">Ein Selbsthilfebuch, das Orientierung für Menschen bietet, die vermuten, von ADHS betroffen zu sein. Es richtet sich besonders an Erwachsene, die sich in der Selbstreflexions- oder Diagnosephase befinden, und enthält erste Strategien zum Umgang mit ADHS-Symptomen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.thalia.de/shop/home/artikeldetails/A1073450172" target="_blank">Dein ADHS-Wohlfühl-Guide (Laura Vogel)</a></p>
+                        <p class="entry-text">Ein Selbsthilfebuch, das viele Selfcare Tools mitbringt, um besser mit ADHS umgehen zu können. Im Gegensatz zu vielen anderen Büchern ist dieses Buch besonders bunt und schön illustriert um so Dopamin auszuschütten und dem ADHS Betroffenen das Lesen des Buches einfacher zu machen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.thalia.de/shop/home/artikeldetails/A1069552620" target="_blank">Leben mit ADHS (Gil Borms, Steven Stes, Ria van den Heuvel)</a></p>
+                        <p class="entry-text">Ein praktischer Ratgeber, der konkrete Hilfestellung für Erwachsene mit ADHS bietet. Das Buch behandelt verschiedene Lebensbereiche wie Arbeit, Partnerschaft und Alltag und gibt praxisnahe Tipps zur Bewältigung typischer Herausforderungen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.amazon.de/AD-Selbsthilfe-Verhaltensstrategien-Schule-Studium/dp/3170233513" target="_blank">AD(H)S - Hilfe zur Selbsthilfe: Lern- und Verhaltensstrategien für Schule, Studium und Beruf (Helga Simchen)</a></p>
+                        <p class="entry-text">Dieses Buch bietet konkrete Unterstützung für Menschen mit AD(H)S bei der Bewältigung von Lern- und Arbeitsaufgaben. Es enthält praktische Strategien für verschiedene Bildungs- und Berufsszenarien und fokussiert sich besonders auf die Entwicklung von Selbsthilfefähigkeiten.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.thalia.de/shop/home/artikeldetails/A1071906912" target="_blank">Familien-Ratgeber ADHS (Doreen Aldugan)</a></p>
+                        <p class="entry-text">Ein praxisnaher Ratgeber für Familien mit AD(H)S, der Fachwissen und persönliche Erfahrungen verbindet. Doreen Aldugan (<a href="https://www.instagram.com/nocheinwunder/" target="_blank">@nocheinwunder</a>) vermittelt verständlich, wie Eltern den Alltag mit AD(H)S-Kindern positiver gestalten können, gibt konkrete Tipps und legt den Fokus auf Stärken statt Defizite.</p>
+                    </li>
+                </ol>
+            </section>
+            <section class="resource-section">
+                <header class="section-head">
+                    <h2>Digitale Gesundheitsanwendungen (DiGA)</h2>
+                    <p class="section-count">2 Quellen</p>
+                    <p class="section-note">Vom BfArM geprüfte „Apps auf Rezept“ – verschreibbar und von der Krankenkasse bezahlt.</p>
+                </header>
+                <ol class="entries">
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.oriko-adhs.de/" target="_blank">ORIKO</a></p>
+                        <p class="entry-text">DiGA von Mindnet e-Health Solutions in Kooperation mit Takeda. App-basiertes Therapieprogramm für Erwachsene mit ADHS, das Lebensqualität und ADHS-Symptome verbessern und begleitende Ängste und depressive Symptome reduzieren soll.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.attexis.com/" target="_blank">attexis</a></p>
+                        <p class="entry-text">DiGA von GAIA in Kooperation mit MEDICE, dauerhaft im DiGA-Verzeichnis gelistet. Sechs interaktive Therapie-Dialoge mit Psychoedukation und verhaltenstherapeutischem Skills-Training für Aufmerksamkeit, Impulskontrolle und Alltagsorganisation.</p>
+                    </li>
+                </ol>
+            </section>
+            <section class="resource-section">
+                <header class="section-head">
+                    <h2>Communities</h2>
+                    <p class="section-count">3 Quellen</p>
+                </header>
+                <ol class="entries">
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.reddit.com/r/ADHD/" target="_blank">r/ADHD (Reddit)</a></p>
+                        <p class="entry-text">Große internationale Community für Austausch und Unterstützung.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.reddit.com/r/ADHD_Programmers/" target="_blank">r/ADHD_Programmers (Reddit)</a></p>
+                        <p class="entry-text">Internationale Community für Austausch über Softwareentwicklung mit ADHS, Erfahrungen und Tipps.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.adhs-deutschland.de/" target="_blank">ADHS Deutschland e.V.</a></p>
+                        <p class="entry-text">Selbsthilfeverband für Menschen mit ADHS und ihre Angehörigen.</p>
+                    </li>
+                </ol>
+            </section>
+            <section class="resource-section">
+                <header class="section-head">
+                    <h2>Podcasts</h2>
+                    <p class="section-count">4 Quellen</p>
+                </header>
+                <ol class="entries">
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://kein-grund-zur-panik.podigee.io/" target="_blank">ADHS: Kein Grund zur Panik! (Podcast-Serie)</a></p>
+                        <p class="entry-text">Medizinisch orientierter Podcast des Expertenrats ADHS in Zusammenarbeit mit MEDICE, der primär für Ärzte und medizinisches Fachpersonal konzipiert ist. Bietet tiefgehende, wissenschaftliche Einblicke in die Thematik, ist jedoch aufgrund des Fachniveaus für Laien nicht immer leicht zugänglich.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.wakeword.de/podcasts/mein-adhs" target="_blank">Mein ADHS - Chaos im Kopf(Podcast-Serie)</a></p>
+                        <p class="entry-text">Philipp Jordan teilt in diesem Podcast seine persönlichen Erfahrungen mit der ADHS-Diagnose und arbeitet anhand von Anekdoten verschiedene Aspekte der Störung auf, um Betroffene und Angehörige aufzuklären und beim Verstehen von ADHS zu helfen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.ndr.de/nachrichten/info/90-Hype-und-Hilfe-ADHS-im-Fokus,audio1533938.html" target="_blank">NDR Info Perspektiven: Hype und Hilfe - ADHS im Fokus (Einzelne Episode)</a></p>
+                        <p class="entry-text">Eine 79-minütige Podcast-Episode (22.12.2023) mit umfassender Diskussion über ADHS bei Kindern und Erwachsenen. Beleuchtet Ursachen, Diagnoseanstiege und Behandlungsoptionen. Besonders informativ zum oft übersehenen Thema ADHS bei Mädchen und jungen Frauen.</p>
+                    </li>
+                    <li class="entry">
+                        <p class="entry-title"><a href="https://www.deutschlandfunknova.de/beitrag/adhs-aufmerksamkeits-defizit-und-achtsamkeit" target="_blank">Deutschlandfunk Nova: ADHS und Achtsamkeit (Einzelne Episode)</a></p>
+                        <p class="entry-text">Eine 37-minütige Podcast-Episode (24.03.2022), die speziell auf Achtsamkeitstechniken für Menschen mit ADHS eingeht. Diskutiert wird Neurodiversität, verschiedene Aufmerksamkeitsstile und praktische Strategien zum Umgang mit abschweifenden Gedanken.</p>
+                    </li>
+                </ol>
+            </section>
+    </div><!-- Ende .content -->
+    
+    <footer>
+        <p>Made with ❤️ by <a href="https://www.linkedin.com/in/joshua-toepfer/" target="_blank">Joshua Töpfer</a> | <a href="impressum.html">Impressum</a> | <a href="datenschutzerklaerung.html">Datenschutz</a></p>
+    </footer>
+    <script src="/assets/scripts/menu.js"></script>
+</body>
+</html>
