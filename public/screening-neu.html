@@ -277,24 +277,18 @@
         
         .result-header {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: calc(var(--spacing-unit) * 4);
             padding: calc(var(--spacing-unit) * 4);
             background-color: var(--primary-color);
             color: white;
         }
         
-        .result-header h2 {
-            margin: 0;
-            font-size: 1.8rem;
-            line-height: 1.15;
-            color: white;
-            order: 2;
-        }
-        
         .result-summary {
-            order: 1;
             flex: 0 0 auto;
+            align-self: stretch;
+            display: flex;
+            align-items: center;
             padding-right: calc(var(--spacing-unit) * 4);
             border-right: 1px solid rgba(255,255,255,0.35);
         }
@@ -302,6 +296,7 @@
         .badge-icon {
             display: flex;
             flex-direction: column;
+            align-items: center;
             line-height: 1;
         }
         
@@ -317,26 +312,33 @@
             margin-top: calc(var(--spacing-unit) * 0.75);
         }
         
-        .result-details {
-            padding-top: calc(var(--spacing-unit) * 4);
-        }
-        
-        .result-details h3 {
-            font-size: 1.3rem;
-            margin: calc(var(--spacing-unit) * 4) 0 calc(var(--spacing-unit) * 1.5);
-            color: var(--primary-color);
+        .result-text h2 {
+            margin: 0 0 calc(var(--spacing-unit) * 1.5);
+            font-size: 1.8rem;
+            line-height: 1.15;
+            color: white;
         }
         
         .result {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.55;
-            margin: 0 0 calc(var(--spacing-unit));
+            margin: 0 0 calc(var(--spacing-unit) * 1.5);
         }
         
         .result-note {
             margin: 0;
-            color: var(--innoq-grey);
             font-size: 0.95rem;
+            opacity: 0.8;
+        }
+        
+        .result-details {
+            padding-top: calc(var(--spacing-unit) * 2);
+        }
+        
+        .result-details h3 {
+            font-size: 1.3rem;
+            margin: calc(var(--spacing-unit) * 3) 0 calc(var(--spacing-unit) * 1.5);
+            color: var(--primary-color);
         }
         
         .next-steps {
@@ -430,6 +432,7 @@
             .result-summary {
                 padding-right: 0;
                 border-right: none;
+                align-self: flex-start;
             }
         }
     </style>
@@ -594,7 +597,6 @@
 
         <div class="result-container" id="result-container">
             <div class="result-header">
-                <h2>Dein Ergebnis</h2>
                 <div class="result-summary">
                     <div class="result-badge" id="result-badge">
                         <div class="badge-icon" id="badge-icon">
@@ -603,12 +605,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="result-text">
+                    <h2>Dein Ergebnis</h2>
+                    <div class="result" id="result"></div>
+                    <p class="result-note">Ab vier Punkten gilt das Screening als auffällig, bei null bis drei Punkten als unauffällig.</p>
+                </div>
             </div>
             
             <div class="result-details">
-                <div class="result" id="result"></div>
-                <p class="result-note">Ab vier Punkten gilt das Screening als auffällig, bei null bis drei Punkten als unauffällig.</p>
-                
                 <h3>Wie es weitergehen kann</h3>
                 <ul class="next-steps" id="next-steps">
                     <li class="next-step">
