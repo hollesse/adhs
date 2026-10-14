@@ -95,6 +95,7 @@
             min-height: 280px;
             padding: calc(var(--spacing-unit) * 4);
             color: white;
+            font-weight: 400;
             text-decoration: none;
             transition: background-color var(--transition-speed) ease;
         }
@@ -107,16 +108,31 @@
             background-color: var(--secondary-color);
         }
         
+        .door:hover,
+        .door:focus,
+        .door:focus-visible {
+            color: white;
+            text-decoration: none;
+            outline: none;
+        }
+        
         .door-test:hover,
         .door-test:focus-visible {
             background-color: #002632;
-            outline: none;
         }
         
         .door-learn:hover,
         .door-learn:focus-visible {
             background-color: #cf6a33;
-            outline: none;
+        }
+        
+        .door:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+        
+        .door-learn:focus-visible {
+            outline-color: var(--primary-color);
         }
         
         .door small {
@@ -159,6 +175,7 @@
             padding: calc(var(--spacing-unit) * 4);
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
+            font-weight: 400;
             text-decoration: none;
             transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
         }
@@ -181,10 +198,18 @@
         }
         
         .more a:hover,
+        .more a:focus,
         .more a:focus-visible {
             background-color: var(--innoq-light-grey);
             border-color: var(--secondary-color);
+            color: var(--primary-color);
+            text-decoration: none;
             outline: none;
+        }
+        
+        .more a:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
         }
         
         .more a:hover h2,
