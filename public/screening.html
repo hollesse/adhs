@@ -3,630 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASRS v1.1 Fragebogen</title>
+    <title>Selbsttest</title>
     <!-- Lokale Fonts statt Google Fonts -->
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
     <link rel="stylesheet" href="/assets/styles.css">
     <style>
-        /* INNOQ-spezifische Stile für den modernen Fragebogen */
-        form {
-            padding: 0;
-            box-shadow: none;
-            background-color: transparent;
-            max-width: 800px;
+        /* Selbsttest: eine schmale Spalte, ein Schritt nach dem anderen */
+        .test {
+            max-width: 680px;
             margin: 0 auto;
         }
         
-        /* Karte für den erweiterten Test (unterhalb von Fragebogen und Ergebnis) */
-        .extended-test-card {
-            max-width: 800px;
-            box-sizing: border-box;
-            margin: calc(var(--spacing-unit) * 5) auto 0;
-        }
-        
-        /* Info-Karte Styling */
-        .info-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            padding: calc(var(--spacing-unit) * 4);
-            margin-bottom: calc(var(--spacing-unit) * 4);
-            border: 1px solid rgba(0,0,0,0.04);
-            display: flex;
-            flex-direction: column;
-            animation: fadeInUp 0.5s ease;
-        }
-        
-        .info-card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: calc(var(--spacing-unit) * 3);
-        }
-        
-        .info-card-icon {
-            font-size: 2.5rem;
-            margin-right: calc(var(--spacing-unit) * 3);
+        .test h1 {
+            text-align: left;
+            font-size: 2.6rem;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            margin: calc(var(--spacing-unit) * 6) 0 calc(var(--spacing-unit) * 2);
             color: var(--primary-color);
         }
         
-        .info-card-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary-color);
+        .lede {
+            margin: 0 0 calc(var(--spacing-unit) * 5);
+            padding-bottom: calc(var(--spacing-unit) * 4);
+            border-bottom: 3px solid var(--primary-color);
+            font-size: 1.15rem;
+            line-height: 1.55;
+            color: var(--innoq-grey);
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+        
+        form {
+            padding: 0;
+            box-shadow: none;
+            background: transparent;
             margin: 0;
         }
         
-        .info-card-content {
-            color: var(--text-color);
-            margin-bottom: calc(var(--spacing-unit) * 4);
+        /* Einstieg */
+        .intro p {
+            margin: 0 0 calc(var(--spacing-unit) * 2);
             line-height: 1.6;
         }
         
-        .info-card-content p {
-            margin-bottom: calc(var(--spacing-unit) * 2);
+        .intro a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
         }
         
-        .info-card-content ul {
-            padding-left: calc(var(--spacing-unit) * 3);
-            margin-bottom: calc(var(--spacing-unit) * 2);
+        .intro a:hover,
+        .intro a:focus-visible {
+            color: var(--secondary-color);
         }
         
-        .info-card-content li {
-            margin-bottom: calc(var(--spacing-unit));
-        }
-        
-        .start-button {
-            align-self: center;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .start-button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-        
-        .start-button:after {
-            content: '\2192';
-            margin-left: 8px;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .start-button:hover:after {
-            transform: translateX(4px);
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            margin: 0 auto 40px auto;
-            position: relative;
-        }
-
-        .progress-bar {
-            height: 6px;
+        .hints {
+            margin: calc(var(--spacing-unit) * 3) 0 calc(var(--spacing-unit) * 4);
+            padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 3);
+            border-left: 3px solid var(--primary-color);
             background-color: var(--innoq-light-grey);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
         }
-
-        .progress-indicator {
-            height: 100%;
-            background-color: var(--secondary-color);
-            transition: width 0.4s ease;
-            width: 16.67%; /* 1/6 für die erste Frage */
-        }
-
-        .progress-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            color: var(--innoq-grey);
-            font-size: 0.9rem;
-        }
-
-        /* Fragen-Card im modernen Design */
-        .question {
-            display: none;
-            background-color: var(--card-bg);
-            padding: calc(var(--spacing-unit) * 4);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            margin-bottom: calc(var(--spacing-unit) * 3);
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.04);
-            transition: all 0.3s ease;
-        }
-
-        .question.active {
-            display: block;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
-        }
-
-        /* Fragetext im modernen Design */
-        .question-header {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: calc(var(--spacing-unit) * 3);
-        }
-
-        .question-number {
-            background-color: var(--primary-color);
-            color: white;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-right: 16px;
-            flex-shrink: 0;
-        }
-
-        .question label {
-            font-weight: 600;
-            display: block;
-            color: var(--text-color);
-            font-size: 1.3rem;
-            line-height: 1.6;
-        }
-
-        /* Moderne Option-Buttons */
-        .options {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: calc(var(--spacing-unit) * 4);
-        }
-
-        .options label {
-            margin-bottom: calc(var(--spacing-unit) * 2);
-            font-weight: normal;
-            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2.5);
-            position: relative;
-            cursor: pointer;
-            user-select: none;
-            transition: all var(--transition-speed) ease;
-            font-size: 1.1rem;
-            line-height: 1.5;
-            border: 1px solid var(--innoq-light-grey);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-        }
-
-        .options label:hover {
-            background-color: rgba(0,58,73,0.03);
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .options input[type="radio"] {
-            margin-right: calc(var(--spacing-unit) * 2);
-            transform: scale(1.2);
-        }
-
-        .options input[type="radio"]:checked + span {
+        
+        .hints p {
+            margin: 0 0 calc(var(--spacing-unit));
             font-weight: 600;
             color: var(--primary-color);
         }
-
-        .options label:has(input[type="radio"]:checked) {
-            background-color: rgba(0,58,73,0.05);
-            border-color: var(--primary-color);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        
+        .hints ul {
+            margin: 0;
+            padding-left: 1.2em;
+            line-height: 1.55;
         }
-
-        /* Modernere Navigation-Buttons */
+        
+        /* Buttons */
+        .btn,
+        .btn:hover,
+        .btn:focus {
+            display: inline-block;
+            min-width: 0;
+            padding: calc(var(--spacing-unit) * 1.75) calc(var(--spacing-unit) * 3.5);
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 0;
+            box-shadow: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.2;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+        
+        .btn:hover,
+        .btn:focus-visible {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+        
+        .btn:disabled,
+        .btn:disabled:hover {
+            background-color: var(--innoq-light-grey);
+            border-color: var(--innoq-light-grey);
+            color: var(--innoq-grey);
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary,
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover,
+        .btn-secondary:focus-visible {
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        /* Fragen */
+        .question {
+            display: none;
+        }
+        
+        .question.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .question.active { animation: none; }
+        }
+        
+        .question-header {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+        
+        .question-number {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--innoq-grey);
+            margin-bottom: calc(var(--spacing-unit));
+        }
+        
+        .question-number::before {
+            content: "Frage ";
+        }
+        
+        .question-number::after {
+            content: " von 6";
+        }
+        
+        .question-header > label {
+            display: block;
+            font-size: 1.5rem;
+            line-height: 1.35;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        /* Antwortskala: fünf gleich breite Felder nebeneinander */
+        .options {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .options label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 64px;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit));
+            border-right: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+        
+        .options label:last-child {
+            border-right: none;
+        }
+        
+        .options label:hover {
+            background-color: var(--innoq-light-grey);
+        }
+        
+        .options label:has(input:checked) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .options label:has(input:focus-visible) {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: -3px;
+        }
+        
+        .options input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            margin: 0;
+            transform: none;
+        }
+        
         .button-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: calc(var(--spacing-unit) * 3);
-        }
-
-        /* Zurück-Link im moderneren INNOQ-Stil */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--innoq-grey);
-            text-decoration: none;
-            font-size: 16px;
-            position: relative;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: all var(--transition-speed) ease;
-        }
-
-        .back-link:before {
-            content: '\2190'; /* Unicode für Pfeil nach links */
-            margin-right: 8px;
-            font-size: 1em; /* Gleiche Schriftgröße wie Text */
-            display: inline-block;
-            position: relative;
-            transition: transform var(--transition-speed) ease;
-            font-family: 'Source Sans Pro', sans-serif; /* Explizite Schriftart */
-        }
-
-        .back-link.hidden {
-            visibility: hidden;
-            opacity: 0;
-        }
-
-        .back-link:hover {
-            color: var(--secondary-color);
-            background-color: rgba(229,123,66,0.08);
-        }
-
-        .back-link:hover:before {
-            transform: translateX(-4px);
-        }
-
-        /* Modernere Buttons */
-        button {
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            min-width: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        button:not(.menu-toggle):not(:disabled):hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-
-        button:not(.menu-toggle):after {
-            content: '\2192'; /* Unicode für Pfeil nach rechts */
-            margin-left: 8px;
-            font-size: 1em; /* Gleiche Schriftgröße wie Text */
-            display: inline-block;
-            position: relative;
-            transition: transform var(--transition-speed) ease;
-            font-family: 'Source Sans Pro', sans-serif; /* Explizite Schriftart */
-        }
-
-        button:not(.menu-toggle):not(:disabled):hover:after {
-            transform: translateX(4px);
-        }
-
-        button#next-6:after {
-            content: "✓";
-            transform: none;
+            margin: calc(var(--spacing-unit) * 4) 0 calc(var(--spacing-unit) * 6);
         }
         
-        button#next-6:hover:after {
-            transform: scale(1.1);
+        .back-link,
+        .back-link:hover,
+        .back-link:focus {
+            text-decoration: none;
         }
-
-        /* Moderne Ergebnisanzeige im INNOQ-Stil */
+        
+        .back-link.hidden {
+            visibility: hidden;
+        }
+        
+        /* Ergebnis */
         .result-container {
-            margin-top: calc(var(--spacing-unit) * 5);
             display: none;
-            line-height: 1.6;
-            animation: fadeInUp 0.6s ease;
-            font-size: 1.15rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-top: calc(var(--spacing-unit) * 6);
         }
         
         .result-header {
+            display: flex;
+            align-items: flex-start;
+            gap: calc(var(--spacing-unit) * 4);
+            padding: calc(var(--spacing-unit) * 4);
             background-color: var(--primary-color);
             color: white;
-            padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 6);
-            border-radius: 12px 12px 0 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .result-header h2 {
-            margin-top: 0;
-            font-size: 2rem;
-            margin-bottom: calc(var(--spacing-unit) * 3);
-            color: white;
-        }
-        
-        .result-header:after {
-            content: "";
-            position: absolute;
-            bottom: -60px;
-            left: -10%;
-            width: 120%;
-            height: 100px;
-            background-color: white;
-            border-radius: 50%;
         }
         
         .result-summary {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: calc(var(--spacing-unit) * 3);
-            position: relative;
-            z-index: 2;
-            margin-bottom: var(--spacing-unit);
-        }
-        
-        .result-badge {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+            flex: 0 0 auto;
+            align-self: stretch;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border: 3px solid white;
-            position: relative;
-            background-color: white;
+            padding-right: calc(var(--spacing-unit) * 4);
+            border-right: 1px solid rgba(255,255,255,0.35);
         }
         
         .badge-icon {
-            font-weight: bold;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-        
-        /* Icon-Stile für verschiedene Ergebnisse */
-        .badge-icon.success {
-            color: #2ecc71; /* Grün */
-        }
-        
-        .badge-icon.alert {
-            color: #e74c3c; /* Rot */
+            line-height: 1;
         }
         
         #score-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            line-height: 1.2;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
         }
         
         .badge-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            display: block;
-            margin-top: 2px;
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: calc(var(--spacing-unit) * 0.75);
+        }
+        
+        .result-text h2 {
+            margin: 0 0 calc(var(--spacing-unit) * 1.5);
+            font-size: 1.8rem;
+            line-height: 1.15;
+            color: white;
+        }
+        
+        .result-text .result,
+        .result-text .result.auffaellig,
+        .result-text .result.unauffaellig {
+            font-size: 1.1rem;
+            line-height: 1.55;
+            margin: 0;
+            padding: 0;
+            background: none;
+            border: none;
+            color: white;
         }
         
         .result-details {
-            background-color: white;
-            padding: calc(var(--spacing-unit) * 5);
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            padding-top: calc(var(--spacing-unit) * 2);
         }
         
-        .result-section {
-            margin-bottom: calc(var(--spacing-unit) * 5);
-        }
-        
-        .result-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .result-section h3 {
-            font-size: 1.4rem;
-            margin-bottom: calc(var(--spacing-unit) * 3);
+        .result-details h3 {
+            font-size: 1.3rem;
+            margin: calc(var(--spacing-unit) * 3) 0 calc(var(--spacing-unit) * 1.5);
             color: var(--primary-color);
-            padding-bottom: calc(var(--spacing-unit));
-            border-bottom: 2px solid var(--innoq-light-grey);
-        }
-        
-        .result {
-            padding: calc(var(--spacing-unit) * 3);
-            line-height: 1.6;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            border-left: 4px solid;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        
-        .result.unauffaellig {
-            background-color: #f5f5f5;
-            border-color: var(--innoq-blue);
-            color: var(--text-color);
-        }
-        
-        .result.auffaellig {
-            background-color: #fff8f3;
-            border-color: var(--secondary-color);
-            color: var(--primary-color);
-        }
-        
-        .result a {
-            font-weight: 600;
-            color: var(--primary-color);
-            text-decoration: underline;
-            padding: 2px 0;
-        }
-        
-        .result a:hover {
-            color: var(--secondary-color);
-            background-color: rgba(229,123,66,0.1);
         }
         
         .next-steps {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--spacing-unit) * 3);
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
         
         .next-step {
-            display: flex;
-            gap: calc(var(--spacing-unit) * 3);
-            padding: calc(var(--spacing-unit) * 3);
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            padding: calc(var(--spacing-unit) * 2) 0;
         }
         
-        .next-step:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-        }
-        
-        .step-icon {
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background-color: white;
-            border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            flex-shrink: 0;
-        }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        .step-content h4 {
-            margin-top: 0;
-            margin-bottom: calc(var(--spacing-unit));
+        .next-step h4 {
+            margin: 0 0 calc(var(--spacing-unit) * 0.5);
+            font-size: 1.1rem;
             color: var(--primary-color);
         }
         
-        .step-content p {
+        .next-step p {
             margin: 0;
+            line-height: 1.55;
+        }
+        
+        .next-step a,
+        .extended a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+        
+        .next-step a:hover,
+        .extended a:hover {
+            color: var(--secondary-color);
         }
         
         .result-actions {
-            margin-top: calc(var(--spacing-unit) * 5);
-            text-align: center;
+            margin: calc(var(--spacing-unit) * 3) 0 calc(var(--spacing-unit) * 2);
         }
         
-        .secondary-button {
-            background-color: white;
+        /* Ausführlicher Test */
+        .extended {
+            margin: calc(var(--spacing-unit) * 8) 0 calc(var(--spacing-unit) * 4);
+            padding-top: calc(var(--spacing-unit) * 4);
+            border-top: 3px solid var(--primary-color);
+        }
+        
+        .extended h2 {
+            font-size: 1.5rem;
+            margin: 0 0 calc(var(--spacing-unit) * 2);
             color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            transition: all 0.3s ease;
         }
         
-        .secondary-button:hover {
-            background-color: rgba(0,58,73,0.05);
-            transform: translateY(-2px);
+        .extended p {
+            margin: 0 0 calc(var(--spacing-unit) * 2);
+            line-height: 1.6;
         }
         
-        .secondary-button:after {
-            content: "↺";
-        }
-
-        /* Footer im INNOQ-Stil */
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px 0;
-            color: var(--innoq-grey);
-            font-size: 0.95rem;
-        }
-
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            padding-bottom: 2px;
-            border-bottom: 1px solid transparent;
-            transition: all var(--transition-speed) ease;
-        }
-
-        footer a:hover {
-            border-bottom-color: var(--secondary-color);
-            color: var(--secondary-color);
-        }
-
-        /* Responsive Anpassungen */
-        @media (max-width: 768px) {
-            .question {
-                padding: calc(var(--spacing-unit) * 3);
+        @media (max-width: 600px) {
+            .test h1 {
+                font-size: 2rem;
+                margin-top: calc(var(--spacing-unit) * 4);
             }
             
-            .result {
-                padding: calc(var(--spacing-unit) * 3);
+            .question-header > label {
+                font-size: 1.25rem;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
             }
             
             .options label {
-                padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+                min-height: 0;
+                justify-content: flex-start;
+                text-align: left;
+                padding: calc(var(--spacing-unit) * 1.75) calc(var(--spacing-unit) * 2);
+                border-right: none;
+                border-bottom: 2px solid var(--primary-color);
             }
             
-            .question label {
-                font-size: 1.2rem;
+            .options label:last-child {
+                border-bottom: none;
             }
             
             .result-header {
-                padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 5);
-            }
-            
-            .result-details {
-                padding: calc(var(--spacing-unit) * 3);
-            }
-            
-            .next-step {
                 flex-direction: column;
-                align-items: center;
-                text-align: center;
+                align-items: flex-start;
                 gap: calc(var(--spacing-unit) * 2);
             }
             
             .result-summary {
-                flex-direction: column;
-                gap: calc(var(--spacing-unit) * 3);
-            }
-            
-            .result-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .result-badge {
-                width: 70px;
-                height: 70px;
-            }
-            
-            #score-value {
-                font-size: 1.5rem;
-            }
-            
-            .badge-label {
-                font-size: 0.8rem;
+                padding-right: 0;
+                border-right: none;
+                align-self: flex-start;
             }
         }
     </style>
@@ -649,41 +428,25 @@
     </div>
     
     <div class="content">
-        <h1>ADHS Screening</h1>
+        <div class="test">
+        <h1>Selbsttest</h1>
+        <p class="lede">Sechs Fragen, etwa drei Minuten. Das Ergebnis zeigt dir, ob eine fachliche Abklärung sinnvoll sein könnte. Es ist keine Diagnose.</p>
+        
         <form id="asrs-form">
         <asrs-questionnaire start-button-id="start-test">
-            <!-- Info-Karte -->
-            <div class="info-card" id="info-card">
-                <div class="info-card-header">
-                    <div class="info-card-icon">🧠</div>
-                    <h2 class="info-card-title">ASRS v1.1 Screening-Test</h2>
-                </div>
-                <div class="info-card-content">
-                    <p>Dieser Fragebogen basiert auf dem wissenschaftlich validierten <a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/6Q_German_final.pdf">ASRS v1.1 (Adult ADHD Self-Report Scale)</a>, der gemeinsam von der Weltgesundheitsorganisation (WHO) und Forschern der Harvard Medical School entwickelt wurde.</p>
-                    <p>Der Test umfasst 6 Fragen bezüglich Ihrer Gefühle und Ihres Verhalten in den letzten 6 Monaten und dauert ca. 3 Minuten. Der Test dient als erste Orientierung, ob weitere diagnostische Abklärung sinnvoll sein könnte.</p>
-                    <p>Pro Frage kann maximal ein Punkt erreicht werden. Ab insgesamt 4 Punkten gilt das Screening als auffällig.</p>
-                    <p><strong>Wichtige Hinweise:</strong></p>
+            <div class="intro" id="info-card">
+                <p>Der Test basiert auf dem <a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/6Q_German_final.pdf" target="_blank">ASRS v1.1</a>, einem Fragebogen der Weltgesundheitsorganisation und der Harvard Medical School. Die Fragen beziehen sich auf dein Erleben und Verhalten in den letzten sechs Monaten. Pro Frage gibt es höchstens einen Punkt, ab vier Punkten gilt das Screening als auffällig.</p>
+                <div class="hints">
+                    <p>Bitte beachte</p>
                     <ul>
-                        <li>Ein auffälliges Ergebnis bedeutet nicht, dass Sie ADHS haben.</li>
+                        <li>Ein auffälliges Ergebnis bedeutet nicht, dass du ADHS hast.</li>
                         <li>Ein unauffälliges Ergebnis schließt ADHS nicht aus.</li>
-                        <li>Eine zuverlässige Diagnose kann nur durch Fachpersonal gestellt werden.</li>
-                        <li>Der Test ersetzt keine ärztliche oder psychologische Beratung.</li>
+                        <li>Eine Diagnose kann nur Fachpersonal stellen.</li>
                     </ul>
                 </div>
-                <button type="button" class="start-button" id="start-test">Screening beginnen</button>
+                <button type="button" class="btn" id="start-test">Selbsttest starten</button>
             </div>
             
-            <!-- Fortschrittsbalken (initial ausgeblendet) -->
-            <div class="progress-container" style="display: none;">
-                <div class="progress-bar">
-                    <div class="progress-indicator" id="progress-indicator"></div>
-                </div>
-                <div class="progress-steps">
-                    <span>Frage 1</span>
-                    <span>Frage 6</span>
-                </div>
-            </div>
-
             <asrs-question question-number="1" class="question" id="question-1">
                 <div class="question-header">
                     <div class="question-number">1</div>
@@ -697,8 +460,8 @@
                     <label><input type="radio" name="q1" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link hidden">Zurück</a>
-                    <button type="button" id="next-1" disabled>Weiter</button>
+                    <a href="#" class="btn btn-secondary back-link hidden">Zurück</a>
+                    <button type="button" id="next-1" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
 
@@ -715,8 +478,8 @@
                     <label><input type="radio" name="q2" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
-                    <button type="button" id="next-2" disabled>Weiter</button>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
+                    <button type="button" id="next-2" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
 
@@ -733,8 +496,8 @@
                     <label><input type="radio" name="q3" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
-                    <button type="button" id="next-3" disabled>Weiter</button>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
+                    <button type="button" id="next-3" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
 
@@ -751,8 +514,8 @@
                     <label><input type="radio" name="q4" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
-                    <button type="button" id="next-4" disabled>Weiter</button>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
+                    <button type="button" id="next-4" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
 
@@ -769,8 +532,8 @@
                     <label><input type="radio" name="q5" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
-                    <button type="button" id="next-5" disabled>Weiter</button>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
+                    <button type="button" id="next-5" class="btn" disabled>Weiter</button>
                 </div>
             </asrs-question>
 
@@ -787,16 +550,16 @@
                     <label><input type="radio" name="q6" value="4"><span>Sehr oft</span></label>
                 </div>
                 <div class="button-container">
-                    <a href="#" class="back-link">Zurück</a>
-                    <button type="button" id="next-6" disabled>Auswertung anzeigen</button>
+                    <a href="#" class="btn btn-secondary back-link">Zurück</a>
+                    <button type="button" id="next-6" class="btn" disabled>Auswertung anzeigen</button>
                 </div>
             </asrs-question>
+
         </asrs-questionnaire>
         </form>
 
         <div class="result-container" id="result-container">
             <div class="result-header">
-                <h2>Ihr Ergebnis</h2>
                 <div class="result-summary">
                     <div class="result-badge" id="result-badge">
                         <div class="badge-icon" id="badge-icon">
@@ -805,70 +568,43 @@
                         </div>
                     </div>
                 </div>
+                <div class="result-text">
+                    <h2>Dein Ergebnis</h2>
+                    <div class="result" id="result"></div>
+                </div>
             </div>
             
             <div class="result-details">
-                <div class="result-section">
-                    <h3>Was bedeutet dieses Ergebnis?</h3>
-                    <div class="result" id="result"></div>
-                    <p style="margin-top: 10px; font-size: 0.95rem;">
-                        <strong>Bewertung:</strong> Ab 4 Punkten gilt das Screening als auffällig, bei 0-3 Punkten als unauffällig.
-                    </p>
-                </div>
-                
-                <div class="result-section">
-                    <h3>Wie geht es weiter?</h3>
-                    <div class="next-steps" id="next-steps">
-                        <div class="next-step">
-                            <div class="step-icon">📚</div>
-                            <div class="step-content">
-                                <h4>Mehr über ADHS erfahren</h4>
-                                <p>Auf der Seite <a href="/links.html">ADHS verstehen</a> finden Sie Quellen um mehr über ADHS zu lernen.</p>
-                            </div>
-                        </div>
-                        <div class="next-step">
-                            <div class="step-icon">🔍</div>
-                            <div class="step-content">
-                                <h4>Tiefergehender Test</h4>
-                                <p>Einen ausführlicheren Screening-Test finden Sie bei <a href='https://www.adxs.org/de/test/symptom-v5' target='_blank'>ADXS.org</a>.</p>
-                            </div>
-                        </div>
-                        <div class="next-step">
-                            <div class="step-icon">👥</div>
-                            <div class="step-content">
-                                <h4>Selbsthilfegruppen</h4>
-                                <p>An Selbsthilfegruppen, können Sie meist auch ohne Diagnose teilnehmen und sich so mit betroffenen Austauschen, um besser einschätzen zu können, ob Sie eventuell selbst betroffen sind. Selbsthilfegruppen in der Nähe können Sie über die Suche von <a href='https://www.adhs-deutschland.de/unser-angebot/selbsthilfegruppen' target='_blank'>adhs-deutschland.de</a> finden.</p>
-                            </div>
-                        </div>
-                        <div class="next-step">
-                            <div class="step-icon">👩‍⚕️</div>
-                            <div class="step-content">
-                                <h4>Fachliche Beratung & Diagnostik</h4>
-                                <p>Für einen Termin zur Diagnostik oder bei Fragen wenden Sie sich an einen Facharzt für Psychiatrie oder Neurologie mit ADHS-Expertise oder einen spezialisierten Psychotherapeuten.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+                <h3>Wie es weitergehen kann</h3>
+                <ul class="next-steps" id="next-steps">
+                    <li class="next-step">
+                        <h4>Mehr über ADHS erfahren</h4>
+                        <p>Auf der Seite <a href="/links.html">ADHS verstehen</a> findest du Informationsseiten, Bücher, Podcasts und Communities.</p>
+                    </li>
+                    <li class="next-step">
+                        <h4>Mit Betroffenen sprechen</h4>
+                        <p>An Selbsthilfegruppen kannst du meist auch ohne Diagnose teilnehmen und im Austausch besser einschätzen, ob du selbst betroffen bist. Gruppen in deiner Nähe findest du über <a href="https://www.adhs-deutschland.de/unser-angebot/selbsthilfegruppen" target="_blank">adhs-deutschland.de</a>.</p>
+                    </li>
+                    <li class="next-step">
+                        <h4>Fachliche Abklärung</h4>
+                        <p>Für eine Diagnostik wende dich an eine Fachärztin oder einen Facharzt für Psychiatrie oder Neurologie mit ADHS-Erfahrung oder an eine spezialisierte psychotherapeutische Praxis.</p>
+                    </li>
+                </ul>
                 <div class="result-actions">
-                    <button type="button" id="restart-btn" class="secondary-button">Test neu starten</button>
+                    <button type="button" id="restart-btn" class="btn btn-secondary">Test neu starten</button>
                 </div>
             </div>
         </div>
 
-        <div class="info-card extended-test-card">
-            <div class="info-card-header">
-                <div class="info-card-icon">🔍</div>
-                <h2 class="info-card-title">Erweiterter Screening-Test bei ADXS.org</h2>
-            </div>
-            <div class="info-card-content" style="margin-bottom: 0;">
-                <p>Wer sich tiefer mit möglichen Symptomen auseinandersetzen möchte, findet bei ADXS.org einen deutlich ausführlicheren Selbsttest. Er fragt nicht nur die Kernsymptome Unaufmerksamkeit, Hyperaktivität und Impulsivität ab, sondern auch viele weitere Bereiche wie emotionale Dysregulation, Schlaf oder Stress.</p>
-                <p>Die Auswertung orientiert sich an den DSM-5-Kriterien und ist deutlich detaillierter als beim ASRS. Dafür dauert der Test entsprechend länger. Auch dieser Test ersetzt keine Diagnose durch Fachpersonal.</p>
-                <p><a href="https://www.adxs.org/de/page/248/tests-selbsttests-und-umfragen#content-11-großer-adhs-symptomtest" target="_blank">Zum großen ADHS-Symptomtest bei ADXS.org</a></p>
-            </div>
-        </div>
+        <section class="extended">
+            <h2>Ausführlicher testen</h2>
+            <p>Wer tiefer einsteigen will, findet bei ADXS.org einen deutlich umfangreicheren Selbsttest. Er fragt neben Unaufmerksamkeit, Hyperaktivität und Impulsivität auch Bereiche wie emotionale Dysregulation, Schlaf oder Stress ab und wertet nach DSM-5-Kriterien aus. Dafür dauert er entsprechend länger, und auch er ersetzt keine Diagnose.</p>
+            <p><a href="https://www.adxs.org/de/page/248/tests-selbsttests-und-umfragen#content-11-großer-adhs-symptomtest" target="_blank">Zum großen ADHS-Symptomtest bei ADXS.org</a></p>
+        </section>
+        </div><!-- Ende .test -->
+    </div><!-- Ende .content -->
 
-        <footer class="site-footer">
+    <footer class="site-footer">
         <div class="footer-inner">
             <p class="footer-about"><span class="footer-name">Joshua Töpfer</span>, Senior Consultant bei <a href="https://www.innoq.com/de/staff/joshua-toepfer/" target="_blank">INNOQ</a></p>
             <nav class="footer-links" aria-label="Weitere Links">
@@ -878,10 +614,8 @@
             </nav>
         </div>
     </footer>
-    </div><!-- Ende .content -->
 
     <script src="/assets/scripts/asrs-questionnaire.js"></script>
-
     <script src="/assets/scripts/menu.js"></script>
 </body>
 </html>
