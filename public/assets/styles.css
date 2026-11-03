@@ -67,7 +67,7 @@ a:hover {
     text-decoration: underline;
 }
 
-a:focus {
+a:focus-visible {
     outline: 3px solid var(--secondary-color);
     outline-offset: 2px;
     text-decoration: underline;
@@ -146,7 +146,7 @@ a:focus {
     color: var(--primary-color);
 }
 
-.menu a:focus {
+.menu a:focus-visible {
     outline: 3px solid var(--secondary-color);
     outline-offset: -1px;
 }
@@ -188,7 +188,7 @@ button:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Visuelles Feedback */
 }
 
-button:focus {
+button:focus-visible {
     outline: 3px solid var(--secondary-color); /* Deutlicher Fokus-Indikator */
     outline-offset: 2px;
 }
